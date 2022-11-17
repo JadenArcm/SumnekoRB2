@@ -1,0 +1,63 @@
+--[[
+    SumnekoRB2 - Constants
+]]--
+
+
+--//
+
+
+INT8_MIN = -128 -- Signed 8-bit integer minimum.
+INT8_MAX = 127  -- Signed 8-bit integer maximum.
+
+INT16_MIN = -32768 -- Signed 16-bit integer minimum.
+INT16_MAX = 32767  -- Signed 16-bit integer maximum.
+
+INT32_MIN = -2147483648 -- Signed 32-bit integer minimum.
+INT32_MAX = 2147483647  -- Signed 32-bit integer maximum.
+
+UINT8_MAX = 255         -- Unsigned 8-bit integer maximum.
+UINT16_MAX = 65535      -- Unsigned 16-bit integer maximum.
+UINT32_MAX = 4294967295 -- Unsigned 32-bit integer maximum.
+
+
+--//
+
+
+ANG1   = 11930465
+ANG2   = 23860929
+ANG10  = 119304647
+ANG15  = 178956971
+ANG20  = 238609294
+ANG30  = 357913941
+ANG60  = 715827883
+ANG64h = 769514974
+ANG105 = 1252698795
+ANG210 = -1789569707
+ANG255 = -1252698795
+ANG340 = -238609294
+ANG350 = -119304647
+
+ANGLE_11hh = 134217728
+ANGLE_22h  = 268435456
+ANGLE_45   = 536870912
+ANGLE_67h  = 805306368
+ANGLE_90   = 1073741824
+ANGLE_112h = 1342177280
+ANGLE_135  = 1610612736
+ANGLE_157h = 1879048192
+ANGLE_180  = -2147483648
+ANGLE_202h = -1879048192
+ANGLE_225  = -1610612736
+ANGLE_247h = -1342177280
+ANGLE_270  = -1073741824
+ANGLE_292h = -805306368
+ANGLE_315  = -536870912
+ANGLE_337h = -268435456
+
+ANGLE_MAX = -1
+
+
+--//
+
+
+FRACUNIT = 65535
