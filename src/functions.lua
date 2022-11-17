@@ -451,6 +451,7 @@ function v.RandomChance(p) end
 
 --//
 
+
 -- Registers a console command with the name `name` that executes the specified function when called.
 -- * The first argument of the function is the player who executed the command, and all subsequent arguments are arguments passed to the command.
 -- * `flags` may be any of the flags listed below, `OR`'ed together, or none.
@@ -578,3 +579,64 @@ function G_AddGametype(t) end
 --
 ---@return boolean
 function G_GametypeUsesLives() end
+
+-- Returns true if the current gametype has teams (Team Match or CTF); returns false otherwise.
+--
+---@return boolean
+function G_GametypeHasTeams() end
+
+-- Returns true if the current gametype supports spectators (Match, CTF or Tag); returns false otherwise.
+--
+---@return boolean
+function G_GametypeHasSpectators() end
+
+-- Returns true if the current gametype supports firing rings (Match, CTF or Tag), or if `ringslinger` is enabled; returns false otherwise.
+--
+---@return boolean
+function G_RingSlingerGametype() end
+
+-- Returns true if the current gametype is a "platformer" gametype (Single Player, Co-op, Race or Competition); returns false otherwise.
+--
+---@return boolean
+function G_PlatformGametype() end
+
+-- Returns true if the current gametype is Tag or Hide and Seek; returns false otherwise.
+--
+---@return boolean
+function G_TagGametype() end
+
+-- Converts the given time in tics to hours.
+--
+---@param tics integer
+---@return integer
+function G_TicsToHours(tics) end
+
+-- Converts the given time in tics to minutes. 
+-- * By default, this returns only values between 0 and 59, assuming the return value is used for timers with both "hours" and "minutes" displays (e.g., hours:minutes:seconds).
+-- * If `full` is given and set to true, then hours (or multiples of 60 minutes) will not be truncated, allowing for return values over 59. This latter case is used for timers without an "hours" display (e.g., minutes:seconds).
+--
+---@param tics integer
+---@param full? boolean
+---@return integer
+function G_TicsToMinutes(tics, full) end
+
+-- Converts the given time in tics to seconds.
+-- * This returns only values between 0 and 59, assuming the return value is used for timers with both "minutes" and "seconds" displays (e.g., hours:minutes:seconds).
+--
+---@param tics integer
+---@return integer
+function G_TicsToSeconds(tics) end
+
+-- Converts the given time in tics to centiseconds.
+-- * This returns only values between 0 and 99, assuming the return value is used for timers with both "seconds" and "centiseconds" displays (e.g., minutes:seconds.centiseconds).
+--
+---@param tics integer
+---@return integer
+function G_TicsToCentiseconds(tics) end
+
+-- Converts the given time in tics to milliseconds. 
+-- * This returns only values between 0 and 999.
+--
+---@param tics integer
+---@return integer
+function G_TicsToMilliseconds(tics) end
