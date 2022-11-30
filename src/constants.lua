@@ -1,6 +1,7 @@
 --[[
-    SumnekoRB2 - Constants
+	SumnekoRB2 - Constants
 ]]--
+---@meta
 
 
 --//
@@ -60,4 +61,11 @@ ANGLE_MAX = -1
 --//
 
 
-FRACUNIT = 65535
+FRACBITS = 16
+
+FRACUNIT = 1 << FRACBITS
+
+TICRATE = 35
+
+
+--//

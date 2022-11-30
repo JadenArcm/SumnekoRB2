@@ -1,6 +1,7 @@
 --[[
-    SumnekoRB2 - Functions
+	SumnekoRB2 - Functions
 ]]--
+---@meta
 
 
 --//
@@ -22,7 +23,7 @@ function addHook(hookname, callback, extra) end
 function freeslot(resource, ...) end
 
 -- This calls the original version of the current action.
--- * Only use this inside of an overridden `A_` action.
+-- * Only use this inside of an overridden **`A_`** action.
 --
 ---@param actor mobj_t
 ---@param var1? any
@@ -33,20 +34,20 @@ function super(actor, var1, var2) end
 --//
 
 
--- Returns the absolute value (the number's distance from zero) of `a`.
+-- Returns the absolute value (the number's distance from zero) of **`a`**.
 --
 ---@param a integer
 ---@return integer
 function abs(a) end
 
--- Returns the smaller value of `a` or `b`.
+-- Returns the smaller value of **`a`** or **`b`**.
 --
 ---@param a integer
 ---@param b integer
 ---@return integer
 function min(a, b) end
 
--- Returns the larger value of `a` or `b`.
+-- Returns the larger value of **`a`** or **`b`**.
 --
 ---@param a integer
 ---@param b integer
@@ -57,20 +58,20 @@ function max(a, b) end
 --//
 
 
--- Returns the sine of the given angle as a fixed-point value. Output values range from `-FRACUNIT` to `FRACUNIT`.
+-- Returns the sine of the given angle as a fixed-point value. Output values range from **`-FRACUNIT`** to **`FRACUNIT`**.
 --
 ---@param a angle_t
 ---@return fixed_t
 function sin(a) end
 
--- Returns the cosine of the given angle as a fixed-point value. Output values range from `-FRACUNIT` to `FRACUNIT`.
+-- Returns the cosine of the given angle as a fixed-point value. Output values range from **`-FRACUNIT`** to **`FRACUNIT`**.
 --
 ---@param a angle_t
 ---@return fixed_t
 function cos(a) end
 
--- Returns the tangent of the given angle as a fixed-point value. Output values range from about `-1303*FRACUNIT` to about `1303*FRACUNIT`.
--- * Undefined values, such as `tan(90°)` or `tan(270°)`, are represented by `INT32_MIN`.
+-- Returns the tangent of the given angle as a fixed-point value. Output values range from about **`-1303*FRACUNIT`** to about **`1303*FRACUNIT`**.
+-- * Undefined values, such as **`tan(90°)`** or **`tan(270°)`**, are represented by **`INT32_MIN`**.
 --
 ---@param a angle_t
 ---@return fixed_t
@@ -215,7 +216,7 @@ function hud.enabled(huditem) end
 -- Adds a new HUD drawing function. `hookname` determines when the contents of the function are run.
 --
 ---@param callback function
----@param hookname string
+---@param hookname? string
 function hud.add(callback, hookname) end
 
 
@@ -235,8 +236,8 @@ function v.patchExists(name) end
 function v.cachePatch(name) end
 
 -- Draws a patch at the screen coordinates given.
--- * `flags` determines the video flags given, which control extra effects such as translucency.
--- * `colormap` determines the colormap applied to the patch. Use `v.getColormap` to obtain a value that can be used here.
+-- * **`flags`** determines the video flags given, which control extra effects such as translucency.
+-- * **`colormap`** determines the colormap applied to the patch. Use `v.getColormap` to obtain a value that can be used here.
 --
 ---@param x integer
 ---@param y integer
@@ -352,13 +353,13 @@ function v.drawString(x, y, text, flags, align) end
 ---@return integer
 function v.stringWidth(text, flags, widthtype) end
 
--- Returns the colormap to apply to a patch for a particular character skin and/or skincolor, as a special type of userdata which can only be used by drawing functions. 
--- * Skin names such as `"sonic"` or `"tails"` can be used, but their skin slot numbers can also be used. 
+-- Returns the colormap to apply to a patch for a particular character skin and/or skincolor, as a special type of userdata which can only be used by drawing functions.
+-- * Skin names such as `"sonic"` or `"tails"` can be used, but their skin slot numbers can also be used.
 -- * If either of these are used, the skin's `startcolor` value can affect the range of palette colors replaced by the given skin color's palette colors.
--- * Certain skin values have special effects on the colormap returned for a patch to use. They are represented by the following constants:
+-- * Certain skin values have special effects on the colormap returned for a patch to use.
 --
 ---@param skin? string | integer
----@param color? integer
+---@param color? skincolor_t
 ---@return colormap_t
 function v.getColormap(skin, color) end
 
@@ -611,7 +612,7 @@ function G_TagGametype() end
 ---@return integer
 function G_TicsToHours(tics) end
 
--- Converts the given time in tics to minutes. 
+-- Converts the given time in tics to minutes.
 -- * By default, this returns only values between 0 and 59, assuming the return value is used for timers with both "hours" and "minutes" displays (e.g., hours:minutes:seconds).
 -- * If `full` is given and set to true, then hours (or multiples of 60 minutes) will not be truncated, allowing for return values over 59. This latter case is used for timers without an "hours" display (e.g., minutes:seconds).
 --
@@ -634,9 +635,346 @@ function G_TicsToSeconds(tics) end
 ---@return integer
 function G_TicsToCentiseconds(tics) end
 
--- Converts the given time in tics to milliseconds. 
+-- Converts the given time in tics to milliseconds.
 -- * This returns only values between 0 and 999.
 --
 ---@param tics integer
 ---@return integer
 function G_TicsToMilliseconds(tics) end
+
+
+--//
+
+
+-- Returns a random integer between 0 and `FRACUNIT - 1` (65535).
+--
+---@return fixed_t
+function P_RandomFixed() end
+
+-- Returns a random integer between 0 and 255.
+--
+---@return integer
+function P_RandomByte() end
+
+-- Returns a random integer between 0 and `a - 1`.
+-- * Note: `a` should not be larger than 65536. Otherwise, there will be only 65536 possible different results this function can return, which will be spread out across the full range given; the rest of the numbers will be skipped.
+--
+---@param a integer
+---@return integer
+function P_RandomKey(a) end
+
+-- Returns a random integer between `a` and `b`, inclusive.
+-- * Note: The difference between `a` and `b` should not be larger than 65536. Otherwise, there will be only 65536 possible different results this function can return, which are spread out across the full range given; the rest of the numbers will be skipped.
+--
+---@param a integer
+---@param b integer
+---@return integer
+function P_RandomRange(a, b) end
+
+-- Returns a random integer between -128 and 127.
+--
+---@return integer
+function P_SignedRandom() end
+
+-- Returns true `p`% of the time, where `p` is a fixed-point number between 0 and `FRACUNIT`.
+-- * For example, `P_RandomChance(FRACUNIT/2)` returns true 50% of the time.
+--
+---@param p fixed_t
+---@return boolean
+function P_RandomChance(p) end
+
+-- Creates and returns a new Object of the given type at the given coordinates `x`, `y`, and `z`. Various attributes may be given to it as soon as it is spawned, such as a skincolor or secondary Object flags.
+-- * Further Objects may be spawned within this function to be linked to the new Object if necessary. If the new Object is given the `MF_RUNSPAWNFUNC` flag during this function, the action set for the Object type's `SpawnState` property will be run by this function.
+-- * The hook `MobjSpawn` can be used to modify or replace some of the effects of this function.
+-- * Note: This is the basic function for spawning all Objects in SRB2. All other listed Lua functions (including actions) that spawn an Object therefore use this function internally to spawn them, and any changes made to this function by the `MobjSpawn` hook will affect them as well.
+--
+---@param x fixed_t
+---@param y fixed_t
+---@param z fixed_t
+---@param type integer
+---@return mobj_t
+function P_SpawnMobj(x, y, z, type) end
+
+-- Same as `P_SpawnMobj`, except the coordinates given are relative to the `origin` Object. The spawned object's scale and vertical flip are inherited from the origin object.
+--
+---@param origin mobj_t
+---@param x fixed_t
+---@param y fixed_t
+---@param z fixed_t
+---@param type integer
+---@return mobj_t
+function P_SpawnMobjFromMobj(origin, x, y, z, type) end
+
+
+--//
+
+
+-- Returns the texture number for the texture whose name is supplied in `name`.
+--
+---@param name string
+---@return integer
+function R_TextureNumForName(name) end
+
+-- If a texture with the name given by `name` exists, returns its texture number. Otherwise, returns -1.
+--
+---@param name string
+---@return integer
+function R_CheckTextureNumForName(name) end
+
+-- Returns the skin color number that is represented by `name`.
+-- * If no color is found, returns `SKINCOLOR_NONE`.
+--
+---@param name string
+---@return integer
+function R_GetColorByName(name) end
+
+-- Returns the super color number that is represented by `name`. 
+-- * If no color is found, returns `SKINCOLOR_NONE`.
+--
+---@param name string
+---@return integer
+function R_GetSuperColorByName(name) end
+
+-- Returns the name of the input color.
+-- * The function will raise an error if an out of bounds number is entered.
+---
+---@param color integer
+---@return string
+function R_GetNameByColor(color) end
+
+-- Returns the angle between the camera's X and Y coordinates and `x` and `y`.
+-- * Note: This will not work consistently among multiple players. Use at your own risk.
+--
+---@param x fixed_t
+---@param y fixed_t
+---@return angle_t
+function R_PointToAngle(x, y) end
+
+-- Returns the angle created by the line from `x` and `y` to `dest_x` and `dest_y`.
+--
+---@param x fixed_t
+---@param y fixed_t
+---@param dest_x fixed_t
+---@param dest_y fixed_t
+---@return angle_t
+function R_PointToAngle2(x, y, dest_x, dest_y) end
+
+-- Returns the distance from the camera's X and Y coordinates to `x` and `y`.
+-- * Note: This will not work consistently among multiple players. Use at your own risk.
+--
+---@param x fixed_t
+---@param y fixed_t
+---@return fixed_t
+function R_PointToDist(x, y) end
+
+-- Returns the distance from `x` and `y` to `dest_x` and `dest_y`.
+--
+---@param x fixed_t
+---@param y fixed_t
+---@param dest_x fixed_t
+---@param dest_y fixed_t
+---@return fixed_t
+function R_PointToDist2(x, y, dest_x, dest_y) end
+
+-- Returns the subsector that the given point is located in. Never returns nil, even if outside of the map.
+--
+---@param x fixed_t
+---@param y fixed_t
+---@return subsector_t
+function R_PointInSubsector(x, y) end
+
+-- Same as `R_PointInSubsector`, but returns nil if point is not in subsector.
+--
+---@param x fixed_t
+---@param y fixed_t
+---@return subsector_t | nil
+function R_PointInSubsectorOrNil(x, y) end
+
+-- Example: `R_Char2Frame("A")` will return 0.
+--
+---@param char string
+---@return integer
+function R_Char2Frame(char) end
+
+-- Returns the frame number's text character as both a string and its ASCII value.
+-- * Example: `R_Frame2Char(0)` will return `"A", 65`.
+--
+---@param frame integer
+---@return string
+---@return integer
+function R_Frame2Char(frame) end
+
+-- Sets the player's skin. `skin` can be either a skin number or a skin name string.
+--
+---@param player player_t
+---@param skin integer | string
+---@return nil
+function R_SetPlayerSkin(player, skin) end
+
+-- Checks if `skin` is legal to switch to and returns true if so.
+-- * Accounts for factors such as map forcecharacter and multiplayer forceskin.
+--
+---@param player player_t
+---@param skin integer | string
+---@return boolean
+function R_SkinUsable(player, skin) end
+
+
+--//
+
+
+-- Starts the given sound effect from `origin`, or plays the sound globally if `origin` is nil.
+-- * If `origin` exists and has a skin applied, certain sounds may be replaced with custom sounds set for the skin.
+-- * If in a Mario mode or Christmas NiGHTS level, certain sounds will automatically be swapped with different sounds for the given level type (these take priority over custom skin sounds).
+-- * If the third argument is set, the sound will only be played for that player. Otherwise, it will be heard by all players.
+--
+---@param origin mobj_t
+---@param soundnum integer
+---@param player? player_t
+function S_StartSound(origin, soundnum, player) end
+
+-- Starts the given sound effect at a specific volume from `origin`, or plays the sound globally if `origin` is nil.
+-- * If `origin` exists and has a skin applied, certain sounds may be replaced with custom sounds set for the skin.
+-- * Unlike `S_StartSound`, Mario mode and Christmas NiGHTS have no effect on the sound used.
+-- * Volume ranges from 0 to 255, inclusive.
+--
+---@param origin mobj_t
+---@param soundnum integer
+---@param volume UINT8
+---@param player? player_t
+function S_StartSoundAtVolume(origin, soundnum, volume, player) end
+
+-- Stops any sound that the given `mobj` is playing.
+--
+---@param mobj mobj_t
+function S_StopSound(mobj) end
+
+-- Stops the sound `soundnum` that `mobj` may be playing.
+--
+---@param mobj mobj_t
+---@param soundnum integer
+function S_StopSoundByID(mobj, soundnum) end
+
+-- Changes the music to the specified music name or slot number. The music will loop unless `looping` is specified and is false.
+--
+-- * `mflags` can be used to set flags for the music:
+-- > * If `0x4000` is added to the value, the music track will start from the beginning if you attempt to change the music to the same track, instead of having no effect.
+-- > * If `0x8000` is added to the value, the music track will be reset when the current level is reloaded.
+--
+-- If the music format supports multiple tracks, you can supply the track number as well.
+--
+-- If the new music's name was given, the track number must be added to `mflags`; if a slot number was given, the track number must be stored in the upper 16 bits (i.e., `musicnum == slot number + (track number << 16)`). This also means that the value given for `mflags` will be ignored.
+--
+-- * Other features:
+-- > * `position` determines the position in the music track to start playing from, measured as a time in milliseconds. If set to 0, the music track will be played from the beginning. Note: This feature only works with music formats supported by the Game Music Emu library.  For other music formats, it has no effect.
+-- > * `prefadems` determines the time in milliseconds to fade out of the current music track before changing to the new track. If set to 0, no fade out effect will be used.
+-- > * `fadeinms` determines the time in milliseconds to fade into the new music track. If set to 0, no fade in effect will be used.
+--
+-- To set a time in seconds for `position`, `prefadems` or `fadeinms`, multiply the time in seconds by the constant `MUSICRATE`; e.g.: `2*MUSICRATE` for 2 seconds.
+--
+---@param musicname string
+---@param looping? boolean
+---@param player? player_t
+---@param mflags? integer
+---@param position? integer
+---@param prefadems? integer
+---@param fadeinms? integer
+function S_ChangeMusic(musicname, looping, player, mflags, position, prefadems, fadeinms) end
+
+-- Changes the speed of the music.
+-- * The speed given must be a multiple of `FRACUNIT`, where `FRACUNIT` is the default music speed.
+-- * Note: This function only works with music formats supported by the Game Music Emu. For other music formats, it has no effect.
+---
+---@param musicspeed fixed_t
+---@param player? player_t
+function S_SpeedMusic(musicspeed, player) end
+
+-- Stops all music from playing.
+--
+---@param player? player_t
+function S_StopMusic(player) end
+
+-- Immediately sets the internal volume of the current music track, as a percentage of the user's configured game volume, where 0 is silent and 100 is full volume.
+-- * Returns true if the volume change was done for all players or the user's local player, returns false if not.
+--
+---@param volume integer
+---@param player? player_t
+---@return boolean
+function S_SetInternalMusicVolume(volume, player) end
+
+-- Stops any current fade from running. The music will remain playing at the current internal volume.
+-- * Returns true if the fade was done for all players or the user's local player, returns false if not.
+--
+---@param player? player_t
+---@return boolean
+function S_StopFadingMusic(player) end
+
+-- Fades the current music track from source volume to target volume, 0-100%.
+-- * If `source_volume` is not specified, the source volume is the current internal volume. `ms` is the length of the fade, measured in milliseconds. To set a time in seconds, multiply the time in seconds by the constant `MUSICRATE`; e.g.: `2*MUSICRATE` for 2 seconds.
+-- * Returns true if the fade was done for all players or the user's local player, returns false if not.
+--
+---@param target_volume integer
+---@param ms integer
+---@param player? player_t
+---@return boolean
+function S_FadeMusic(target_volume, ms, player) end
+
+-- Fades the current music track from current internal volume to 0%, then stop the music. `ms` is the length of the fade, measured in milliseconds. To set a time in seconds, multiply the time in seconds by the constant `MUSICRATE`; e.g.: `2*MUSICRATE` for 2 seconds.
+-- * Returns true if the fade was done for all players or the user's local player, returns false if not.
+--
+---@param ms integer
+---@param player? player_t
+---@return boolean
+function S_FadeOutStopMusic(ms, player) end
+
+-- Returns true if a sound effect with `mobj` as the origin is being played, false if not.
+-- * Note: This function only checks sounds being played for the local client, and thus isn't network safe. Use at your own risk.
+--
+---@param origin mobj_t
+---@return boolean
+function S_OriginPlaying(origin) end
+
+-- Returns true if a sound effect with the given ID is being played, false if not.
+-- * Note: This function only checks sounds being played for the local client, and thus isn't network safe. Use at your own risk.
+--
+---@param soundnum integer
+---@return boolean
+function S_IdPlaying(soundnum) end
+
+-- Returns true if a sound effect with the given ID and `mobj` as the origin is being played, false if not.
+-- * Note: This function only checks sounds being played for the local client, and thus isn't network safe. Use at your own risk.
+--
+---@param origin mobj_t
+---@param soundnum integer
+---@return boolean
+function S_SoundPlaying(origin, soundnum) end
+
+-- If the user has sound captions enabled, this will display the caption `caption` for the duration specified by `lifespan` in a similar manner to the captions displayed for Super Sneakers and Invincibility.
+-- * If `player` is specified, this will only be displayed for that player.
+--
+---@param caption string
+---@param lifespan tic_t
+---@param player? player_t
+function S_StartMusicCaption(caption, lifespan, player) end
+
+-- Returns the length of the currently playing music, in milliseconds.
+-- * Note: This function only checks the music being played for the local client, and thus isn't network safe. Use at your own risk.
+--
+---@return integer
+function S_GetMusicLength() end
+
+-- Returns the position of the currently playing music, in milliseconds.
+-- * Note: This function only checks the music being played for the local client, and thus isn't network safe. Use at your own risk.
+--
+---@return integer
+function S_GetMusicPosition() end
+
+-- Sets the position of the currently playing music, in milliseconds. Returns false if no music is playing or a MIDI is currently playing (and therefore the position could not be set), and returns true otherwise.
+-- * Note: This may still return true in some instances where the position could not be set.
+--
+---@param position integer
+---@return boolean
+function S_SetMusicPosition(position) end
+
+
+--//
