@@ -287,6 +287,30 @@ players = {}
 ---@type skin_t[]
 skins = {}
 
+-- This table is used to look up the properties of a Thing.
+---@type mapthing_t[]
+mapthings = {}
+
+-- This table is used to look up the properties of a vertex.
+---@type vertex_t[]
+vertexes = {}
+
+-- This table is used to look up the properties of a linedef.
+---@type line_t[]
+lines = {}
+
+-- This table is used to look up the properties of a sidedef.
+---@type side_t[]
+sides = {}
+
+-- This table is used to look up the properties of a subsector.
+---@type subsector_t[]
+subsectors = {}
+
+-- This table is used to look up the properties of a sector.
+---@type sector_t[]
+sectors = {}
+
 
 --//
 
