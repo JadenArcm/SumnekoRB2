@@ -165,6 +165,38 @@ invulntics = nil
 ---@type tic_t
 sneakertics = nil
 
+-- How long the player flashes and is invincible after taking damage.
+---@type tic_t
+flashingtics = nil
+
+-- How long Tails can fly before getting tired.
+---@type tic_t
+tailsflytics = nil
+
+-- How long the player can stay underwater before drowning.
+---@type tic_t
+underwatertics = nil
+
+-- How long the player can survive in a space countdown before suffocating.
+---@type tic_t
+spacetimetics = nil
+
+-- How long the extra life music plays.
+---@type tic_t
+extralifetics = nil
+
+-- How long it takes for a NiGHTS link to fade out.
+---@type tic_t
+nightslinktics = nil
+
+-- How long the game stays at a Game Over screen before switching to the continue screen or the title screen.
+---@type tic_t
+gameovertics = nil
+
+-- How long the ammo removal warning will be displayed when shooting a weapon ring without regular rings in Match and related gametypes.
+---@type tic_t
+ammoremovaltics = nil
+
 -- The current gametype being played.
 ---@type number
 gametype = nil
