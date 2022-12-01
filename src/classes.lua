@@ -61,6 +61,9 @@
 ---@class hudinfo_t
 ---@class mapheader_t
 
+---@class spriteinfo_t
+---@class playersprite_t
+
 
 --//
 
