@@ -164,10 +164,17 @@
 ---@field y INT16
 ---@field z INT16
 ---@field angle INT16
+---@field pitch INT16
+---@field roll INT16
+---@field scale fixed_t
 ---@field type UINT16
 ---@field options UINT16
 ---@field extrainfo UINT8
 ---@field mobj mobj_t
+---@field tag INT16
+---@field taglist any
+---@field args any
+---@field stringargs any
 
 
 --//
