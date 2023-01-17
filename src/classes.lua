@@ -190,13 +190,50 @@
 ---@class polyobj_t
 ---@class taglist_t
 
----@class camera_t
----@class mouse_t
----@class keyevent_t
----@class patch_t
----@class colormap_t
 
 --//
+
+
+---@class camera_t
+---@field chase boolean
+---@field aiming angle_t
+---@field x fixed_t
+---@field y fixed_t
+---@field z fixed_t
+---@field angle angle_t
+---@field subsector subsector_t
+---@field floorz fixed_t
+---@field ceilingz fixed_t
+---@field radius fixed_t
+---@field height fixed_t
+---@field momx fixed_t
+---@field momy fixed_t
+---@field momz fixed_t
+
+
+--//
+
+
+---@class mouse_t
+---@field dx INT32
+---@field dy INT32
+---@field mlookdy INT32
+---@field rdx INT32
+---@field rdy INT32
+---@field buttons UINT16
+
+
+--//
+
+
+---@class keyevent_t
+---@field name string
+---@field num INT32
+---@field repeated boolean
+
+
+--//
+
 
 ---@class consvar_t
 ---@field name string
@@ -205,6 +242,18 @@
 ---@field value integer
 ---@field string string
 ---@field changed boolean
+
+
+--//
+
+
+---@class patch_t
+---@field valid boolean
+---@field width INT16
+---@field height INT16
+---@field leftoffset INT16
+---@field topoffset INT16
+
 
 --//
 
@@ -345,6 +394,7 @@
 
 ---@class hudlib_t
 ---@class drawerlib_t
+---@class colormap_t
 
 
 --//
