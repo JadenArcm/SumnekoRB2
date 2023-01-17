@@ -278,6 +278,56 @@
 
 
 ---@class mapheader_t
+---@field lvlttl string
+---@field subttl string
+---@field actnum UINT8
+---@field typeoflevel UINT16
+---@field nextlevel INT16
+---@field marathonnext INT16
+---@field keywords string
+---@field musname string
+---@field mustrack UINT16
+---@field muspos UINT32
+---@field musinterfadeout UINT32
+---@field musintername string
+---@field muspostbossname string
+---@field muspostbosstrack UINT16
+---@field muspostbosspos UINT32
+---@field muspostbossfadein UINT32
+---@field musforcereset SINT8
+---@field forcecharacter string
+---@field weather UINT8
+---@field skynum INT16
+---@field skybox_scalex INT16
+---@field skybox_scaley INT16
+---@field skybox_scalez INT16
+---@field ltactdiamond string
+---@field maxbonuslives SINT8
+---@field ltzzpatch string
+---@field ltzztext string
+---@field interscreen string
+---@field runsoc string
+---@field scriptname string
+---@field precutscenenum UINT8
+---@field cutscenenum UINT8
+---@field countdown INT16
+---@field palette UINT16
+---@field numlaps UINT8
+---@field unlockrequired SINT8
+---@field levelselect UINT8
+---@field bonustype SINT8
+---@field saveoverride SINT8
+---@field levelflags UINT8
+---@field menuflags UINT8
+---@field selectheading string
+---@field startrings UINT16
+---@field sstimer INT32
+---@field ssspheres UINT32
+---@field gravity fixed_t
+
+
+--//
+
 
 ---@class spriteinfo_t
 ---@class playersprite_t
