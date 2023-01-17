@@ -100,8 +100,59 @@
 
 
 ---@class player_t
+
+
+--//
+
+
 ---@class skin_t
+---@field valid boolean
+---@field name string
+---@field flags number
+---@field realname string
+---@field hudname string
+---@field ability UINT8
+---@field ability2 UINT8
+---@field thokitem INT32
+---@field spinitem INT32
+---@field revitem INT32
+---@field followitem INT32
+---@field actionspd fixed_t
+---@field mindash fixed_t
+---@field maxdash fixed_t
+---@field normalspeed fixed_t
+---@field runspeed fixed_t
+---@field thrustfactor UINT8
+---@field accelstart UINT8
+---@field acceleration UINT8
+---@field jumpfactor fixed_t
+---@field radius fixed_t
+---@field height fixed_t
+---@field spinheight fixed_t
+---@field shieldscale fixed_t
+---@field camerascale fixed_t
+---@field starttranscolor UINT8
+---@field prefcolor number
+---@field prefoppositecolor number
+---@field supercolor number
+---@field highresscale fixed_t
+---@field contspeed UINT8
+---@field contangle UINT8
+---@field availability UINT8
+---@field soundsid number[]
+---@field sprites any
+
+
+--//
+
+
 ---@class ticcmd_t
+---@field forwardmove SINT8
+---@field sidemove SINT8
+---@field angleturn INT16
+---@field aiming INT16
+---@field buttons UINT16
+---@field latency UINT8
 
 
 --//
@@ -214,10 +265,17 @@
 ---@field accessible boolean
 
 
+--//
+
+
 ---@class hudinfo_t
 ---@field x INT32
 ---@field y INT32
 ---@field f INT32
+
+
+--//
+
 
 ---@class mapheader_t
 
