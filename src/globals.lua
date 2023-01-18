@@ -11,7 +11,7 @@
 ---@type number
 gamemap = nil
 
--- The **`TypeOfLevel`** flags of the map currently being played.
+-- The `TypeOfLevel` flags of the map currently being played.
 ---@type integer
 maptol = nil
 
@@ -63,7 +63,7 @@ gamecomplete = nil
 ---@type integer
 marathonmode = nil
 
--- Returns true if the game is being run with the command line parameter **`-debug`**, false if not. 
+-- Returns true if the game is being run with the command line parameter `-debug`, false if not. 
 ---@type boolean
 devparm = nil
 
@@ -79,11 +79,11 @@ menuactive = nil
 ---@type boolean
 paused = nil
 
--- The number of Blue Team score have in **`Team Match`** and **`CTF`**.
+-- The number of Blue Team score have in `Team Match` and `CTF`.
 ---@type number
 bluescore = nil
 
--- The number of Red Team score have in **`Team Match`** and **`CTF`**.
+-- The number of Red Team score have in `Team Match` and `CTF`.
 ---@type number
 redscore = nil
 
@@ -201,19 +201,19 @@ ammoremovaltics = nil
 ---@type number
 gametype = nil
 
--- The rules of the current gametype being played as a set of **`GTR_*`** flags.
+-- The rules of the current gametype being played as a set of `GTR_*` flags.
 ---@type integer 
 gametyperules = nil
 
 -- The amount of time that has passed in the current level since it has been loaded, measured in tics.
--- * In most gametypes, this is normally equal to the time displayed on the HUD; however, in Race and Competition modes, **`leveltime`** includes the 4-second pre-timer, meaning that **`leveltime`** will be **`4*TICRATE`** tics ahead of the HUD's displayed time once the latter has started running.
--- * Note: **`leveltime`** will continue to increase after the level is finished, even after the HUD time has stopped, until the tally screen appears.
--- > * The actual time displayed on the player's HUD is set by **`<player_t>.realtime`**. 
+-- * In most gametypes, this is normally equal to the time displayed on the HUD; however, in Race and Competition modes, `leveltime` includes the 4-second pre-timer, meaning that `leveltime` will be `4*TICRATE` tics ahead of the HUD's displayed time once the latter has started running.
+-- * Note: `leveltime` will continue to increase after the level is finished, even after the HUD time has stopped, until the tally screen appears.
+-- > * The actual time displayed on the player's HUD is set by `<player_t>.realtime`. 
 ---@type tic_t
 leveltime = nil
 
 -- Time of how long the special stage can last for, in tics.
--- * The default is **`90*TICRATE`** (90 seconds).
+-- * The default is `90*TICRATE` (90 seconds).
 ---@type tic_t
 sstimer = nil
 
@@ -237,7 +237,7 @@ isserver = nil
 ---@type boolean
 isdedicatedserver = nil
 
--- This variable stores which Chaos Emeralds have been obtained in the current Single Player or Co-op session, as a set of **`EMERALD<n>`** flags.
+-- This variable stores which Chaos Emeralds have been obtained in the current Single Player or Co-op session, as a set of `EMERALD<n>` flags.
 ---@type integer
 emeralds = nil
 
@@ -246,7 +246,7 @@ emeralds = nil
 token = nil
 
 -- The current global gravity value.
--- * The default value is **`FRACUNIT/2`**.
+-- * The default value is `FRACUNIT/2`.
 ---@type fixed_t
 gravity = nil
 
@@ -263,13 +263,13 @@ curWeather = nil
 levelskynum = nil
 
 -- The name of the main music track currently used for playback, if there is no active jingle track being played back.
--- * This is by default the music set by current map's level header, but it will be modified when the console command tunes is used, or **`Linedef Type 413`** is executed in the map.
--- * Note: Jingles, **`S_ChangeMusic`** and the **`tunes`** command doesn't modify this variable.
+-- * This is by default the music set by current map's level header, but it will be modified when the console command tunes is used, or `Linedef Type 413` is executed in the map.
+-- * Note: Jingles, `S_ChangeMusic` and the `tunes` command doesn't modify this variable.
 ---@type string
 mapmusname = nil
 
 -- The flags set for the main music track currently used for playback.
--- * Note: Jingles, **`S_ChangeMusic`** and the **`tunes`** command doesn't modify this variable.
+-- * Note: Jingles, `S_ChangeMusic` and the `tunes` command doesn't modify this variable.
 ---@type integer
 mapmusflags = nil
 
@@ -285,7 +285,7 @@ consoleplayer = nil
 ---@type player_t
 displayplayer = nil
 
--- The secondary player, when **`splitscreen`** mode is active.
+-- The secondary player, when `splitscreen` mode is active.
 ---@type player_t 
 secondarydisplayplayer = nil
 
@@ -293,7 +293,7 @@ secondarydisplayplayer = nil
 ---@type camera_t
 camera = nil
 
--- The secondary camera in-game, only on **`splitscreen`**.
+-- The secondary camera in-game, only on `splitscreen`.
 ---@type camera_t
 camera2 = nil
 
@@ -301,7 +301,7 @@ camera2 = nil
 ---@type mouse_t
 mouse = nil
 
--- The second player's mouse, only on **`splitscreen`**.
+-- The second player's mouse, only on `splitscreen`.
 ---@type mouse_t
 mouse2 = nil
 
@@ -310,7 +310,7 @@ mouse2 = nil
 
 
 -- This table is used to look up the properties of a player, where the table key is an integer between 0 and 31.
--- * For example, **`players[0]`** is the `player_t` userdata for player 1, **`players[1]`** for player 2, and so on. 
+-- * For example, `players[0]` is the `player_t` userdata for player 1, `players[1]` for player 2, and so on. 
 ---@type player_t[]
 players = {}
 
@@ -347,30 +347,30 @@ sectors = {}
 --//
 
 
--- This table is used to look up or modify attributes for a specific Object type, where **`MT_<NAME>`** is an integer that is expected to be the **`MT_*`** constant for the Object type in question.
--- * Whole entries for **`mobjinfo[]`** can be recreated from scratch if needed. 
+-- This table is used to look up or modify attributes for a specific Object type, where `MT_<NAME>` is an integer that is expected to be the `MT_*` constant for the Object type in question.
+-- * Whole entries for `mobjinfo[]` can be recreated from scratch if needed. 
 ---@type mobjinfo_t[]
 mobjinfo = {}
 
--- This table is used to look up or modify attributes for a specific state, where **`S_<NAME>`** is an integer that is expected to be the **`S_*`** constant for the state in question.
--- * Whole entries for **`states[]`** can be recreated from scratch if needed.
+-- This table is used to look up or modify attributes for a specific state, where `S_<NAME>` is an integer that is expected to be the `S_*` constant for the state in question.
+-- * Whole entries for `states[]` can be recreated from scratch if needed.
 ---@type state_t[]
 states = {}
 
--- This table is used to look up or modify attributes for a specific sound, where **`sfx_<name>`** is an integer that is expected to be the **`sfx_*`** constant for the sound in question.
--- * Whole entries for **`sfxinfo[]`** can be recreated from scratch if needed.
+-- This table is used to look up or modify attributes for a specific sound, where `sfx_<name>` is an integer that is expected to be the `sfx_*` constant for the sound in question.
+-- * Whole entries for `sfxinfo[]` can be recreated from scratch if needed.
 ---@type sfxinfo_t[]
 sfxinfo = {}
 
 -- Converts a sprite prefix number to a string consisting of the 4-letter sprite name, or vice versa.
--- * **`SPR_NAME`** is an integer that is expected to be the **`SPR_*`** constant for the sprite prefix number in question.
--- * Likewise, **`"NAME"`** must be a four-letter prefix belonging to an existing sprite set.
+-- * `SPR_NAME` is an integer that is expected to be the `SPR_*` constant for the sprite prefix number in question.
+-- * Likewise, `"NAME"` must be a four-letter prefix belonging to an existing sprite set.
 ---@type string[] | number[]
 sprnames = {}
 
 -- Converts a sprite2 prefix number to a string consisting of the 4-letter sprite2 name, or vice versa.
--- * **`SPR2_NAME`** is an integer that is expected to be the **`SPR2_*`** constant for the sprite2 prefix number in question.
--- Likewise, **`"NAME"`** must be a four-letter prefix belonging to an existing sprite2.
+-- * `SPR2_NAME` is an integer that is expected to be the `SPR2_*` constant for the sprite2 prefix number in question.
+-- * Likewise, `"NAME"` must be a four-letter prefix belonging to an existing sprite2.
 ---@type string[] | number[]
 spr2names = {}
 
@@ -378,23 +378,23 @@ spr2names = {}
 ---@type mapheader_t[]
 mapheaderinfo = {}
 
--- This table is used to look up or modify attributes for a specific HUD item, where **`HUD_<NAME>`** is an integer that is expected to be the **`HUD_*`** constant for the HUD item in question.
+-- This table is used to look up or modify attributes for a specific HUD item, where `HUD_<NAME>` is an integer that is expected to be the `HUD_*` constant for the HUD item in question.
 ---@type hudinfo_t[]
 hudinfo = {}
 
--- This table is used to access the pivots of each of a sprite's frames, where **`SPR_NAME`** is an integer expected to be the **`SPR_*`** constant for the sprite in question.
--- * Likewise, **`"NAME"`** must be a four-letter prefix belonging to an existing sprite set.
+-- This table is used to access the pivots of each of a sprite's frames, where `SPR_NAME` is an integer expected to be the `SPR_*` constant for the sprite in question.
+-- * Likewise, `"NAME"` must be a four-letter prefix belonging to an existing sprite set.
 -- * Each of the entries of this table contain an array of `spriteframepivot_t` userdata, each index corresponding to a frame of animation the sprite possesses.
 ---@type spriteinfo_t
 spriteinfo = {}
 
--- This table is used to look up or set the sprite to fallback to on a specific sprite2, if a character is missing such sprite, where **`SPR2_NAME`** is an integer that is expected to be the **`SPR2_*`** constant for the sprite2 in question.
--- * Likewise, **`"NAME"`** must be a four-letter prefix belonging to an existing sprite set.
+-- This table is used to look up or set the sprite to fallback to on a specific sprite2, if a character is missing such sprite, where `SPR2_NAME` is an integer that is expected to be the `SPR2_*` constant for the sprite2 in question.
+-- * Likewise, `"NAME"` must be a four-letter prefix belonging to an existing sprite set.
 -- * Note: Only custom sprite2 defaults can be modified.
 ---@type playersprite_t
 spr2defaults = {}
 
--- This table is used to look up or modify attributes for a specific skin color, where **`SKINCOLOR_<NAME>`** is an integer that is expected to be the **`SKINCOLOR_*`** constant for the skin color in question.
+-- This table is used to look up or modify attributes for a specific skin color, where `SKINCOLOR_<NAME>` is an integer that is expected to be the `SKINCOLOR_*` constant for the skin color in question.
 ---@type skincolor_t[]
 skincolors = {}
 

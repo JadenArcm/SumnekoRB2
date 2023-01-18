@@ -62,14 +62,14 @@ ANGLE_MAX = -1
 
 
 -- The basic unit of measurement for lengths, speeds, object scales and sometimes angles.
--- - Values for these measurements are interpreted as fixed-point numbers with **`FRACUNIT`** as the base unit.
--- - **`FRACUNIT`** represents one unit/pixel, **`2*FRACUNIT`** represents 2.0 units/pixels, **`FRACUNIT/2`** represents 0.5 units/pixels, and so on. 
+-- - Values for these measurements are interpreted as fixed-point numbers with `FRACUNIT` as the base unit.
+-- - `FRACUNIT` represents one unit/pixel, `2*FRACUNIT` represents 2.0 units/pixels, `FRACUNIT/2` represents 0.5 units/pixels, and so on. 
 FRACUNIT = 1 << 16
 
--- The number of bits to shift up to convert integers to fixed-point numbers in **`FRACUNIT`** scale, or the number of bits to shift down for vice versa.
--- - This constant is used to define the value of **`FRACUNIT`** itself.
--- - Modifying the value of **`FRACBITS`** in the source code would also modify **`FRACUNIT`**'s value.
--- - Note: Bit-shifting an integer by **`FRACBITS`** in either direction is equivalent to multiplication or division by **`FRACUNIT`**. 
+-- The number of bits to shift up to convert integers to fixed-point numbers in `FRACUNIT` scale, or the number of bits to shift down for vice versa.
+-- - This constant is used to define the value of `FRACUNIT` itself.
+-- - Modifying the value of `FRACBITS` in the source code would also modify `FRACUNIT`'s value.
+-- - Note: Bit-shifting an integer by `FRACBITS` in either direction is equivalent to multiplication or division by `FRACUNIT`. 
 FRACBITS = 16
 
 -- The number of tics in a second. 
@@ -85,7 +85,7 @@ MUSICRATE = 1000
 -- - This is also used by the homing attack character ability as the maximum distance an enemy, spring or monitor can be to able to home in on it.
 RING_DIST = 512 * FRACUNIT
 
--- The speed at which pushable Objects with **`MF2_SLIDEPUSH`** will be pushed.
+-- The speed at which pushable Objects with `MF2_SLIDEPUSH` will be pushed.
 PUSHACCEL = 2 * FRACUNIT
 
 -- The executable's Mod ID.
@@ -109,7 +109,7 @@ VERSIONSTRING = "v2.2.10"
 -- The game's sub-version number.
 SUBVERSION = 10
 
--- Vertical movement speed for Objects with **`MF_FLOAT`**.
+-- Vertical movement speed for Objects with `MF_FLOAT`.
 FLOATSPEED = 4 * FRACUNIT
 
 -- The maximum height an Object can step up/down without being blocked by a wall or falling down.
@@ -118,53 +118,53 @@ MAXSTEPMOVE = 24 * FRACUNIT
 -- Doom's Use button effect range. *Unused in SRB2.*
 USERANGE = 64 * FRACUNIT
 
--- Doom's melee attack range. Used in SRB2 by **`P_CheckMeleeRange`** and **`P_SkimCheckMeleeRange`**.
+-- Doom's melee attack range. Used in SRB2 by `P_CheckMeleeRange` and `P_SkimCheckMeleeRange`.
 MELEERANGE = 64 * FRACUNIT
 
--- Doom's missile attack range. Used in SRB2 by **`A_UnidusBall`**.
+-- Doom's missile attack range. Used in SRB2 by `A_UnidusBall`.
 MISSILERANGE = 32 * 64 * FRACUNIT
 
 -- Used by the MapThing spawning code to signify that the Thing's Z position is on the sector's floor.
--- - This is corrected to the appropriate height in **`P_SpawnMobj`** for newly spawned Objects. 
+-- - This is corrected to the appropriate height in `P_SpawnMobj` for newly spawned Objects. 
 ONFLOORZ = INT32_MIN
 
 -- Used by the MapThing spawning code to signify that the Thing's Z position is on the sector's ceiling.
--- - This is corrected to the appropriate height in **`P_SpawnMobj`** for newly spawned Objects.
+-- - This is corrected to the appropriate height in `P_SpawnMobj` for newly spawned Objects.
 ONCEILINGZ = INT32_MAX
 
--- Used by **`<player_t>.lives`** to indicate that this player has infinite lives.
+-- Used by `<player_t>.lives` to indicate that this player has infinite lives.
 INFLIVES = 0x7F
 
--- The maximum magnitude for values returned by **`input.joyAxis`** and **`input.joyAxis2`**.
+-- The maximum magnitude for values returned by `input.joyAxis` and `input.joyAxis2`.
 JOYAXISRANGE = 1023
 
 
 --//
 
 
--- When an Object with this flag is touched by the player, the function **`P_TouchSpecialThing`** is called to determine what should happen with the Object and/or the player.
+-- When an Object with this flag is touched by the player, the function `P_TouchSpecialThing` is called to determine what should happen with the Object and/or the player.
 -- - Objects that interact with the player in some way upon being touched, such as enemies, hazards or collectible items, should have this flag.
--- - Objects with **`MF_ENEMY`**, **`MF_BOSS`** and/or **`MF_FIRE`** in particular require this flag to be able to damage the player on touch or be damaged by the player on touch.
+-- - Objects with `MF_ENEMY`, `MF_BOSS` and/or `MF_FIRE` in particular require this flag to be able to damage the player on touch or be damaged by the player on touch.
 -- - If there is no existing behavior set, touching the Object will by default kill the Object (sending it to its `DeathState`) and play its `DeathSound`.
--- - Lua is capable of modifying the effect of this flag for particular Object types, using the **`TouchSpecial`** Lua hook. 
+-- - Lua is capable of modifying the effect of this flag for particular Object types, using the `TouchSpecial` Lua hook. 
 MF_SPECIAL = 1 << 0
 
 -- This makes the Object solid, and it will act as such to the player.
 MF_SOLID = 1 << 1
 
 -- The Object can be damaged.
--- - Combined with **`MF_SOLID`**, this makes it vulnerable to missiles, but not normal attacks. 
+-- - Combined with `MF_SOLID`, this makes it vulnerable to missiles, but not normal attacks. 
 MF_SHOOTABLE = 1 << 2
 
 -- Removes the Object from the sector links, making it invisible. 
--- - Don't change this flag during runtime. To make something invisible during the game, use **`MF2_DONTDRAW`** or set the sprite to **`SPR_NULL`**.
+-- - Don't change this flag during runtime. To make something invisible during the game, use `MF2_DONTDRAW` or set the sprite to `SPR_NULL`.
 MF_NOSECTOR = 1 << 3
 
 -- Removes the Object from the blockmap, making it intangible.
--- - Just like **`MF_NOSECTOR`** though, don't change this flag during runtime; use **`MF_NOCLIP`** instead.
+-- - Just like `MF_NOSECTOR` though, don't change this flag during runtime; use `MF_NOCLIP` instead.
 MF_NOBLOCKMAP = 1 << 4
 
--- The Object's hitbox will be treated as a line instead of a box, lining up with the appearance of states with the **`FF_PAPERSPRITE`** flag. 
+-- The Object's hitbox will be treated as a line instead of a box, lining up with the appearance of states with the `FF_PAPERSPRITE` flag. 
 MF_PAPERCOLLISION = 1 << 5
 
 -- The Object is a pushable, and as such can be pushed by players and other pushables.
@@ -190,9 +190,9 @@ MF_SLIDEME = 1 << 11
 -- - When `noclip` is turned on, the player will be given this flag.
 MF_NOCLIP = 1 << 12
 
--- The Object will automatically floats up or down to the height of its target, unless **`MF2_INFLOAT`** or **`MF2_SKULLFLY`** are set. 
+-- The Object will automatically floats up or down to the height of its target, unless `MF2_INFLOAT` or `MF2_SKULLFLY` are set. 
 -- - This is most commonly used by flying or underwater enemies and bosses that need to chase the player vertically.
--- - **`MF_NOGRAVITY`** has to be checked for this to work as intended.
+-- - `MF_NOGRAVITY` has to be checked for this to work as intended.
 -- - The Object will move up/down at a fixed speed of `4` fracunits/tic.
 -- - Note: The Egg Mobile's floating behavior and speed works differently to that of other Objects that use this flag.
 MF_FLOAT = 1 << 13
@@ -220,35 +220,35 @@ MF_MONITOR = 1 << 18
 -- - Objects with this flag will not animate and cannot use any actions.
 MF_NOTHINK = 1 << 19
 
--- The Object is flaming; it will hurt players without an Elemental Shield (provided **`MF_SPECIAL`** or **`MF_PAIN`** is also checked) and vanish when it touches water.
+-- The Object is flaming; it will hurt players without an Elemental Shield (provided `MF_SPECIAL` or `MF_PAIN` is also checked) and vanish when it touches water.
 MF_FIRE = 1 << 20
 
 -- The Object is not restricted to the top and bottom heights of the sector it is in, and can go into the floor or ceiling.
 MF_NOCLIPHEIGHT = 1 << 21
 
--- The Object is an enemy; provided it has **`MF_SPECIAL`** also checked it can hurt the player on touch, can be killed by various means, and gives the player who killed it 100 points.
+-- The Object is an enemy; provided it has `MF_SPECIAL` also checked it can hurt the player on touch, can be killed by various means, and gives the player who killed it 100 points.
 MF_ENEMY = 1 << 22
 
 -- The Object is a scenery item and will use a reduced thinker, taking up less CPU power than a regular Object would.
 MF_SCENERY = 1 << 23
 
 -- The Object hurts players on contact.
--- - This effect will override any extra effects on touch from flags such as **`MF_SPECIAL`**.
+-- - This effect will override any extra effects on touch from flags such as `MF_SPECIAL`.
 MF_PAIN = 1 << 24
 
 -- The Object will stick to any surface or solid Object it touches.
 MF_STICKY = 1 << 25
 
 -- Used by NiGHTS power-up items.
--- - When the Object is paralooped, it goes into its `SeeState` and adds the **`MF_SPECIAL`** flag, allowing the player to collect it.
+-- - When the Object is paralooped, it goes into its `SeeState` and adds the `MF_SPECIAL` flag, allowing the player to collect it.
 MF_NIGHTSITEM = 1 << 26
 
 -- The Object is partially intangible, it will pass through other Objects, but not walls.
 -- - This is used for the flickies that are released from destroyed enemies, for example.
--- - Objects with the **`MF_MISSILE`** flag use this for an extra purpose: When a missile explodes, this flag is set to indicate that is has exploded and prevent it from exploding again.
+-- - Objects with the `MF_MISSILE` flag use this for an extra purpose: When a missile explodes, this flag is set to indicate that is has exploded and prevent it from exploding again.
 MF_NOCLIPTHING = 1 << 27
 
--- Used by grenade-like projectiles, such as the Grenade Ring, to be used with **`MF_MISSILE`**.
+-- Used by grenade-like projectiles, such as the Grenade Ring, to be used with `MF_MISSILE`.
 -- - Instead of exploding on collision with the floor, it will bounce off it instead. `ActiveSound` is played for every collision.
 MF_GRENADEBOUNCE = 1 << 28
 
@@ -284,16 +284,16 @@ MF2_AUTOMATIC = 1 << 4
 
 -- This flag is given to thrown Rail Rings to identify them as such.
 -- - This does not in fact allow Objects to instantanously fly across the map as with Rail Rings themselves, unless when fired by a player specifically.
--- - For players that have just been hit by an Object with this flag, they will have a greatly increased knockback speed (45 fracunits/tic); combined with **`MF2_EXPLOSION`** however, this is slightly decreased to 38 fracunits/tic.
--- - Overridden by the knockback effect of **`MF2_SCATTER`**.
+-- - For players that have just been hit by an Object with this flag, they will have a greatly increased knockback speed (45 fracunits/tic); combined with `MF2_EXPLOSION` however, this is slightly decreased to 38 fracunits/tic.
+-- - Overridden by the knockback effect of `MF2_SCATTER`.
 MF2_RAILRING = 1 << 5
 
 -- This flag is given to thrown Bounce Rings to identify them as such.
 MF2_BOUNCERING = 1 << 6
 
 -- This flag is given to thrown Explosion Rings and Grenade Rings to identify them as such.
--- - For players that have just been hit by an Object with this flag, they will have a greatly increased knockback speed (30 fracunits/tic); combined with **`MF2_RAILRING`** this is further increased to 38 fracunits/tic.
--- - Overridden by the knockback effect of **`MF2_SCATTER`**.
+-- - For players that have just been hit by an Object with this flag, they will have a greatly increased knockback speed (30 fracunits/tic); combined with `MF2_RAILRING` this is further increased to 38 fracunits/tic.
+-- - Overridden by the knockback effect of `MF2_SCATTER`.
 MF2_EXPLOSION = 1 << 7
 
 -- This flag is given to thrown Scatter Rings to identify them as such.
@@ -305,7 +305,7 @@ MF2_SCATTER = 1 << 8
 MF2_BEYONDTHEGRAVE = 1 << 9
 
 -- The Object slides after being pushed.
--- - **`MF_SOLID`** and **`MF_PUSHABLE`** have to be checked for this to work.
+-- - `MF_SOLID` and `MF_PUSHABLE` have to be checked for this to work.
 -- - The maximum speed at which an Object with this flag can slide is set by its Speed value.
 -- - Also used by flung emeralds in Match/CTF to prevent them from being collected if they are moving upwards.
 MF2_SLIDEPUSH = 1 << 10
@@ -314,13 +314,13 @@ MF2_SLIDEPUSH = 1 << 10
 -- - This flag is given to pushables whose MapThings have both the `Special` and `Ambush` flag checked.
 MF2_CLASSICPUSH = 1 << 11
 
--- Inverts the conditions for this Object to be able to be targeted by **`A_LookForEnemies`**, for mechanics such as Fang's pop gun.
--- - Objects with the **`MF_SHOOTABLE`** and at least **`MF_ENEMY`**, **`MF_BOSS`**, and/or **`MF_MONITOR`** normally are the only targets, but this flag will disallow those objects & allow others.
+-- Inverts the conditions for this Object to be able to be targeted by `A_LookForEnemies`, for mechanics such as Fang's pop gun.
+-- - Objects with the `MF_SHOOTABLE` and at least `MF_ENEMY`, `MF_BOSS`, and/or `MF_MONITOR` normally are the only targets, but this flag will disallow those objects & allow others.
 MF2_INVERTAIMABLE = 1 << 12
 
--- If an Object has the **`MF_FLOAT`** flag set, it automatically floats to the height of its target.
+-- If an Object has the `MF_FLOAT` flag set, it automatically floats to the height of its target.
 -- - If it shouldn't do that, this flag is used.
--- - This flag is automatically given and removed during use of **`A_Chase`**-style actions, when the actor Object's movement is blocked and the actor has to concentrate on adjusting its height to get past a blocking wall.
+-- - This flag is automatically given and removed during use of `A_Chase`-style actions, when the actor Object's movement is blocked and the actor has to concentrate on adjusting its height to get past a blocking wall.
 MF2_INFLOAT = 1 << 13
 
 -- Exploded Explosion Rings and Grenade Rings are given this flag to signify that they have already exploded.
@@ -332,28 +332,28 @@ MF2_DEBRIS = 1 << 14
 MF2_NIGHTSPULL = 1 << 15
 
 -- The Object has just attacked, and cannot attack again immediately.
--- - Objects using actions such as **`A_Chase`**, **`A_FaceStabChase`**, **`A_SkimChase`**, **`A_Boss1Chase`** or **`A_BrakChase`** add this flag when they first attack.
+-- - Objects using actions such as `A_Chase`, `A_FaceStabChase`, `A_SkimChase`, `A_Boss1Chase` or `A_BrakChase` add this flag when they first attack.
 -- - When they try to attack again, this flag is removed instead of attacking, and then the process repeats again once they are ready to attack again.
 -- - CTF flags have this flag set when they are outside their respective bases.
 MF2_JUSTATTACKED = 1 << 16
 
 -- This flag is used signify that an Object is currently firing some type of projectile.
 -- - Used by the Turret and the Flame Jets.
--- - **`A_TurretFire`** and **`A_SuperTurretFire`** add this flag to the Object, **`A_TurretStop`** removes it, while **`A_ToggleFlameJet`** can do either depending on whether the flag is already set or not.
+-- - `A_TurretFire` and `A_SuperTurretFire` add this flag to the Object, `A_TurretStop` removes it, while `A_ToggleFlameJet` can do either depending on whether the flag is already set or not.
 MF2_FIRING = 1 << 17
 
 -- Missile Objects with this flag will be able to make even Super players be flung back when collided with.
 -- - However, it will not make them lose rings as with normal players.
--- - Objects with **`MF2_FIRING`** and this flag will pass on this flag to the missiles they fire.
+-- - Objects with `MF2_FIRING` and this flag will pass on this flag to the missiles they fire.
 MF2_SUPERFIRE = 1 << 18
 
--- The Object's sprite is automatically drawn with **`tr_trans80`** translucency and full brightness, overriding the current state's settings.
+-- The Object's sprite is automatically drawn with `tr_trans80` translucency and full brightness, overriding the current state's settings.
 -- - Set by the Force Shield when it has only one health point left.
 -- - Also used in Single Player to make the player translucent when the camera is too close.
 MF2_SHADOW = 1 << 19
 
 -- This flag is given to Strong Random Monitors to identify them as such.
--- - This flag is also given to Objects with **`MF_NIGHTSITEM`** whose map Things have the Special flag checked, to mark that the item can only be activated during bonus time.
+-- - This flag is also given to Objects with `MF_NIGHTSITEM` whose map Things have the Special flag checked, to mark that the item can only be activated during bonus time.
 MF2_STRONGBOX = 1 << 20
 
 -- This flag forces Objects to have permanently flipped gravity, regardless of the current gravity in the sector (unless the Object is a player).
@@ -361,8 +361,8 @@ MF2_STRONGBOX = 1 << 20
 -- - Can be given to/removed from players through `Linedef Type 433`, and will be given to any Object whose MapThings have the Flip flag checked.
 MF2_OBJECTFLIP = 1 << 21
 
--- This flag is set by the action **`A_SkullAttack`** to signify that the Object is currently flying at the player.
--- - If the Object is the Egg Mobile or a custom Object with **`MF_BOSS`**, ghost trails of the Object will be spawned while this flag is set.
+-- This flag is set by the action `A_SkullAttack` to signify that the Object is currently flying at the player.
+-- - If the Object is the Egg Mobile or a custom Object with `MF_BOSS`, ghost trails of the Object will be spawned while this flag is set.
 MF2_SKULLFLY = 1 << 22
 
 -- This flag is used to signify that a boss has been hit by the player.
@@ -371,7 +371,7 @@ MF2_SKULLFLY = 1 << 22
 MF2_FRET = 1 << 23
 
 -- This flag is given to bosses whose MapThings have the Special flag checked.
--- - If the flag is set and **`A_BossDeath`** is called, no Egg Capsule will appear and the level will end instead.
+-- - If the flag is set and `A_BossDeath` is called, no Egg Capsule will appear and the level will end instead.
 -- - Also given to spinning maces when Special is checked to make them silent.
 MF2_BOSSNOTRAP = 1 << 24
 
@@ -391,9 +391,9 @@ MF2_AMBUSH = 1 << 27
 -- - This is notably used for character followitems, such as Tails' tail overlay and Metal Sonic's jet fume.
 MF2_LINKDRAW = 1 << 28
 
--- This Object's thinker calls **`P_AddShield`** and **`P_ShieldLook`**.
+-- This Object's thinker calls `P_AddShield` and `P_ShieldLook`.
 -- - Used for Shield overlay objects.
--- - For this flag to work, the **`MF_SCENERY`** flag also needs applied.
+-- - For this flag to work, the `MF_SCENERY` flag also needs applied.
 MF2_SHIELD = 1 << 29
 
 -- The Object will be drawn on a horizontal plane, also called a floor sprite, or a "splat".
@@ -404,7 +404,7 @@ MF2_SPLAT = 1 << 30
 
 
 -- This flag is given when the Object's "ground" is a solid floor, whether it is the sector's main floor or the top of an FOF/PolyObject.
--- - If the Object's ground is instead an Object with **`MF_SOLID`**, this flag will not be given. 
+-- - If the Object's ground is instead an Object with `MF_SOLID`, this flag will not be given. 
 MFE_ONGROUND = 1 << 0
 
 -- This flag is given to mark when the Object has just landed on the floor from falling down (or on the ceiling when in flipped gravity).
@@ -417,15 +417,15 @@ MFE_TOUCHWATER = 1 << 2
 
 -- The Object is "underwater". 
 -- - For example: The Object is submerged at least half its height into a water FOF.
--- - For players, this causes the underwater timer to activate, which may result in drowning unless the player escapes or is wearing an Elemental Shield; however, it allows characters with the Swim ability (**`CA_SWIM`**) to use their ability while this flag is set.
+-- - For players, this causes the underwater timer to activate, which may result in drowning unless the player escapes or is wearing an Elemental Shield; however, it allows characters with the Swim ability (`CA_SWIM`) to use their ability while this flag is set.
 MFE_UNDERWATER = 1 << 3
 
--- This flag is given to mark when a player has just "stepped" down from a floor to another floor under **`24*FRACUNIT`**'s below it (the flag is not given for non-player Objects).
--- - If the **`Non-Ramp Sector`** sector special is applied to the sector floor the player is standing in, the player will instead fall down and this flag will not be given. 
+-- This flag is given to mark when a player has just "stepped" down from a floor to another floor under `24*FRACUNIT`'s below it (the flag is not given for non-player Objects).
+-- - If the `Non-Ramp Sector` sector special is applied to the sector floor the player is standing in, the player will instead fall down and this flag will not be given. 
 MFE_JUSTSTEPPEDDOWN = 1 << 4
 
 -- This flag is given to mark when the Object's sprites/physics should be vertically flipped.
--- - Not to be confused with **`MF2_OBJECTFLIP`**, which forces this flag on constantly for permanent reverse gravity.
+-- - Not to be confused with `MF2_OBJECTFLIP`, which forces this flag on constantly for permanent reverse gravity.
 MFE_VERTICALFLIP = 1 << 5
 
 -- The Object is at least partially submerged in THZ goop, so must have THZ goop gravity/physics applied to it.
@@ -457,7 +457,7 @@ MTF_EXTRA = 1 << 0
 -- - For instance, power-up monitors will be flipped upside-down and laid on the ceiling instead of the floor.
 -- - Things that hang from the ceiling by default (e.g., chains) will be flipped upside-down but laid on the floor instead of the ceiling. 
 --
--- In most cases, this flag will also give the corresponding Object(s) the secondary Object flag **`MF2_OBJECTFLIP`** when checked. Exceptions to this include the following Thing types:
+-- In most cases, this flag will also give the corresponding Object(s) the secondary Object flag `MF2_OBJECTFLIP` when checked. Exceptions to this include the following Thing types:
 -- - **NiGHTS Bumper**.
 -- - **Hoops** (including customizable hoops).
 -- - **All Circles of Rings and/or Blue Spheres**.
@@ -470,12 +470,12 @@ MTF_OBJECTSPECIAL = 1 << 2
 -- This is a special flag that has no general effect.
 -- - This is rather used by certain Thing types for turning on extra features or alternative behavior.
 --
--- In most cases, this flag will also give the corresponding Object(s) the Object flag **`MF2_AMBUSH`** when checked. Exceptions to this include the following Thing types:
+-- In most cases, this flag will also give the corresponding Object(s) the Object flag `MF2_AMBUSH` when checked. Exceptions to this include the following Thing types:
 -- - **Axis, Axis Transfer** and **Axis Transfer Line**.
 -- - **NiGHTS Bumper**.
 -- - **Star Post**.
 -- - All **monitors** that cannot turn into **WRMs**.
--- - **Pushable** Objects if **`MTF_OBJECTSPECIAL`** is also set.	
+-- - **Pushable** Objects if `MTF_OBJECTSPECIAL` is also set.	
 MTF_AMBUSH = 1 << 3
 
 
@@ -495,10 +495,10 @@ FF_TRANSMASK = 0xF0000
 FF_BRIGHTMASK = 0x00300000
 
 
--- Number of bits to shift up to convert **`AST_`** constants to **`FF_`** constants.
+-- Number of bits to shift up to convert `AST_` constants to `FF_` constants.
 FF_BLENDSHIFT = 0x0C
 
--- Number of bits to shift up to convert **`tr_trans<n>`** constants to **`FF_TRANS<n>`** constants.
+-- Number of bits to shift up to convert `tr_trans<n>` constants to `FF_TRANS<n>` constants.
 FF_TRANSSHIFT = 0x10
 
 
@@ -600,10 +600,10 @@ RF_HORIZONTALFLIP = 1 << 0
 -- Flips the sprite vertically.
 RF_VERTICALFLIP = 1 << 1
 
--- The sprite will use the values of **`spritexoffset`** and **`spriteyoffset`** absolutely, instead of relatively to the sprite's original offsets. 
+-- The sprite will use the values of `spritexoffset` and `spriteyoffset` absolutely, instead of relatively to the sprite's original offsets. 
 RF_ABSOLUTEOFFSETS = 1 << 2
 
--- The values of **`spritexoffset`** and **`spriteyoffset`** will be applied flipped to the sprite's original offsets.
+-- The values of `spritexoffset` and `spriteyoffset` will be applied flipped to the sprite's original offsets.
 RF_FLIPOFFSETS = 1 << 3
 
 -- The floor sprite will be drawn along a slope plane.
@@ -694,7 +694,7 @@ SF_X4AWAYSOUND = 1 << 3
 SF_X8AWAYSOUND = 1 << 4
 
 -- The sound does not interrupt other sounds; if it is attempted to be played in a situation where it would be interrupting another sound, it is not played.
--- - This does not work in combination with the `Singular` parameter, use the **`SF_NOMULTIPLESOUND`** flag instead. 
+-- - This does not work in combination with the `Singular` parameter, use the `SF_NOMULTIPLESOUND` flag instead. 
 SF_NOINTERRUPT = 1 << 5
 
 -- The sound can be heard from two times the regular distance.
@@ -729,7 +729,35 @@ TC_DASHMODE = -7
 --//
 
 
--- A_Chase directions (who uses this?)
+-- No direction.
+DI_NODIR = -1
+
+-- East.
+DI_EAST = 0
+
+-- North east.
+DI_NORTHEAST = 1
+
+-- North.
+DI_NORTH = 2
+
+-- North west.
+DI_NORTHWEST = 3
+
+-- West.
+DI_WEST = 4
+
+-- South west.
+DI_SOUTHWEST = 5
+
+-- South.
+DI_SOUTH = 6
+
+-- South east.
+DI_SOUTHEAST = 7
+
+-- Total number of directions.
+NUMDIRS = 8
 
 
 --//
@@ -818,7 +846,7 @@ SF_NOJUMPDAMAGE = 1 << 8
 SF_STOMPDAMAGE = 1 << 9
 
 -- This character cannot damage enemies from any angle, but they can still land on enemies.
--- - This is equivalent to combining **`SF_NOJUMPDAMAGE`** and **`SF_STOMPDAMAGE`**.
+-- - This is equivalent to combining `SF_NOJUMPDAMAGE` and `SF_STOMPDAMAGE`.
 SF_MARIODAMAGE = (SF_NOJUMPDAMAGE | SF_STOMPDAMAGE)
 
 -- This character is considered a "robot".
@@ -844,7 +872,7 @@ SF_MULTIABILITY = 1 << 13
 SF_NONIGHTSROTATION = 1 << 14
 
 -- The character's NiGHTS Mode sprites will not use super color gradients.
--- - The skin must also have **`SF_SUPER`** for this flag to work. 
+-- - The skin must also have `SF_SUPER` for this flag to work. 
 SF_NONIGHTSSUPER = 1 << 15
 
 -- The character will not use super sprites while super.
@@ -865,122 +893,262 @@ SF_NOSHIELDABILITY = 1 << 19
 --//
 
 
--- character abilities
+-- TODO: character abilities
 
 
 --//
 
 
--- player states
+-- TODO: player states
 
 
 --//
 
 
--- **`sfx_spin`** replacement sound.
+-- `sfx_spin` replacement sound.
 SKSSPIN = 0
 
--- **`sfx_putput`** replacement sound.
+-- `sfx_putput` replacement sound.
 SKSPUTPUT = 1
 
--- **`sfx_pudpud`** replacement sound.
+-- `sfx_pudpud` replacement sound.
 SKSPUDPUD = 2
 
--- **`sfx_altow1`** replacement sound.
+-- `sfx_altow1` replacement sound.
 SKSPLPAN1 = 3
 
--- **`sfx_altow2`** replacement sound.
+-- `sfx_altow2` replacement sound.
 SKSPLPAN2 = 4
 
--- **`sfx_altow3`** replacement sound.
+-- `sfx_altow3` replacement sound.
 SKSPLPAN3 = 5
 
--- **`sfx_altow4`** replacement sound.
+-- `sfx_altow4` replacement sound.
 SKSPLPAN4 = 6
 
--- **`sfx_altdi1`** replacement sound.
+-- `sfx_altdi1` replacement sound.
 SKSPLDET1 = 7
 
--- **`sfx_altdi2`** replacement sound.
+-- `sfx_altdi2` replacement sound.
 SKSPLDET2 = 8
 
--- **`sfx_altdi3`** replacement sound.
+-- `sfx_altdi3` replacement sound.
 SKSPLDET3 = 9
 
--- **`sfx_altdi4`** replacement sound.
+-- `sfx_altdi4` replacement sound.
 SKSPLDET4 = 10
 
--- **`sfx_victr1`** replacement sound.
+-- `sfx_victr1` replacement sound.
 SKSPLVCT1 = 11
 
--- **`sfx_victr2`** replacement sound.
+-- `sfx_victr2` replacement sound.
 SKSPLVCT2 = 12
 
--- **`sfx_victr3`** replacement sound.
+-- `sfx_victr3` replacement sound.
 SKSPLVCT3 = 13
 
--- **`sfx_victr4`** replacement sound.
+-- `sfx_victr4` replacement sound.
 SKSPLVCT4 = 14
 
--- **`sfx_thok`** replacement sound.
+-- `sfx_thok` replacement sound.
 SKSTHOK = 15
 
--- **`sfx_spndsh`** replacement sound.
+-- `sfx_spndsh` replacement sound.
 SKSSPNDSH = 16
 
--- **`sfx_zoom`** replacement sound.
+-- `sfx_zoom` replacement sound.
 SKSZOOM = 17
 
--- **`sfx_skid`** replacement sound.
+-- `sfx_skid` replacement sound.
 SKSSKID = 18
 
--- **`sfx_gasp`** replacement sound.
+-- `sfx_gasp` replacement sound.
 SKSGASP = 19
 
--- **`sfx_jump`** replacement sound.
+-- `sfx_jump` replacement sound.
 SKSJUMP = 20
 
 
 --//
 
 
--- internal player flags
+-- TODO: internal player flags
 
 
 --//
 
 
--- player animations
+-- TODO: player animations
 
 
 --//
 
 
--- shield types
+-- TODO: shield types
 
 
 --//
 
 
--- carry types
+-- TODO: carry types
 
 
 --//
 
 
--- player powers
+-- Invincibility timer.
+pw_invulnerability = 0
+
+-- Super Sneakers timer.
+pw_sneakers = 1
+
+-- Temporary invincibility timer. (as if the player has just been hit)
+pw_flashing = 2
+
+-- The shield(s) that the player currently has.
+pw_shield = 3
+
+-- What is the player currently being carried by?
+pw_carry = 4
+
+-- The amount of time left in the player's flight timer.
+pw_tailsfly = 5
+
+-- The player's current drowning timer.
+pw_underwater = 6
+
+-- The player's current space countdown timer. 
+pw_spacetime = 7
+
+-- How long the extra life music lasts?
+pw_extralife = 8
+
+-- Time for how recently this player pushed something.
+pw_pushing = 9
+
+-- Timer to prevent Springs from activating multiple times.
+pw_justsprung = 10
+
+-- How long is left to disable autobrake?
+pw_noautobrake = 11
+
+-- Checks whether the player is Super.
+-- * The player must still meet the criteria for becoming Super.
+-- * Note: This is used internally as a timer for how long the player has been super, in tics.
+pw_super = 12
+
+-- The player's "Gravity Boots" duration.
+pw_gravityboots = 13
+
+-- The player's current flags of multiplayer Chaos Emeralds.
+pw_emeralds = 21
+
+-- The current Super Paraloop power-up timer. (NiGHTs only) 
+pw_nights_superloop = 22
+
+-- The current Nightopian Helper power-up timer. (NiGHTs only)
+pw_nights_helper = 23
+
+-- The current Link Freeze power-up timer. (NiGHTs only)
+pw_nights_linkfreeze = 24
+
+-- Takes control away from the player.
+-- * Adding `32768` to this value will allow the player to jump while affected. 
+pw_nocontrol = 25
+
+-- Sets the player's color to this value, and sets `<player_t>.mo.colorized` to `true`.
+pw_dye = 26
+
+-- Checks whether the player launched off a slope this tic, and what type of slope they've launched off of.
+pw_justlaunched = 27
+
+-- While non-zero, prevents the player from latching to `CR_GENERIC` objects.
+-- * Adding `32768` to this value will additionally prevent the player from latching to any object except for NiGHTs carrying objects.
+-- * This does not prevent new attachments due to `A_MixUp` teleportation.
+pw_ignorelatch = 28
 
 
 --//
 
 
--- emerald flags
+-- Green Emerald.
+EMERALD1 = 1 << 0
+
+-- Purple Emerald.
+EMERALD2 = 1 << 1
+
+-- Blue Emerald.
+EMERALD3 = 1 << 2
+
+-- Light Blue Emerald.
+EMERALD4 = 1 << 3
+
+-- Orange Emerald.
+EMERALD5 = 1 << 4
+
+-- Red Emerald.
+EMERALD6 = 1 << 5
+
+-- Gray/Silver Emerald.
+EMERALD7 = 1 << 6
 
 
 --//
 
 
--- button flags
+-- Weapon slot buttons.
+-- * When checking (`<player_t>.cmd.buttons & BT_WEAPONMASK`), returns the value of the weapon slot button pressed, from 1 to 7.
+BT_WEAPONMASK = 15
+
+-- Next Weapon.
+BT_WEAPONNEXT = 1 << 4
+
+-- Previous Weapon.
+BT_WEAPONPREV = 1 << 5
+
+-- Ring Toss.
+BT_ATTACK = 1 << 6
+
+-- Spin.
+BT_SPIN = 1 << 7
+
+-- Rotate the camera. (Left)
+BT_CAMLEFT = 1 << 8
+
+-- Rotate the camera. (Right)
+BT_CAMRIGHT = 1 << 9
+
+-- Tossflag.
+BT_TOSSFLAG = 1 << 10
+
+-- Jump.
+BT_JUMP = 1 << 11
+
+-- Ring Toss Normal.
+BT_FIRENORMAL = 1 << 12
+
+-- Custom Action 1.
+BT_CUSTOM1 = 1 << 13
+
+-- Customm Action 2.
+BT_CUSTOM2 = 1 << 14
+
+-- Custom Action 3.
+BT_CUSTOM3 = 1 << 15
+
+
+--//
+
+
+-- TODO: mouse button flags
+
+
+--//
+
+
+FU = FRACUNIT
+V_50TRANS = V_TRANSLUCENT
+CV_HIDEN = CV_HIDDEN
 
 
 --//
