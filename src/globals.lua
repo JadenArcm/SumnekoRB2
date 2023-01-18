@@ -406,11 +406,20 @@ gamekeydown = {}
 --//
 
 
+CV_OnOff = {Off = 0, On = 1}
+CV_YesNo = {No = 0, Yes = 1}
+CV_Unsigned = {MIN = 0, MAX = 999999999}
+CV_Natural = {MIN = 1, MAX = 999999999}
+
+
+--//
+
+
 ---@type hudlib_t
 hud = {}
 
 ---@type drawerlib_t
-v = {}
+local v = {}
 
 
 --//
