@@ -605,13 +605,13 @@ function G_BuildMapName(map) end
 ---@return string
 function G_BuildMapTitle(map) end
 
--- **`TODO:`** Complete and update the description when the Wiki does.
+-- **`FIXME:`** Complete and update the description when the Wiki does.
 --
 ---@param query string
 ---@return INT32, string, table
 function G_FindMap(query) end
 
--- **`TODO:`** Complete and update the description when the Wiki does.
+-- **`FIXME:`** Complete and update the description when the Wiki does.
 --
 ---@param query string
 ---@return INT32, string|nil
