@@ -972,7 +972,112 @@ SKSJUMP = 20
 --//
 
 
--- TODO: internal player flags
+-- Enables third-person camera flipping in reverse gravity.
+-- * This is controlled by the console variable `flipcam`.
+PF_FLIPCAM = 1 << 0
+
+-- The player is using analog controls.
+PF_ANALOGMODE = 1 << 1
+
+-- The player has the Character Angle option set to "Movement".
+PF_DIRECTIONCHAR = 1 << 2
+
+-- The player has Automatic Braking enabled.
+PF_AUTOBRAKE = 1 << 3
+
+-- The player is invincible to everything, including instant kill hazards like bottomless pits and crushers.
+-- * This is controlled by the console command `god`.
+PF_GODMODE = 1 << 4
+
+-- Turns off the player's collision, allowing them to walk through solid walls, as well as immediately move on top of raised ground regardless of height.
+-- * This is controlled by the console command `noclip`.
+PF_NOCLIP = 1 << 5
+
+-- Prevents enemies and bosses from noticing the player, except after the player has attacked them. 
+-- * This is controlled by the console command `notarget`. 
+PF_INVIS = 1 << 6
+
+-- The Ring Toss control button was pressed the previous tic.
+PF_ATTACKDOWN = 1 << 7
+
+-- The Spin control button was pressed the previous tic.
+PF_SPINDOWN = 1 << 8
+
+-- The Jump control button was pressed the previous tic.
+PF_JUMPDOWN = 1 << 9
+
+-- The Next Weapon or Prev Weapon control buttons were pressed the previous tic. 
+PW_WPNDOWN = 1 << 10
+
+-- The player is not allowed to move, except for jumping.
+-- * This flag can be given if the player has a value set for `<player_t>.powers[pw_nocontrol]`, or the player has `PF_GLIDING` and is skidding; otherwise, the flag will automatically be removed the following tic.
+PF_STASIS = 1 << 11
+
+-- The player is not allowed to jump.
+-- * This flag can be given if the 16th bit (`1<<15`) of `<player_t>.powers[pw_nocontrol]` is set, or the player has `PF_GLIDING` and is skidding; otherwise, the flag will automatically be removed the following tic.
+PF_JUMPSTASIS = 1 << 12
+
+-- The player is not allowed to move or jump.
+-- * In short, this is `PF_STASIS` and `PF_JUMPSTASIS` combined.
+-- * This flag can be given if the player has a value set for `<player_t>.powers[pw_nocontrol]`, or the player has `PF_GLIDING` and is skidding; otherwise, the flag will automatically be removed the following tic.
+PF_FULLSTASIS = PF_STASIS | PF_JUMPSTASIS
+
+-- The player is slowing down due to automatic braking.
+PF_APPLYAUTOBRAKE = 1 << 13
+
+-- The player has started a jump and not yet cut their upwards momentum in half by releasing the jump button.
+PF_STARTJUMP = 1 << 14
+
+-- The player has just jumped.
+PF_JUMPED = 1 << 15
+
+-- The player's jump will not damage enemies.
+PF_NOJUMPDAMAGE = 1 << 16
+
+-- The player is spinning.
+PF_SPINNING = 1 << 17
+
+-- The player is charging up their spindash.
+PF_STARTDASH = 1 << 18
+
+-- The player has used their character's ability.
+PF_THOKKED = 1 << 19
+
+-- The player has used their Shield ability.
+PF_SHIELDABILITY = 1 << 20
+
+-- The player is gliding.
+PF_GLIDING = 1 << 21
+
+-- The player is tail-bouncing.
+PF_BOUNCING = 1 << 22
+
+-- The player is in a slide.
+-- * Example: Deep Sea Zone's waterslides.
+PF_SLIDING = 1 << 23
+
+-- NiGHTS Super Sonic is being transferred to the next axis.
+PF_TRANSFERTOCLOSEST = 1 << 24
+
+-- NiGHTS Super Sonic is drilling.
+PF_DRILLING = 1 << 25
+
+-- The player has received a Time Over in Race mode, or is has been tagged in Hide & Seek mode.
+PF_GAMETYPEOVER = 1 << 26
+
+-- The player is "it" in Tag mode.
+PF_TAGIT = 1 << 27
+
+-- Forces the turn left/right controls to become strafing controls.
+-- * This is reserved for Lua scripting purposes.
+PF_FORCESTRAFE = 1 << 28
+
+-- The player can carry another player as Tails with their flight.
+PF_CANCARRY = 1 << 29
+
+-- The player has finished the level.
+-- * This is separate from `<player_t>.exiting`, as its for cases where players can move around while waiting for others to finish the level.
+PF_FINISHED = 1 << 30
 
 
 --//
@@ -1146,7 +1251,89 @@ BT_CUSTOM3 = 1 << 15
 --//
 
 
--- TODO: A lot more...
+-- Automatic Ring.
+WEP_AUTO = 1
+
+-- Bounce Ring.hud.
+WEP_BOUNCE = 2
+
+-- Scatter Ring.
+WEP_SCATTER = 3
+
+-- Grenade Ring.
+WEP_GRENADE = 4
+
+-- Explode Ring.
+WEP_EXPLODE = 5
+
+-- Rail Ring.
+WEP_RAIL = 6
+
+-- Total number of weapons.
+MAXWEAPONS = 7
+
+
+--//
+
+
+-- Automatic Ring.
+RW_AUTO = 1 << 0
+
+-- Bounce Ring.
+RW_BOUNCE = 1 << 1
+
+-- Scatter Ring.
+RW_SCATTER = 1 << 2
+
+-- Grenade Ring.
+RW_GRENADE = 1 << 3
+
+-- Explode Ring.
+RW_EXPLODE = 1 << 4
+
+-- Rail Ring.
+RW_RAIL = 1 << 5
+
+
+--//
+
+
+-- SRB2's palette with a 75% white tint, of `RGB(255, 255, 255)`.
+-- * This flash palette is used for Attraction Shields shorting out in water and Ideya Capture defeat.
+PAL_WHITE = 1
+
+-- SRB2's palette with a 75% white tint, of `RGB(255, 255, 255)`.
+-- * This flash palette is used for teleports and Teleport Monitors.
+PAL_MIXUP = 2
+
+-- SRB2's palette with a 75% white tint, of `RGB(255, 255, 255)`.
+-- * This flash is palette used for Recycler Monitors.
+PAL_RECYCLE = 3
+
+-- SRB2's palette tinted red. 
+-- * This flash palette is used for Armageddon Shield explosions.
+-- * Note: This palette can be reproduced by tinting SRB2's palette 75% white as with the palettes above, but then changing the green/blue levels of all color indexes to `113`.
+PAL_NUKE = 4
+
+-- SRB2's palette, but inverted and slightly darker.
+-- * This isn't used anywhere, but you can!
+PAL_INVERT = 5
+
+
+--//
+
+
+-- The player is carrying the red CTF flag.
+GF_REDFLAG = 1 << 0
+
+-- The player is carrying the blue CTF flag.
+GF_BLUEFLAG = 1 << 1
+
+
+--//
+
+
+-- TODO: more and more...
 
 
 --//
@@ -1216,7 +1403,220 @@ COM_LOCAL = 1 << 2
 --//
 
 
--- TODO: Video drawing flags
+-- These bits are reserved for an 8-bit integer parameter internally.
+-- * For example, when drawing individual characters in a string, this determines which character in the font is to be drawn.
+-- * You cannot set nor control these bits using cechoflags or Lua's HUD library functions.
+-- * An exception to this is Lua's `v.drawFill`, where these bits are the palette index to use as the fill color.
+V_PARAMMASK = 0x000000FF
+
+-- These bits determine how to scale text and patches.
+V_SCALEPATCHMASK = 0x00000300
+
+-- These bits determine text spacing types.
+V_SPACINGMASK = 0x00000C00
+
+-- These bits determine the color of text. 
+V_CHARCOLORMASK = 0x0000F000
+
+-- These bits determine the alpha or translucency of text and patches.
+V_ALPHAMASK = 0x000F0000
+
+
+-- Text or patches are not scaled.
+-- * This will cause them to be sized as if the resolution was the default of 320×200, while still retaining their starting positions for the resolution currently being used, assuming V_NOSCALESTART is not being used.
+-- * This causes text or patches to appear smaller in higher resolutions.
+-- * Generally not recommended because text or patches will look different in different resolutions.
+-- * This flag is used with `con_textsize small`.
+V_NOSCALEPATCH = 0x00000100
+
+-- Text or patches are scaled to half of their normal scale.
+-- * This will have no effect for resolutions 640×400 and smaller.
+-- * This flag is used with `con_textsize medium`.
+V_SMALLSCALEPATCH = 0x00000200
+
+-- Text or patches are scaled to 2/3 of their normal scale.
+-- * This will have no effect for 320×200.
+-- * This flag is used with `con_textsize large`.
+V_MEDSCALEPATCH = 0x00000300
+
+
+-- Spaces are 6 pixels wide; all other characters have a width matching their real image width.
+-- * Good ol' v2.1-style spacing.
+-- * This has another effect in SRB2Kart; if the align type in `v.drawString` is "thin", the width between every letter will be reduced by 1.
+V_6WIDTHSPACE = 0x00000400
+
+-- All characters are 8 pixels wide, and spaces are 4 pixels wide.
+-- * This is the spacing used by all versions of SRB2 prior to v2.1, and some parts of the game still use it.
+V_OLDSPACING = 0x00000800
+
+-- All characters are 8 pixels wide, spaces included.
+V_MONOSPACE = 0x00000C00
+
+
+-- >> ![](https://wiki.srb2.org/w/images/3/3f/Sampletext-magenta.png)
+V_MAGENTAMAP = 0x00001000
+
+-- >> ![](https://wiki.srb2.org/w/images/5/52/Sampletext-yellow.png)
+V_YELLOWMAP = 0x00002000
+
+-- >> ![](https://wiki.srb2.org/w/images/f/fe/Sampletext-green.png)
+V_GREENMAP = 0x00003000
+
+-- >> ![](https://wiki.srb2.org/w/images/d/db/Sampletext-blue.png)
+V_BLUEMAP = 0x00004000
+
+-- >> ![](https://wiki.srb2.org/w/images/d/d7/Sampletext-red.png)
+V_REDMAP = 0x00005000
+
+-- >> ![](https://wiki.srb2.org/w/images/f/fd/Sampletext-gray.png)
+V_GRAYMAP = 0x00006000
+
+-- >> ![](https://wiki.srb2.org/w/images/f/fa/Sampletext-orange.png)
+V_ORANGEMAP = 0x00007000
+
+-- >> ![](https://wiki.srb2.org/w/images/0/0a/Sampletext-sky.png)
+V_SKYMAP = 0x00008000
+
+-- >> ![](https://wiki.srb2.org/w/images/8/88/Sampletext-purple.png)
+V_PURPLEMAP = 0x00009000
+
+-- >> ![](https://wiki.srb2.org/w/images/7/7a/Sampletext-aqua.png)
+V_AQUAMAP = 0x0000A000
+
+-- >> ![](https://wiki.srb2.org/w/images/f/fd/Sampletext-peridot.png)
+V_PERIDOTMAP = 0x0000B000
+
+-- >> ![](https://wiki.srb2.org/w/images/6/6b/Sampletext-azure.png)
+V_AZUREMAP = 0x0000C000
+
+-- >> ![](https://wiki.srb2.org/w/images/f/f1/Sampletext-brown.png)
+V_BROWNMAP = 0x0000D000
+
+-- >> ![](https://wiki.srb2.org/w/images/b/bc/Sampletext-rosy.png)
+V_ROSYMAP = 0x0000E000
+
+-- >> ![](https://wiki.srb2.org/w/images/f/f6/Sampletext-inverted.png)
+V_INVERTMAP = 0x0000F000
+
+
+-- Text or patches are 10% translucent.
+V_10TRANS = 0x00010000
+
+-- Text or patches are 20% translucent.
+V_20TRANS = 0x00020000
+
+-- Text or patches are 30% translucent.
+V_30TRANS = 0x00030000
+
+-- Text or patches are 40% translucent.
+V_40TRANS = 0x00040000
+
+-- Text or patches are 50% translucent.
+V_TRANSLUCENT = 0x00050000
+
+-- Text or patches are 60% translucent.
+V_60TRANS = 0x00060000
+
+-- Text or patches are 70% translucent.
+V_70TRANS = 0x00070000
+
+-- Text or patches are 80% translucent.
+V_80TRANS = 0x00080000
+
+-- Text or patches are 90% translucent.
+V_90TRANS = 0x00090000
+
+-- Text or patches will be adjusted to be half as opaque (twice as translucent) as the translucency determined by the `translucenthud` console variable.
+V_HUDTRANSHALF = 0x000A0000
+
+-- Text or patches will be adjusted to the translucency determined by the `translucenthud` console variable.
+V_HUDTRANS = 0x000B0000
+
+
+-- Text or patches use additive blending.
+-- * By default, the intensity is at 100%, but can be combined with `V_10TRANS`–`V_90TRANS` for 90%–10% intensity. 
+V_ADD = 0x00100000
+
+-- Text or patches use subtractive blending.
+-- * By default, the intensity is at 100%, but can be combined with `V_10TRANS`–`V_90TRANS` for 90%–10% intensity. 
+V_SUBSTRACT = 0x00200000
+
+-- Text or patches use reverse subtractive blending.
+-- * By default, the intensity is at 100%, but can be combined with `V_10TRANS`–`V_90TRANS` for 90%–10% intensity. 
+V_REVERSESUBSTRACT = 0x00300000
+
+-- Text or patches use modulate blending.
+V_MODULATE = 0x00400000
+
+
+-- Allows use of lowercase letters, instead of forcing letters to be all-uppercase by default.
+-- * This is only for **strings**.
+V_ALLOWLOWERCASE = 0x00800000
+
+-- Flips the patch across the X axis (horizontally).
+-- * This is only for **patches**.
+V_FLIP = 0x00800000
+
+-- Centers the name tag text horizontally.
+-- * This is only for **nametags**.
+V_CENTERNAMETAG = 0x00800000
+
+
+-- Text or patches snap to the top edge of the screen in non-green resolutions.
+-- * This means that the top of the string or patch will remain the same distance from the top edge of the screen as if it were using a green resolution.
+-- * This flag has no effect if `V_NOSCALESTART` or any of the scaling flags are set.
+V_SNAPTOTOP = 0x01000000
+
+-- Text or patches snap to the bottom edge of the screen in non-green resolutions.
+-- * This means that the bottom of the string or patch will remain the same distance from the bottom edge of the screen as if it were using a green resolution.
+-- * This flag has priority over `V_SNAPTOTOP`.
+-- * This flag has no effect if `V_NOSCALESTART` or any of the scaling flags are set.
+V_SNAPTOBOTTOM = 0x02000000
+
+-- Text or patches snap to the left edge of the screen in non-green resolutions.
+-- * This means that the left end of the string or patch will remain the same distance from the left edge of the screen as if it were using a green resolution, and text will be left-aligned.
+-- * This flag has no effect if `V_NOSCALESTART` or any of the scaling flags are set.
+V_SNAPTOLEFT = 0x04000000
+
+-- Text or patches snap to the right edge of the screen in non-green resolutions.
+-- * This means that the right end of the string or patch will remain the same distance from the right edge of the screen as if it were using a green resolution, and text will be right-aligned.
+-- * This flag has priority over `V_SNAPTOLEFT`.
+-- * This flag has no effect if `V_NOSCALESTART` or any of the scaling flags are set.
+V_SNAPTORIGHT = 0x08000000
+
+
+-- Makes `cecho` text automatically fade out before disappearing.
+-- * This does not have any effect for non-`cecho` text or patches. 
+V_AUTOFADEOUT = 0x10000000
+
+-- Line breaks in text move the start of the next line of text down by 8 pixels rather than 12.
+-- * Since text characters are normally 8 characters tall, this means lines of text will have no distance between them vertically.
+-- * This has no effect for patches.
+V_RETURN8 = 0x20000000
+
+-- Do not scale the text or patch's starting position, i.e., the top-left corner of the text/patch.
+-- * This will cause it to be placed as if the resolution was the default of 320×200, while still retaining the size of the text/patch for the resolution currently being used, assuming `V_NOSCALEPATCH` is not being used.
+-- * This causes the text/patch to be in the top-left in higher resolutions.
+-- * Generally not recommended because the resulting appearance will vary depending on the resolution used.
+--
+-- If this flag is set, the flags `V_SNAPTOTOP`, `V_SNAPTOBOTTOM`, `V_SNAPTOLEFT` and `V_SNAPTORIGHT` will have no effect. 
+V_NOSCALESTART = 0x40000000
+
+-- In Splitscreen mode, text and patches will automatically adjust coordinates and scaling to fit on-screen.
+V_PERPLAYER = 0x80000000
+
+
+-- Number of bits to shift up to convert integers 1–16 to the color flags `V_PURPLEMAP`–`V_INVERTMAP`, or the number of bits to shift down for vice versa.
+-- * Example: `1<<V_CHARCOLORSHIFT` is `V_MAGENTAMAP`, and `V_MAGENTAMAP>>V_CHARCOLORSHIFT` is 1.
+V_CHARCOLORSHIFT = 12
+
+-- Number of bits to shift up to convert integers 1–9 to the alpha flags `V_10TRANS`–`V_90TRANS`, and integers 10–12 to the alpha flags `V_HUDTRANSHALF`–`V_HUDTRANSDOUBLE`, or the number of bits to shift down for vice versa.
+-- * Example: `1<<V_ALPHASHIFT` is V_10TRANS, and `V_10TRANS>>V_ALPHASHIFT` is 1.
+V_ALPHASHIFT = 16
+
+-- Number of bits to shift up to convert integers 1–4 to the blending mode flags `V_ADD`, `V_SUBTRACT`, `V_REVERSESUBTRACT` and `V_MODULATE`, or the number of bits to shift down for vice versa.
+-- * Example: `1<<V_BLENDSHIFT` is `V_ADD`, and `V_ADD>>V_BLENDSHIFT` is 1.
+V_BLENDSHIFT = 20
 
 
 --//

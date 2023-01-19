@@ -970,9 +970,6 @@ function P_RemoveShield(player) end
 --//
 
 
---//
-
-
 -- TODO: P_Map
 
 
