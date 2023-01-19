@@ -1622,7 +1622,118 @@ V_BLENDSHIFT = 20
 --//
 
 
--- TODO: HUD items
+-- The character icon, character name, and remaining amount of lives in Single Player and Co-op.
+-- * The character icon and name are still shown even in gametypes that don't have limited lives.
+-- * They are however not displayed in NiGHTS levels nor Multiplayer Special Stages.
+-- > Properties:
+-- > * `x`: 16
+-- > * `y`: 176
+-- > * `flags`: `V_SNAPTOLEFT|V_SNAPTOTOP`
+HUD_LIVES = 0
+
+-- The yellow "RINGS" text beside the player's ring count in normal stages.
+-- * The "RINGS" text flashes red when the player has no rings.
+-- > Properties:
+-- > * `x`: 16
+-- > * `y`: 42
+-- > * `flags`: `V_SNAPTOLEFT|V_SNAPTOTOP`
+HUD_RINGS = 1
+
+-- The amount of rings in the player's possession in normal stages.
+-- * Shown when `Options > Video Options... > Heads-Up Display > Score/Time/Rings` **is not** set to "Mania".
+-- > Properties:
+-- > * `x`: 96
+-- > * `y`: 42
+-- > * `flags`: `V_SNAPTOLEFT|V_SNAPTOTOP`
+HUD_RINGSNUM = 2
+
+-- The amount of rings in the player's possession in normal stages.
+-- * Shown when `Options > Video Options... > Heads-Up Display > Score/Time/Rings` **is** set to "Mania".
+-- > Properties:
+-- > * `x`: 120
+-- > * `y`: 42
+-- > * `flags`: `V_SNAPTOLEFT|V_SNAPTOTOP`
+HUD_RINGSNUMTICS = 3
+
+-- The yellow "SCORE" text in normal stages.
+-- > Properties:
+-- > * `x`: 16
+-- > * `y`: 10
+-- > * `flags`: `V_SNAPTOLEFT|V_SNAPTOTOP`
+HUD_SCORE = 4
+
+-- The player's current score in normal stages.
+-- > Properties:
+-- > * `x`: 120
+-- > * `y`: 10
+-- > * `flags`: `V_SNAPTOLEFT|V_SNAPTOTOP`
+HUD_SCORENUM = 5
+
+-- The yellow "TIME" text beside the time display in normal stages.
+-- > Properties:
+-- > * `x`: 16
+-- > * `y`: 26
+-- > * `flags`: `V_SNAPTOLEFT|V_SNAPTOTOP`
+HUD_TIME = 6
+
+-- The time display's minute in normal stages.
+-- * Shown when `Options > Video Options... > Heads-Up Display > Score/Time/Rings` **is not** set to "Tics".
+-- * Counts down if there is a time limit (e.g. in Match by default), otherwise, this counts up.
+-- > Properties:
+-- > * `x`: 72
+-- > * `y`: 26
+-- > * `flags`: `V_SNAPTOLEFT|V_SNAPTOTOP`
+HUD_MINUTES = 7
+
+-- The colon graphic between minutes and seconds in the time display in normal stages.
+-- * Shown when `Options > Video Options... > Heads-Up Display > Score/Time/Rings` **is not** set to "Tics". 
+-- > Properties:
+-- > * `x`: 72
+-- > * `y`: 26
+-- > * `flags`: `V_SNAPTOLEFT|V_SNAPTOTOP`
+HUD_TIMECOLON = 8
+
+-- The time display's second (or tic if `Options > Video Options... > Heads-Up Display > Score/Time/Rings` **is** set to "Tics") in normal stages.
+-- * Counts down if there is a time limit, otherwise, this counts up.
+-- > Properties:
+-- > * `x`: 96
+-- > * `y`: 26
+-- > * `flags`: `V_SNAPTOLEFT|V_SNAPTOTOP`
+HUD_SECONDS = 9
+
+-- The period graphic between seconds and centiseconds in the time display in normal stages.
+-- * Shown when `Options > Video Options... > Heads-Up Display > Score/Time/Rings` **is** set to "Centiseconds" or "Mania".
+-- > Properties:
+-- > * `x`: 96
+-- > * `y`: 26
+-- > * `flags`: `V_SNAPTOLEFT|V_SNAPTOTOP`
+HUD_TIMETICCOLON = 10
+
+-- The time display's centisecond in normal stages
+-- * Shown when `Options > Video Options... > Heads-Up Display > Score/Time/Rings` **is** set to "Centiseconds" or "Mania".
+-- * Counts down if there is a time limit, otherwise, this counts up.
+-- * Note: Despite this HUD item's name, this is not used if that setting is set to "Tics".
+-- > Properties:
+-- > * `x`: 120
+-- > * `y`: 26
+-- > * `flags`: `V_SNAPTOLEFT|V_SNAPTOTOP`
+HUD_TICS = 11
+
+-- The radar in Emerald Hunt levels and when the Emblem Radar unlockable is enabled.
+-- * Extends both left and right if there's more than one Emerald Hunt Location or Emblem in the level, so it's best to place this somewhere centred.
+-- > Properties:
+-- > * `x`: 152
+-- > * `y`: 168
+-- > * `flags`: None
+HUD_HUNTPICS = 18
+
+-- The HUD icons for shields and other power-ups, displayed based on `Options > Video Options... > Heads-Up Display > Show Powerups`.
+-- * Note that when the player has multiple powerups, this HUD item will stack leftwards, so it's best to place this on the right side of the screen.
+-- > Properties:
+-- > * `x`: 288
+-- > * `y`: 176
+-- > * `flags`: `V_SNAPTORIGHT|V_SNAPTOBOTTOM`
+HUD_POWERUPS = 19
 
 
 --//
