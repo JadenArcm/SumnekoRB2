@@ -69,7 +69,7 @@ FRACUNIT = 1 << 16
 -- The number of bits to shift up to convert integers to fixed-point numbers in `FRACUNIT` scale, or the number of bits to shift down for vice versa.
 -- - This constant is used to define the value of `FRACUNIT` itself.
 -- - Modifying the value of `FRACBITS` in the source code would also modify `FRACUNIT`'s value.
--- - Note: Bit-shifting an integer by `FRACBITS` in either direction is equivalent to multiplication or division by `FRACUNIT`. 
+-- - **Note:** Bit-shifting an integer by `FRACBITS` in either direction is equivalent to multiplication or division by `FRACUNIT`. 
 FRACBITS = 16
 
 -- The number of tics in a second. 
@@ -194,7 +194,7 @@ MF_NOCLIP = 1 << 12
 -- - This is most commonly used by flying or underwater enemies and bosses that need to chase the player vertically.
 -- - `MF_NOGRAVITY` has to be checked for this to work as intended.
 -- - The Object will move up/down at a fixed speed of `4` fracunits/tic.
--- - Note: The Egg Mobile's floating behavior and speed works differently to that of other Objects that use this flag.
+-- - **Note:** The Egg Mobile's floating behavior and speed works differently to that of other Objects that use this flag.
 MF_FLOAT = 1 << 13
 
 -- The Object is a monitor icon and will float upwards upon being spawned.
@@ -253,7 +253,7 @@ MF_NOCLIPTHING = 1 << 27
 MF_GRENADEBOUNCE = 1 << 28
 
 -- When an Object is spawned and its `SpawnState` has an action, the action will normally not be performed; if this flag is set, the action will be performed.
--- - Note: Some actions rely on information that is not yet available when the Object is still being spawned, such as the Object's target or tracer.
+-- - **Note:** Some actions rely on information that is not yet available when the Object is still being spawned, such as the Object's target or tracer.
 -- - These actions may crash the game when performed on spawn, so use caution with this flag.
 MF_RUNSPAWNFUNC = 1 << 29
 
@@ -1083,7 +1083,63 @@ PF_FINISHED = 1 << 30
 --//
 
 
--- TODO: player animations
+-- Animations that do not fit with the others.
+-- * Belongs to: `Nothing.`
+PA_ETC = 0
+
+-- Idle animations, such as standing or waiting.
+-- * Belongs to: `S_PLAY_STND`, `S_PLAY_WAIT`, and `S_PLAY_NIGHTS_STAND`.
+PA_IDLE = 1
+
+-- The teetering animation.
+-- * Belongs to: `S_PLAY_EDGE`.
+PA_EDGE = 2
+
+-- The walking animations.
+-- * Belongs to: `S_PLAY_WALK`, `S_PLAY_SKID`, and `S_PLAY_FLOAT`.
+PA_WALK = 3
+
+-- The running animations.
+-- * Belongs to: `S_PLAY_RUN`, and `S_PLAY_FLOAT_RUN`.
+PA_RUN = 4
+
+-- The dashmode animation.
+-- * Belongs to: `S_PLAY_DASH`.
+PA_DASH = 5
+
+-- The pain animations.
+-- * Belongs to: `S_PLAY_PAIN`, and `S_PLAY_STUN`.
+PA_PAIN = 6
+
+-- The rolling ston- i mean animations.
+-- * Belongs to: `S_PLAY_ROLL`, and `S_PLAY_NIGHTS_ATTACK`.
+PA_ROLL = 7
+
+-- The jumping animation.
+-- * Belongs to: `S_PLAY_JUMP`.
+PA_JUMP = 8
+
+-- The spring animation.
+-- * Belongs to: `S_PLAY_SPRING`.
+PA_SPRING = 9
+
+-- The falling animations.
+-- * Belongs to: `S_PLAY_FALL`, and `S_PLAY_NIGHTS_FLOAT`.
+PA_FALL = 10
+
+-- Character-specific animations.
+-- * This is for the primary abilities.
+-- * Belongs to: `S_PLAY_FLY`, `S_PLAY_FLY_TIRED`, `S_PLAY_SWIM`, `S_PLAY_GLIDE`, `S_PLAY_BOUNCE`, `S_PLAY_BOUNCE_LANDING`, and `S_PLAY_TWINSPIN`.
+PA_ABILITY = 11
+
+-- Character-specific animations.
+-- * This is for the secondary abilities.
+-- * Belongs to: `S_PLAY_SPINDASH`, `S_PLAY_FIRE`, `S_PLAY_FIRE_FINISH`, `S_PLAY_MELEE`, `S_PLAY_MELEE_FINISH`, and `S_PLAY_MELEE_LANDING`.
+PA_ABILITY2 = 12
+
+-- The animation for being carried or riding something.
+-- * Belongs to: `S_PLAY_RIDE`.
+PA_RIDE = 13
 
 
 --//
@@ -1139,7 +1195,7 @@ pw_noautobrake = 11
 
 -- Checks whether the player is Super.
 -- * The player must still meet the criteria for becoming Super.
--- * Note: This is used internally as a timer for how long the player has been super, in tics.
+-- * **Note:** This is used internally as a timer for how long the player has been super, in tics.
 pw_super = 12
 
 -- The player's "Gravity Boots" duration.
@@ -1333,7 +1389,7 @@ PAL_RECYCLE = 3
 
 -- SRB2's palette tinted red. 
 -- * This flash palette is used for Armageddon Shield explosions.
--- * Note: This palette can be reproduced by tinting SRB2's palette 75% white as with the palettes above, but then changing the green/blue levels of all color indexes to `113`.
+-- * **Note:** This palette can be reproduced by tinting SRB2's palette 75% white as with the palettes above, but then changing the green/blue levels of all color indexes to `113`.
 PAL_NUKE = 4
 
 -- SRB2's palette, but inverted and slightly darker.
@@ -1733,7 +1789,7 @@ HUD_TIMETICCOLON = 10
 -- The time display's centisecond in normal stages
 -- * Shown when `Options > Video Options... > Heads-Up Display > Score/Time/Rings` **is** set to "Centiseconds" or "Mania".
 -- * Counts down if there is a time limit, otherwise, this counts up.
--- * Note: Despite this HUD item's name, this is not used if that setting is set to "Tics".
+-- * ****Note:**** Despite this HUD item's name, this is not used if that setting is set to "Tics".
 -- > Properties:
 -- > * `x`: 120
 -- > * `y`: 26
