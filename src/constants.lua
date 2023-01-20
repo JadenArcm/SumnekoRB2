@@ -1145,6 +1145,27 @@ pw_super = 12
 -- The player's "Gravity Boots" duration.
 pw_gravityboots = 13
 
+-- Current amount of Infinity Rings.
+pw_infinityring = 14
+
+-- Current amount of Automatic Rings.
+pw_automaticring = 15
+
+-- Current amount of Bounce Rings.
+pw_bouncering = 16
+
+-- Current amount of Scatter Rings.
+pw_scatterring = 17
+
+-- Current amount of Grenade Rings.
+pw_grenadering = 18
+
+-- Current amount of Explosion Rings.
+pw_explosionring = 19
+
+-- Current amount of Rail Rings.
+pw_railring = 20
+
 -- The player's current flags of multiplayer Chaos Emeralds.
 pw_emeralds = 21
 
