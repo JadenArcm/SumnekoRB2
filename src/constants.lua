@@ -1145,13 +1145,120 @@ PA_RIDE = 13
 --//
 
 
--- TODO: shield types
+-- The player has no shield.
+SH_NONE = 0x0000
+
+-- The player has a Pity shield.
+SH_PITY = 0x0001
+
+-- The player has a Whirlwind shield.
+SH_WHIRLWIND = 0x0002
+
+-- The player has an Armageddon shield.
+SH_ARGAGEDDON = 0x0003
+
+-- The player has a Pink Pity shield, which was given by Amy's ability.
+SH_PINK = 0x0004
+
+-- The player has an Elemental Shield.
+-- * This is equivalent to combining `SH_PITY|SH_PROTECTFIRE|SH_PROTECTWATER`.
+SH_ELEMENTAL = 0x0C01
+
+-- The player has an Attraction Shield.
+-- * This is equivalent to combining `SH_PITY|SH_PROTECTELECTRIC`.
+SH_ATTRACT = 0x1001
+
+-- The player has the S3K Flame Shield.
+-- * This is equivalent to combining `SH_PITY|SH_PROTECTFIRE`.
+SH_FLAMEAURA = 0x0401
+
+-- The player has the S3K Bubble Shield.
+-- * This is equivalent to combining `SH_PITY|SH_PROTECTWATER`. 
+SH_BUBBLEWRAP = 0x0801
+
+-- The player has the S3K Lightning Shield.
+-- * This is equivalent to combining `SH_WHIRLWIND|SH_PROTECTELECTRIC`.
+SH_THUNDERCOIN = 0x1002
+
+-- The player has the force shield. Take account that this is a **flag**.
+-- * On its own this flag only gives one health point to the shield, the lower 8 bits can be used as extra health points.
+-- * **Note:** This cannot be combined with any of the values `SH_PITY` to `SH_PINK`.
+-- * In Lua scripts, use `<player_t>.powers[pw_shield] & SH_FORCE` to check if a player has the Force Shield. 
+SH_FORCE = 0x0100
+
+-- The amount for max extra health points of the Force Shield.
+-- * In Lua scripts, if the player is known to have a Force Shield, use `<player_t>.powers[pw_shield] & SH_FORCEHP` to check if the shield has extra health points. 
+SH_FORCEHP = 0x00FF
+
+-- The player has the Fire Flower. Take account that this is a **flag**.
+-- * **Note:** This can be combined with any of the other shields.
+-- * In Lua scripts, use `<player_t>.powers[pw_shield] & SH_FIREFLOWER` to check if the player has the Fire Flower power-up. 
+SH_FIREFLOWER = 0x0200
+
+-- Mask for all shields that can be combined with others.
+-- * This only includes the Fire Flower currently.
+-- * In Lua scripts, use `<player_t>.powers[pw_shield] & SH_STACK` to get all shields that can be stacked with others.
+SH_STACK = 0x0200
+
+-- Inverse of `SH_STACK`, mask for all shields that cannot be combined with others.
+-- * This is equivalent to typing `~SH_STACK`.
+-- * In Lua scripts, use `<player_t>.powers[pw_shield] & SH_NOSTACK` to return everything except for shields that can be stacked with others.
+SH_NOSTACK = 0xFDFF
+
+-- Flag for shields that protect the user from Fire damage.
+SH_PROTECTFIRE = 0x0400
+
+-- Flag for shields that protect the user from Water damage.
+SH_PROTECTWATER = 0x0800
+
+-- Flag for shields that protect the user from Electric damage.
+SH_PROTECTELECTRIC = 0x1000
+
+-- Flag for shields that protect the user from Spike damage.
+SH_PROTECTSPIKE = 0x2000
 
 
 --//
 
 
--- TODO: carry types
+-- Not being carried.
+CR_NONE = 0
+
+-- Generic, default case for miscellaneous objects.
+CR_GENERIC = 1
+
+-- Being carried by a flying Tails player.
+CR_PLAYER = 2
+
+-- The player is currently in NiGHTS mode.
+CR_NIGHTSMODE = 3
+
+-- The player has ran out of time in NiGHTS.
+CR_NIGHTSFALL = 4
+
+-- Stuck in old Brak Eggman's goop.
+CR_BRAKGOOP = 5
+
+-- Using a Zoom Tube.
+CR_ZOOMTUBE = 6
+
+-- Using a Rope Hang.
+CR_ROPEHANG = 7
+
+-- Using a Mace swing.
+CR_MACESPIN = 8
+
+-- Using a Minecart.
+CR_MINECART = 9
+
+-- Using a Rollout Rock.
+CR_ROLLOUT = 10
+
+-- Being carried by a Pterabyte.
+CR_PTERABYTE = 11
+
+-- Being carried by a Dust Devil.
+CR_DUSTDEVIL = 12
 
 
 --//
