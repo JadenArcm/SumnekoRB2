@@ -7,9 +7,73 @@
 --//
 
 
+---@alias hookTypes
+---| "IntermissionThinker" # function()
+---| "HUD" # function(v: drawerlib_t, ...)
+---| "KeyDown" # function(keyevent: keyevent_t)
+---| "KeyUp" # function(keyevent: keyevent_t)
+---| "LinedefExecute" # function(line: line_t, mobj: mobj_t, sector: sector)
+---| "MapChange" # function(mapnum: integer)
+---| "MapLoad" # function(mapnum: integer)
+---| "ThinkFrame" # function()
+---| "PreThinkFrame" # function()
+---| "PostThinkFrame" # function()
+---| "GameQuit" # function()
+---| "BotAI" # function(player: mobj_t, bot: mobj_t)
+---| "BotTiccmd" # function(bot: player_t, cmd: ticcmd_t)
+---| "BotRespawn" # function(player: mobj_t, bot: mobj_t)
+---| "HurtMsg" # function(player: player_t, inflictor: mobj_t, source: mobj_t)
+---| "NetVars" # function(network: fun(var))
+---| "PlayerJoin" # function(playernum: integer)
+---| "PlayerMsg" # function(source: player_t, type: integer, target: player_t, msg: string)
+---| "PlayerQuit" # function(player: player_t, reason: integer)
+---| "TeamSwitch" # function(player: player_t, team: integer, fromspectators: boolean, autobalance: boolean, scramble: boolean)
+---| "ViewpointSwitch" # function(player: player_t, nextviewedplayer: player_t, forced: boolean)
+---| "SeenPlayer" # function(player: player_t, seenplayer: player_t)
+---| "AbilitySpecial" # function(player: player_t)
+---| "JumpSpecial" # function(player: player_t)
+---| "JumpSpinSpecial" # function(player: player_t)
+---| "SpinSpecial" # function(player: player_t)
+---| "BossDeath" # function(mobj: mobj_t)
+---| "BossThinker" # function(mobj: mobj_t)
+---| "FollowMobj" # function(player: player_t, mobj: mobj_t)
+---| "MapThingSpawn" # function(mobj: mobj_t, mapthing: mapthing_t)
+---| "MobjCollide" # function(thing: mobj_t, tmthing: mobj_t)
+---| "MobjLineCollide" # function(mobj: mobj_t, line: line_t)
+---| "MobjDamage" # function(target: mobj_t, inflictor: mobj_t, source: mobj_t, damage: integer, damagetype: integer)
+---| "MobjDeath" # function(target: mobj_t, inflictor: mobj_t, source: mobj_t, damagetype: integer)
+---| "MobjFuse" # function(mobj: mobj_t)
+---| "MobjMoveBlocked" # function(mobj: mobj_t, thing: mobj_t, line: line_t)
+---| "MobjRemoved" # function(mobj: mobj_t)
+---| "MobjSpawn" # function(mobj: mobj_t)
+---| "MobjThinker" # function(mobj: mobj_t)
+---| "PlayerThink" # function(player: player_t)
+---| "PlayerCanDamage" # function(player: player_t, mobj: mobj_t)
+---| "PlayerSpawn" # function(player: player_t)
+---| "PlayerCmd" # function(player: player_t, cmd: ticcmd_t)
+---| "PlayerHeight" # function(player: player_t)
+---| "PlayerCanEnterSpinGaps" # function(player: player_t)
+---| "ShouldDamage" # function(target: mobj_t, inflictor: mobj_t, source: mobj_t, damage: integer, damagetype: integer)
+---| "ShieldSpawn" # function(player: player_t)
+---| "ShieldSpecial" # function(player: player_t)
+---| "TouchSpecial" # function(special: mobj_t, toucher: mobj_t)
+---| "MusicChange" # function(oldname: string, newname: string, mflags: integer, looping: boolean, position: integer, prefadems: integer, fadeinms: integer)
+---| "ShouldJingleContinue" # function(player: player_t, musname: string)
+
+
+--//
+
+
+---@class drawerlib_t
+local v = {}
+
+
+--//
+
+
 -- Creates a new hook with the arguments given.
 --
----@param hookname string
+---@param hookname hookTypes
 ---@param callback function
 ---@param extra?   integer | string
 function addHook(hookname, callback, extra) end
@@ -30,11 +94,11 @@ function freeslot(resource, ...) end
 ---@param var2? any
 function super(actor, var1, var2) end
 
--- Returns the userdata type of `v` as a string.
+-- Returns the userdata type of `var` as a string.
 --
----@param v userdata
+---@param var userdata
 ---@return string
-function userdataType(v) end
+function userdataType(var) end
 
 -- Reserves and then returns a `luabanks` array.
 -- * `Luabanks` is a method to save and load custom information in a savefile.
