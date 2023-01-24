@@ -8,8 +8,8 @@
 
 
 ---@alias hookTypes
----| "IntermissionThinker"	  # function()
 ---| "HUD"					  # function(v: drawerlib_t, ...)
+---| "IntermissionThinker"	  # function()
 ---| "KeyDown"				  # function(keyevent: keyevent_t)
 ---| "KeyUp"				  # function(keyevent: keyevent_t)
 ---| "LinedefExecute"		  # function(line: line_t, mobj: mobj_t, sector: sector)
@@ -24,12 +24,8 @@
 ---| "BotRespawn"			  # function(player: mobj_t, bot: mobj_t)
 ---| "HurtMsg"			 	  # function(player: player_t, inflictor: mobj_t, source: mobj_t)
 ---| "NetVars"				  # function(network: fun(var))
----| "PlayerJoin"			  # function(playernum: integer)
----| "PlayerMsg"			  # function(source: player_t, type: integer, target: player_t, msg: string)
----| "PlayerQuit"			  # function(player: player_t, reason: integer)
 ---| "TeamSwitch"			  # function(player: player_t, team: integer, fromspectators: boolean, autobalance: boolean, scramble: boolean)
 ---| "ViewpointSwitch"		  # function(player: player_t, nextviewedplayer: player_t, forced: boolean)
----| "SeenPlayer"			  # function(player: player_t, seenplayer: player_t)
 ---| "AbilitySpecial"		  # function(player: player_t)
 ---| "JumpSpecial"			  # function(player: player_t)
 ---| "JumpSpinSpecial"		  # function(player: player_t)
@@ -47,6 +43,10 @@
 ---| "MobjRemoved"			  # function(mobj: mobj_t)
 ---| "MobjSpawn"			  # function(mobj: mobj_t)
 ---| "MobjThinker"			  # function(mobj: mobj_t)
+---| "SeenPlayer"			  # function(player: player_t, seenplayer: player_t)
+---| "PlayerJoin"			  # function(playernum: integer)
+---| "PlayerMsg"			  # function(source: player_t, type: integer, target: player_t, msg: string)
+---| "PlayerQuit"			  # function(player: player_t, reason: integer)
 ---| "PlayerThink"			  # function(player: player_t)
 ---| "PlayerCanDamage"		  # function(player: player_t, mobj: mobj_t)
 ---| "PlayerSpawn"			  # function(player: player_t)
@@ -736,10 +736,12 @@ function COM_BufAddText(player, text) end
 ---@param text string
 function COM_BufInsertText(player, text) end
 
--- Registers a console variable with the name `name` for use in the console and returns the console variable created.
+-- * Format of `t`: `{name: string, defaultvalue: string/integer, flags: integer, PossibleValue: table, func: fun(var: consvar_t)}`
+--
+-- Registers a console variable with the name `name` for use in the console, and returns the console variable created.
 -- * `defaultvalue` is the default value for the console variable in string form.
 -- * `PossibleValue` is a list or range of possible values that are allowed for the variable.
--- * `flags` is an integer storing the flags to be given to the console variable.
+-- * `flags` is an integer storing the flags to be given to the console variable. (`CV_*`)
 --
 ---@param t table
 ---@return consvar_t
@@ -750,6 +752,31 @@ function CV_RegisterVar(t) end
 ---@param var string
 ---@return consvar_t
 function CV_FindVar(var) end
+
+-- Sets the value of the target console variable (`cvar`) to the given value. (`value`)
+-- * This will call the console variable's callback function, if it has one.
+--
+---@param cvar consvar_t
+---@param value string|integer
+function CV_Set(cvar, value) end
+
+-- Sets the value of the target console variable (`cvar`) to the given value (`value`) without calling its callback function.
+--
+---@param cvar consvar_t
+---@param value string|integer
+function CV_StealthSet(cvar, value) end
+
+-- Adds a value (`increment`) to the console variable. (`cvar`)
+-- * `increment` can also be a negative number.
+-- * If performing the addition causes the variable's value to go below its minimum or above its maximum, the final value will wrap around those bounds.
+--
+-- * There are special cases for some console variables:
+-- > * `pointlimit`: If the current gametype is `GT_MATCH`, `increment` is multiplied by 50.
+-- > * `forceskin`: Cycles through the current usable skins. This follows the same conditions as `R_SkinUsable` for the resulting value.
+--
+---@param cvar consvar_t
+---@param increment integer
+function CV_AddValue(cvar, increment) end
 
 
 --//
@@ -1101,6 +1128,21 @@ function P_SpawnMobjFromMobj(origin, x, y, z, type) end
 ---@param mobj mobj_t
 function P_RemoveMobj(mobj) end
 
+-- Returns true if `mobj` can properly display `sprite2`, and false otherwise.
+-- * This is specific to objects that have a skin, such as players or live monitors.
+--
+---@param mobj mobj_t
+---@param sprite2 integer
+---@return boolean
+function P_IsValidSprite2(mobj, sprite2) end
+
+-- Spawns `MT_LOCKON` with the given `state`, above `mobj`.
+--
+---@param player player_t
+---@param target mobj_t
+---@param state state_t
+function P_SpawnLockOn(player, target, state) end
+
 
 --//
 
@@ -1221,6 +1263,10 @@ function P_InQuicksand(mobj) end
 ---@param momz fixed_t
 ---@param relative? boolean
 function P_SetObjectMomZ(mobj, momz, relative) end
+
+-- Restores the music to whatever should be depending on whether `player` has any powerups or not.
+---@param player player_t
+function P_RestoreMusic(player) end
 
 
 --//
