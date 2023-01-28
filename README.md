@@ -9,3 +9,7 @@ This is a friendly repositiory that focus on giving some kind of support for SRB
 * Classes? What are these..?
 * Constants.
 * Pain and suffering.
+
+# Known issues
+* Not everything is here, and everything may be outdated with the [SRB2Wiki](https://wiki.srb2.org/wiki/) information.
+* You'll get errors regarding `MT_` contants and such; to "fix" this, just disable the `unknown-variable` setting.
