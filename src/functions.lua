@@ -90,6 +90,39 @@
 ---| "titlecard"	# function(v: drawerlib_t, stplyr?: player_t, ticker?: integer, endtime?: integer)
 ---| "intermission" # function(v: drawerlib_t)
 
+---@alias genericAlignments
+---| "left"
+---| "right"
+---| "center"
+
+---@alias extraStringAlignments
+---| "thin"
+---| "thin-right"
+---| "thin-center"
+---| "small"
+---| "small-right"
+---| "small-center"
+---| "small-thin"
+---| "small-thin-right"
+---| "small-thin-center"
+---| "fixed"
+---| "fixed-right"
+---| "fixed-center"
+---| "thin-fixed"
+---| "thin-fixed-right"
+---| "thin-fixed-center"
+---| "small-fixed"
+---| "small-fixed-right"
+---| "small-fixed-center"
+---| "small-thin-fixed"
+---| "small-thin-fixed-right"
+---| "small-thin-fixed-center"
+
+---@alias widthTypes
+---| "normal"
+---| "thin"
+---| "small"
+
 
 --//
 
@@ -542,7 +575,7 @@ function v.drawFill(x, y, width, height, color) end
 ---@param y integer
 ---@param text string
 ---@param flags? integer
----@param align? string
+---@param align? genericAlignments | extraStringAlignments
 function v.drawString(x, y, text, flags, align) end
 
 -- Draws text in the style of the Character Select name tags at the screen coordinates given.
@@ -585,7 +618,7 @@ function v.drawLevelTitle(x, y, text, flags) end
 --
 ---@param text string
 ---@param flags? integer
----@param widthtype? string
+---@param widthtype? widthTypes
 ---@return integer
 function v.stringWidth(text, flags, widthtype) end
 
