@@ -406,6 +406,12 @@ gamekeydown = {}
 ---@class hudlib_t
 hud = {}
 
+---@class easelib_t
+ease = {}
+
+---@class inputlib_t
+input = {}
+
 
 --//
 

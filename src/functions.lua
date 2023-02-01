@@ -85,7 +85,7 @@
 ---| "scores" 		# function(v: drawerlib_t)
 ---| "title" 		# function(v: drawerlib_t)
 ---| "titlecard"	# function(v: drawerlib_t, stplyr?: player_t, ticker?: integer, endtime?: integer)
----| "intermission" # function(v: drawerlib_t)
+---| "intermission" # function(v: drawerlib_t, stagefailed?: boolean)
 
 ---@alias genericAlignments
 ---| "left"
@@ -880,6 +880,86 @@ function IsPlayerAdmin(player) end
 ---@param y2? fixed_t
 ---@return boolean
 function searchBlockmap(searchtype, fn, refmobj, x1, x2, y1, y2) end
+
+
+--//
+
+
+-- Returns whether the game control `gc` (a `GC_*` constant) is currently pressed for the first player. 
+--
+---@param gc integer
+---@return boolean
+function input.gameControlDown(gc) end
+
+-- Returns whether the game control `gc` (a `GC_*` constant) is currently pressed for the second player. 
+--
+---@param gc integer
+---@return boolean
+function input.gameControl2Down(gc) end
+
+-- Returns the numbers of the keys bound to the game control `gc` (a `GC_*` constant) for the first player.
+--
+---@param gc integer,
+---@return integer, integer
+function input.gameControlToKeyNum(gc) end
+
+-- Returns the numbers of the keys bound to the game control `gc` (a `GC_*` constant) for the second player.
+--
+---@param gc integer,
+---@return integer, integer
+function input.gameControl2ToKeyNum(gc) end
+
+-- Returns the first player's joystick's position on the axis specified by `axissel` (a `JA_*` constant).
+--
+---@param axissel integer
+---@return integer
+function input.joyAxis(axissel) end
+
+-- Returns the second player's joystick's position on the axis specified by `axissel` (a `JA_*` constant).
+--
+---@param axissel integer
+---@return integer
+function input.joy2Axis(axissel) end
+
+-- Returns the name of the key specified by the key number `keynum`.
+--
+---@param keynum integer
+---@return string
+function input.keyNumToName(keynum) end
+
+-- Returns the number of the key specified by the key name `keyname`.
+--
+---@param keyname string
+---@return integer
+function input.keyNumToName(keyname) end
+
+-- Returns whether the key specified by the key number `keynum` corresponds to a printable character.
+--
+---@param keynum string
+---@return boolean
+function input.keyNumPrintable(keynum) end
+
+-- Returns the capitalized form of key number `keynum`.
+--
+---@param keynum string
+---@return integer
+function input.shiftKeyNum(keynum) end
+
+-- Returns whether the first player's mouse is grabbed (locked and invisible) by the window.
+--
+---@return boolean
+function input.getMouseGrab() end
+
+-- Sets whether the first player's mouse is grabbed (locked and invisible) by the window.
+-- * The mouse is automatically grabbed by the game in situations where it deems appropriate, so in order to keep the mouse ungrabbed this function may need to be called constantly.
+--
+---@param grab boolean
+function input.setMouseGrab(grab) end
+
+-- Returns the position of the cursor relative to the top-left corner of the window.
+--
+---@return integer, integer
+function input.getCursorPosition() end
 
 
 --//
