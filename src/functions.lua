@@ -190,7 +190,7 @@ function userdataMetatable(userdataname) end
 
 -- Iterates over all Objects in the map that use `P_MobjThinker`.
 -- * This excludes all precipitations (rain and snow).
--- * Note: This iterator is extremely slow due to the massive amount of thinkers in a typical map, and should not be used repeatedly so as not to cause framerate drops.
+-- * **`NOTE:`** This iterator is extremely slow due to the massive amount of thinkers in a typical map, and should not be used repeatedly so as not to cause framerate drops.
 --
 ---@return mobj_t
 function mobjs.iterate() end
@@ -333,7 +333,7 @@ function FixedDiv(a, b) end
 function FixedInt(a) end
 
 -- Returns the remainder of dividing `a` by `b` in the fixed-point scale.
--- * Note: Negative values for `b` are not handled correctly and may slow down the game.
+-- * **`NOTE:`** Negative values for `b` are not handled correctly and may slow down the game.
 --
 ---@param a fixed_t
 ---@param b fixed_t
@@ -714,14 +714,14 @@ function v.RandomFixed() end
 function v.RandomByte() end
 
 -- Returns a random integer between 0 and `a - 1`.
--- * Note: `a` should not be larger than 65536. Otherwise, there will be only 65536 possible different results this function can return, which will be spread out across the full range given; the rest of the numbers will be skipped.
+-- * **`NOTE:`** `a` should not be larger than 65536. Otherwise, there will be only 65536 possible different results this function can return, which will be spread out across the full range given; the rest of the numbers will be skipped.
 --
 ---@param a integer
 ---@return integer
 function v.RandomKey(a) end
 
 -- Returns a random integer between `a` and `b`, inclusive.
--- * Note: The difference between `a` and `b` should not be larger than 65536. Otherwise, there will be only 65536 possible different results this function can return, which are spread out across the full range given; the rest of the numbers will be skipped.
+-- * **`NOTE:`** The difference between `a` and `b` should not be larger than 65536. Otherwise, there will be only 65536 possible different results this function can return, which are spread out across the full range given; the rest of the numbers will be skipped.
 --
 ---@param a integer
 ---@param b integer
@@ -998,7 +998,7 @@ function G_TagGametype() end
 function G_CompetitionGametype() end
 
 -- Adds a bot to the game.
--- * Note: Console commands can't be executed on a bot at the moment.
+-- * **`NOTE:`** Console commands can't be executed on a bot at the moment.
 --
 ---@param skin string
 ---@param color skincolor_t
@@ -1008,7 +1008,7 @@ function G_CompetitionGametype() end
 function G_AddPlayer(skin, color, name, bottype) end
 
 -- Removes the specified bot from the game.
--- * Note: This cannot be applied to human players.
+-- * **`NOTE:`** This cannot be applied to human players.
 --
 ---@param playernum integer
 function G_RemovePlayer(playernum) end
@@ -1064,14 +1064,14 @@ function P_RandomFixed() end
 function P_RandomByte() end
 
 -- Returns a random integer between 0 and `a - 1`.
--- * Note: `a` should not be larger than 65536. Otherwise, there will be only 65536 possible different results this function can return, which will be spread out across the full range given; the rest of the numbers will be skipped.
+-- * **`NOTE:`** `a` should not be larger than 65536. Otherwise, there will be only 65536 possible different results this function can return, which will be spread out across the full range given; the rest of the numbers will be skipped.
 --
 ---@param a integer
 ---@return integer
 function P_RandomKey(a) end
 
 -- Returns a random integer between `a` and `b`, inclusive.
--- * Note: The difference between `a` and `b` should not be larger than 65536. Otherwise, there will be only 65536 possible different results this function can return, which are spread out across the full range given; the rest of the numbers will be skipped.
+-- * **`NOTE:`** The difference between `a` and `b` should not be larger than 65536. Otherwise, there will be only 65536 possible different results this function can return, which are spread out across the full range given; the rest of the numbers will be skipped.
 --
 ---@param a integer
 ---@param b integer
@@ -1130,7 +1130,7 @@ function P_RemoveShield(player) end
 -- * Various attributes may be given to it as soon as it is spawned, such as a skincolor or secondary Object flags.
 -- * Further Objects may be spawned within this function to be linked to the new Object if necessary. If the new Object is given the `MF_RUNSPAWNFUNC` flag during this function, the action set for the Object type's `SpawnState` property will be run by this function.
 -- * The hook `MobjSpawn` can be used to modify or replace some of the effects of this function.
--- * Note: This is the basic function for spawning all Objects in SRB2. All other listed Lua functions (including actions) that spawn an Object therefore use this function internally to spawn them, and any changes made to this function by the `MobjSpawn` hook will affect them as well.
+-- * **`NOTE:`** This is the basic function for spawning all Objects in SRB2. All other listed Lua functions (including actions) that spawn an Object therefore use this function internally to spawn them, and any changes made to this function by the `MobjSpawn` hook will affect them as well.
 --
 ---@param x fixed_t
 ---@param y fixed_t
@@ -1287,7 +1287,7 @@ function P_InQuicksand(mobj) end
 
 -- Sets `mobj`'s `momz` to the value given.
 -- * If `relative` is true, this will be added to the Object's previous momz, otherwise it will replace it.
--- * Note: This also corrects for scaling and reverse gravity.
+-- * **`NOTE:`** This also corrects for scaling and reverse gravity.
 --
 ---@param mobj mobj_t
 ---@param momz fixed_t
@@ -1344,7 +1344,7 @@ function R_GetNameByColor(color) end
 
 
 -- Returns the angle between the camera's X and Y coordinates and `x` and `y`.
--- * Note: This will not work consistently among multiple players. Use at your own risk.
+-- * **`NOTE:`** This will not work consistently among multiple players. Use at your own risk.
 --
 ---@param x fixed_t
 ---@param y fixed_t
@@ -1361,7 +1361,7 @@ function R_PointToAngle(x, y) end
 function R_PointToAngle2(x, y, dest_x, dest_y) end
 
 -- Returns the distance from the camera's X and Y coordinates to `x` and `y`.
--- * Note: This will not work consistently among multiple players. Use at your own risk.
+-- * **`NOTE:`** This will not work consistently among multiple players. Use at your own risk.
 --
 ---@param x fixed_t
 ---@param y fixed_t
@@ -1473,7 +1473,7 @@ function S_StopSoundByID(mobj, soundnum) end
 -- If the new music's name was given, the track number must be added to `mflags`; if a slot number was given, the track number must be stored in the upper 16 bits (i.e., `musicnum == slot number + (track number << 16)`). This also means that the value given for `mflags` will be ignored.
 --
 -- * Other features:
--- > * `position` determines the position in the music track to start playing from, measured as a time in milliseconds. If set to 0, the music track will be played from the beginning. Note: This feature only works with music formats supported by the Game Music Emu library.  For other music formats, it has no effect.
+-- > * `position` determines the position in the music track to start playing from, measured as a time in milliseconds. If set to 0, the music track will be played from the beginning. **`NOTE:`** This feature only works with music formats supported by the Game Music Emu library.  For other music formats, it has no effect.
 -- > * `prefadems` determines the time in milliseconds to fade out of the current music track before changing to the new track. If set to 0, no fade out effect will be used.
 -- > * `fadeinms` determines the time in milliseconds to fade into the new music track. If set to 0, no fade in effect will be used.
 --
@@ -1490,7 +1490,7 @@ function S_ChangeMusic(musicname, looping, player, mflags, position, prefadems, 
 
 -- Changes the speed of the music.
 -- * The speed given must be a multiple of `FRACUNIT`, where `FRACUNIT` is the default music speed.
--- * Note: This function only works with music formats supported by the Game Music Emu. For other music formats, it has no effect.
+-- * **`NOTE:`** This function only works with music formats supported by the Game Music Emu. For other music formats, it has no effect.
 ---
 ---@param musicspeed fixed_t
 ---@param player? player_t
@@ -1535,21 +1535,21 @@ function S_FadeMusic(target_volume, ms, player) end
 function S_FadeOutStopMusic(ms, player) end
 
 -- Returns true if a sound effect with `mobj` as the origin is being played, false if not.
--- * Note: This function only checks sounds being played for the local client, and thus isn't network safe. Use at your own risk.
+-- * **`NOTE:`** This function only checks sounds being played for the local client, and thus isn't network safe. Use at your own risk.
 --
 ---@param origin mobj_t
 ---@return boolean
 function S_OriginPlaying(origin) end
 
 -- Returns true if a sound effect with the given ID is being played, false if not.
--- * Note: This function only checks sounds being played for the local client, and thus isn't network safe. Use at your own risk.
+-- * **`NOTE:`** This function only checks sounds being played for the local client, and thus isn't network safe. Use at your own risk.
 --
 ---@param soundnum integer
 ---@return boolean
 function S_IdPlaying(soundnum) end
 
 -- Returns true if a sound effect with the given ID and `mobj` as the origin is being played, false if not.
--- * Note: This function only checks sounds being played for the local client, and thus isn't network safe. Use at your own risk.
+-- * **`NOTE:`** This function only checks sounds being played for the local client, and thus isn't network safe. Use at your own risk.
 --
 ---@param origin mobj_t
 ---@param soundnum integer
@@ -1565,19 +1565,19 @@ function S_SoundPlaying(origin, soundnum) end
 function S_StartMusicCaption(caption, lifespan, player) end
 
 -- Returns the length of the currently playing music, in milliseconds.
--- * Note: This function only checks the music being played for the local client, and thus isn't network safe. Use at your own risk.
+-- * **`NOTE:`** This function only checks the music being played for the local client, and thus isn't network safe. Use at your own risk.
 --
 ---@return integer
 function S_GetMusicLength() end
 
 -- Returns the position of the currently playing music, in milliseconds.
--- * Note: This function only checks the music being played for the local client, and thus isn't network safe. Use at your own risk.
+-- * **`NOTE:`** This function only checks the music being played for the local client, and thus isn't network safe. Use at your own risk.
 --
 ---@return integer
 function S_GetMusicPosition() end
 
 -- Sets the position of the currently playing music, in milliseconds. Returns false if no music is playing or a MIDI is currently playing (and therefore the position could not be set), and returns true otherwise.
--- * Note: This may still return true in some instances where the position could not be set.
+-- * **`NOTE:`** This may still return true in some instances where the position could not be set.
 --
 ---@param position integer
 ---@return boolean

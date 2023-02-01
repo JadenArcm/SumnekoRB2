@@ -204,7 +204,7 @@ gametyperules = nil
 
 -- The amount of time that has passed in the current level since it has been loaded, measured in tics.
 -- * In most gametypes, this is normally equal to the time displayed on the HUD; however, in Race and Competition modes, `leveltime` includes the 4-second pre-timer, meaning that `leveltime` will be `4*TICRATE` tics ahead of the HUD's displayed time once the latter has started running.
--- * Note: `leveltime` will continue to increase after the level is finished, even after the HUD time has stopped, until the tally screen appears.
+-- * **`NOTE:`** `leveltime` will continue to increase after the level is finished, even after the HUD time has stopped, until the tally screen appears.
 -- > * The actual time displayed on the player's HUD is set by `<player_t>.realtime`. 
 ---@type tic_t
 leveltime = nil
@@ -261,12 +261,12 @@ levelskynum = nil
 
 -- The name of the main music track currently used for playback, if there is no active jingle track being played back.
 -- * This is by default the music set by current map's level header, but it will be modified when the console command tunes is used, or `Linedef Type 413` is executed in the map.
--- * Note: Jingles, `S_ChangeMusic` and the `tunes` command doesn't modify this variable.
+-- * **`NOTE:`** Jingles, `S_ChangeMusic` and the `tunes` command doesn't modify this variable.
 ---@type string
 mapmusname = nil
 
 -- The flags set for the main music track currently used for playback.
--- * Note: Jingles, `S_ChangeMusic` and the `tunes` command doesn't modify this variable.
+-- * **`NOTE:`** Jingles, `S_ChangeMusic` and the `tunes` command doesn't modify this variable.
 ---@type integer
 mapmusflags = nil
 
@@ -382,13 +382,13 @@ hudinfo = {}
 -- This table is used to access the pivots of each of a sprite's frames, where `SPR_NAME` is an integer expected to be the `SPR_*` constant for the sprite in question.
 -- * Likewise, `"NAME"` must be a four-letter prefix belonging to an existing sprite set.
 -- * Each of the entries of this table contain an array of `spriteframepivot_t` userdata, each index corresponding to a frame of animation the sprite possesses.
----@type spriteinfo_t
+---@type spriteinfo_t[]
 spriteinfo = {}
 
 -- This table is used to look up or set the sprite to fallback to on a specific sprite2, if a character is missing such sprite, where `SPR2_NAME` is an integer that is expected to be the `SPR2_*` constant for the sprite2 in question.
 -- * Likewise, `"NAME"` must be a four-letter prefix belonging to an existing sprite set.
--- * Note: Only custom sprite2 defaults can be modified.
----@type playersprite_t
+-- * **`NOTE:`** Only custom sprite2 defaults can be modified.
+---@type playersprite_t[]
 spr2defaults = {}
 
 -- This table is used to look up or modify attributes for a specific skin color, where `SKINCOLOR_<NAME>` is an integer that is expected to be the `SKINCOLOR_*` constant for the skin color in question.
