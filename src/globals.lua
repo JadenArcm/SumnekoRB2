@@ -1,6 +1,3 @@
---[[
-	SumnekoRB2 - Global Varibles (+tables)
-]]--
 ---@meta
 
 

@@ -1,6 +1,3 @@
---[[
-	SumnekoRB2 - Constants
-]]--
 ---@meta
 
 
