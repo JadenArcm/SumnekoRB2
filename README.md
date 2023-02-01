@@ -12,4 +12,11 @@ This is a friendly repositiory that focus on giving some kind of support for SRB
 
 # Known issues
 * Not everything is here, and everything may be outdated with the [SRB2Wiki](https://wiki.srb2.org/wiki/) information.
-* You'll get errors regarding `MT_` contants and such; to "fix" this, just disable the `unknown-variable` setting.
+* Pseudovariables [`$`] are not in vanilla Lua, and they will produce tons of errors if you use it most of the time.
+
+# Settings?
+I recommend these settings in `"Lua.diagnostics.disable"` for a "good" experience:
+> `lowercase-global`: For SRB2's global variables...
+> `undefined-global`: Since this repo is incomplete, of course.
+> `undefined-field`: Some fields for userdata may be unfinished.
+> `param-type-mismatch` and `assign-type-mismatch`: Blua is weird.
