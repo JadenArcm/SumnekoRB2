@@ -242,7 +242,8 @@ function userdataMetatable(userdataname) end
 ---@return mobj_t
 function mobjs.iterate() end
 
--- Iterates over all players currently playing in the map. Note that `<player_t>.mo` will return nil for spectating players.
+-- Iterates over all players currently playing in the map.
+-- * **`NOTE:`** `<player_t>.mo` will return nil for spectating players.
 --
 ---@return player_t
 function players.iterate() end
