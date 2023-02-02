@@ -479,7 +479,7 @@ function v.getSprite2Patch(skin, sprite2, super, frame, rotation, rollangle) end
 ---@param y integer
 ---@param patch patch_t
 ---@param flags? integer
----@param colormap? colormap_t
+---@param colormap? colormap
 function v.draw(x, y, patch, flags, colormap) end
 
 -- Draws a patch at the screen coordinates given, but at a specific scale.
@@ -492,7 +492,7 @@ function v.draw(x, y, patch, flags, colormap) end
 ---@param scale fixed_t
 ---@param patch patch_t
 ---@param flags? integer
----@param colormap? colormap_t
+---@param colormap? colormap
 function v.drawScaled(x, y, scale, patch, flags, colormap) end
 
 -- Draws a patch at the screen coordinates given, but at a specific horizontal (`hscale`) and vertical (`vscale`) scale.
@@ -506,7 +506,7 @@ function v.drawScaled(x, y, scale, patch, flags, colormap) end
 ---@param vscale fixed_t
 ---@param patch patch_t
 ---@param flags? integer
----@param colormap? colormap_t
+---@param colormap? colormap
 function v.drawStretched(x, y, hscale, vscale, patch, flags, colormap) end
 
 -- Draws a patch at the screen coordinates given, but at a specific horizontal (`hscale`) and vertical (`vscale`) scale, with the sides cut off. (`sx`, `sy`, `w`, `h`)
@@ -523,7 +523,7 @@ function v.drawStretched(x, y, hscale, vscale, patch, flags, colormap) end
 ---@param vscale fixed_t
 ---@param patch patch_t
 ---@param flags integer
----@param colormap colormap_t
+---@param colormap colormap
 ---@param sx fixed_t
 ---@param sy fixed_t
 ---@param w fixed_t
@@ -645,13 +645,13 @@ function v.levelTitleHeight(text) end
 --
 ---@param skin? string | integer
 ---@param color? skincolor_t
----@return colormap_t
+---@return colormap
 function v.getColormap(skin, color) end
 
 -- Returns the colormap to apply to a patch for a particular text color code as a special type of userdata which can only be used by any of the drawing functions.
 --
 ---@param textcolor integer
----@return colormap_t
+---@return colormap
 function v.getStringColormap(textcolor) end
 
 -- Fades the screen to a certain palette color.
