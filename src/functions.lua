@@ -120,6 +120,53 @@
 ---| "thin"
 ---| "small"
 
+---@alias userdataTypes
+---| "unknown"
+---| "state_t"
+---| "mobjinfo_t"
+---| "sfxinfo_t"
+---| "skincolor_t"
+---| "skincolor_t.ramp"
+---| "spriteinfo_t"
+---| "spriteframepivot_t[]"
+---| "spriteframepivot_t"
+---| "taglist"
+---| "mobj_t"
+---| "mapthing_t"
+---| "player_t"
+---| "ticcmd_t"
+---| "skin_t"
+---| "player_t.powers"
+---| "skin_t.soundsid"
+---| "skin_t.sprites"
+---| "skin_t.sprites[]"
+---| "vertex_t"
+---| "line_t"
+---| "side_t"
+---| "subsector_t"
+---| "sector_t"
+---| "ffloor_t"
+---| "pslope_t"
+---| "vector2_t"
+---| "vector3_t"
+---| "mapheader_t"
+---| "polyobj_t"
+---| "consvar_t"
+---| "sector_t.lines"
+---| "sector_t.taglist"
+---| "line_t.sidenum"
+---| "line_t.args"
+---| "line_t.stringargs"
+---| "mapthing_t.args"
+---| "mapthing_t.stringargs"
+---| "bbox"
+---| "hudinfo_t"
+---| "patch_t"
+---| "colormap"
+---| "camera_t"
+---| "action"
+---| "luabanks[]"
+
 
 --//
 
@@ -157,7 +204,7 @@ function super(actor, var1, var2) end
 -- Returns the userdata type of `var` as a string.
 --
 ---@param var userdata
----@return string
+---@return userdataTypes
 function userdataType(var) end
 
 -- Reserves and then returns a `luabanks` array.
