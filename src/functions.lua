@@ -1,4 +1,4 @@
----@meta
+---@meta _
 
 
 --//
@@ -204,7 +204,7 @@ function super(actor, var1, var2) end
 -- Returns the userdata type of `var` as a string.
 --
 ---@param var userdata
----@return userdataTypes
+---@return userdataTypes userdata
 function userdataType(var) end
 
 -- Reserves and then returns a `luabanks` array.
