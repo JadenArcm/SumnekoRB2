@@ -1652,6 +1652,136 @@ GF_BLUEFLAG = 1 << 1
 --//
 
 
+-- This gametype ensures linear progression through levels, not allowing random picks.
+-- * Only used by Co-op.
+GTR_CAMPAIGN = 1 << 0
+
+-- This is a gametype where players can throw rings to attack.
+-- * This can be overriden by the value of the `ringslinger` console variable.
+-- Used by Match, Team Match, Tag, Hide & Seek and CTF.
+GTR_RINGSLINGER = 1 << 1
+
+-- This gametype allows players to spectate.
+-- * Used by all `GTR_RINGSLINGER` gametypes.
+GTR_SPECTATORS = 1 << 2
+
+-- This gametype features lives.
+-- * Used by Co-op and Competition.
+GTR_LIVES = 1 << 3
+
+-- This gametype features teams.
+-- * Used by Team Match and CTF.
+GTR_TEAMS = 1 << 4
+
+-- This gametype defaults the player's camera to first person view when spawned.
+-- * Used by all `GTR_RINGSLINGER` gametypes.
+GTR_FIRSTPERSON = 1 << 5
+
+-- Multiplayer Emeralds are allowed to spawn in this gametype.
+-- * Used by Match and CTF.
+GTR_POWERSTONES = 1 << 6
+
+-- Team flags are allowed to spawn in this gametype.
+-- * Used by CTF only.
+GTR_TEAMFLAGS = 1 << 7
+
+-- This gametype is non-competitive.
+-- * Used by Co-op only.
+GTR_FRIENDLY = 1 << 8
+
+-- This gametype allows Special Stages to be accessed via Emerald Tokens.
+-- * Used by Co-op only.
+GTR_SPECIALSTAGES = 1 << 9
+
+-- Emerald Tokens are allowed to spawn in this gametype.
+-- * Used by Co-op and Competition.
+GTR_EMERALDTOKENS = 1 << 10
+
+-- This gametype will start an Emerald Hunt if any Emerald Hunt Locations are placed, and end the level when three Emerald Shards are found.
+-- * Used by Co-op only.
+GTR_EMERALDHUNT = 1 << 11
+
+-- This gametype is a race with an initial countdown.
+-- * Levels will end 60 seconds after the first player finishes the circuit.
+-- * Used by Race and Competition.
+GTR_RACE = 1 << 12
+
+-- This gametype is a game of Tag.
+-- * Used by Tag and Hide & Seek.
+GTR_TAG = 1 << 13
+
+-- This gametype can end levels when a point limit is reached.
+-- * Used by all `GTR_RINGSLINGER` gametypes.
+GTR_POINTLIMIT = 1 << 14
+
+-- This gametype can end levels when a time limit is reached.
+-- * Used by all `GTR_RINGSLINGER` gametypes.
+GTR_TIMELIMIT = 1 << 15
+
+-- This gametype will start an overtime when both teams, or two or more players are tied.
+-- * Can be overriden by the `overtime` console variable. 
+GTR_OVERTIME = 1 << 16
+
+-- This gametype will display a battle log in the console.
+-- * Used by all `GTR_RINGSLINGER` gametypes.
+GTR_HURTMESSAGES = 1 << 17
+
+-- This gametype allows players to attack other players by throwing rings regardless of team.
+-- Can be overriden by the value of the `friendlyfire` console variable.
+GTR_FRIENDLYFIRE = 1 << 18
+
+-- This gives `GTR_TAG` gametypes an initial countdown for players to flee and hide from the "it".
+GTR_STARTCOUNTDOWN = 1 << 19
+
+-- In `GTR_TAG` gametypes, players won't be allowed to move after `GTR_STARTCOUNTDOWN`'s countdown timer has elapsed, or not been set.
+-- * Used by Hide & Seek only. 
+GTR_HIDEFROZEN = 1 << 20
+
+-- In `GTR_TAG` gametypes, this will blindfold the "it" player during fleeing/hiding time if `GTR_STARTCOUNTDOWN` has been set.
+GTR_BLINDFOLDED = 1 << 21
+
+-- This gametype makes use of the `respawndelay` console variable to set a timer before players can respawn.
+-- * Used by all `GTR_RINGSLINGER` gametypes.
+GTR_SPAWNDELAY = 1 << 22
+
+-- This gametype makes use of the pity counter to award losing players a Pity Shield.
+-- * Used by Match, Team Match and CTF.
+GTR_PITYSHIELD = 1 << 23
+
+-- This gametype penalizes players by 50 points for dying.
+-- * Used by Match only. 
+GTR_DEATHPENALTY = 1 << 24
+
+-- Players spawn in the game by default, instead of as spectators.
+-- * This must be coupled with `GTR_SPECTATORS`.
+GTR_NOSPECTATORSPAWN = 1 << 25
+
+-- This gametype uses Deathmatch spawns as a first option for spawning players.
+GTR_DEATHMATCHSTARTS = 1 << 26
+
+-- This gametype spawns players with temporary invincibility.
+-- * Used by all vanilla gametypes except Co-op.
+GTR_SPAWNINVUL = 1 << 27
+
+-- Enemies are allowed to spawn in this gametype.
+-- * Used by Co-op, Competition and Race. 
+GTR_SPAWNENEMIES = 1 << 28
+
+-- Players can end a level by touching an Exit Sector.
+-- * Used by Co-op, Competition and Race.
+GTR_ALLOWEXIT = 1 << 29
+
+-- This gametype does not display a title card.
+GTR_NOTITLECARD = 1 << 30
+
+-- This gametype allows cutscenes, the ending sequence, credits and the secrets evaluation screen to be displayed.
+-- * Used by Co-op only.
+GTR_CUTSCENES = 1 << 31
+
+
+--//
+
+
 -- TODO: Jingle types.
 
 
