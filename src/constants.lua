@@ -890,13 +890,145 @@ SF_NOSHIELDABILITY = 1 << 19
 --//
 
 
--- TODO: character abilities
+-- The character will not have a special ability.
+-- * This is the default setting when this parameter is not supplied.
+CA_NONE = 0
+
+-- Sonic's default ability, loosely based on Sonic's air dash attack from Sonic Adventure.
+-- * Pressing jump a second time in mid-air will thrust the player forward at a speed determined by `actionspd`.
+CA_THOK = 1
+
+-- Tails' default ability, based on Tails' flight ability from Sonic 3.
+-- * Pressing jump a second time in mid-air will make the player start flying in mid-air; repeatedly pressing jump afterwards will allow the player to fly further upwards.
+-- * However, the player can only fly for a limited amount of time (determined by `TailsFlyTics` in the `MainCfg` block, which is 8 seconds by default); afterwards, they will slowly descend to the ground.
+-- * The speed at which the player moves upwards or downwards when flying is determined by `actionspd`.
+--
+-- Other notes about flying:
+-- * The player's top speed is reduced when flying, but acceleration is increased to compensate.
+-- * The spin button can be used to descend more quickly if necessary.
+-- * The player will be unable to inflict damage to enemies, except by flying into them from below.
+--
+-- The sprite name `FLY_` is used for the flying animation, `SWIM` is used when flying underwater, and `TIRE` is used when the character is tired and cannot fly anymore. 
+-- * If the player does not have a `FLY_` sprite, `SPNG` is used instead.
+CA_FLY = 2
+
+-- Knuckles' default ability, based on Knuckles' abilities (gliding, climbing and rock smashing) from Sonic & Knuckles.
+-- * Pressing jump a second time in mid-air will make the player start a glide; the player will accelerate forward from a starting speed determined by `actionspd` for as long as the jump button is held down.
+-- * However, the player will gradually lose height while doing so.
+-- * The player will be able to damage all enemies by aiming their glide into them while using this ability.
+-- * When landing on the ground from gliding, the player will skid to a halt in the glide animation.
+-- * When releasing a glide, the player will lose momentum and go into a landing animation.
+-- * As of 2.2.5 and above, if the player is underwater, they will swim rather than glide.
+-- * Swimming is slower than gliding but it provides more horizontal control.
+--
+-- If the player glides into a wall, they will latch onto it and can climb up, down or sideways on it, as well as climb over to adjacent walls.
+-- * If the player is climbing, pressing jump will make them jump off and face away from the wall; pressing spin will make them jump off while still facing the wall.
+-- * However, not all walls are climbable; some linedefs may have `Flag [6] / Not Climbable` checked, which prevents characters with this ability from climbing it.
+-- * Any walls that are part of the sky will also not be climbable regardless of linedef flags.
+--
+-- Additionally, characters with this ability will be able to destroy all types of bustable FOFs on touch, rather than needing to spin into them.
+-- * Bustable FOFs that have the `FF_KNUXONLY` flag set can be destroyed by characters with this ability.
+--
+-- The sprite name `GLID` is used for the gliding animation, `SWIM` is used for swimming, `CLNG` is used for attaching to a wall without moving, `CLMB` is used for the climbing animation, and `LAND` is used for the landing animation.
+-- * If the player does not have a `GLID` or `SWIM` sprite, `FLY_` (or if not that, `SPNG`) is used instead.
+-- * `SPIN` replaces `CLNG`, `CLMB`, and `LAND` if the player does not have one of those sprites.
+CA_GLIDEANDCLIMB = 3
+
+-- A weakened version of the speed thok ability, but with the addition of a homing attack feature similar to that in Sonic Adventure and beyond.
+-- * If an enemy, spring or monitor is close enough to the player when triggering the ability, an arrow will appear over the target Object and the player will home in towards it until they touch/destroy it.
+-- * If the character fails to reach the Object within 3 seconds, the homing attack is automatically canceled.
+--
+-- Unlike the thok, this ability does not keep the player in their spin state and instead switches to their `FALL` sprite unless they are performing a homing attack, again like in Sonic Adventure.
+CA_HOMINGTHOK = 4
+
+-- Similar to the flying ability, except this ability will work only underwater; attempting to use this ability outside of water will do nothing.
+-- * Unlike `CA_FLY`, the ability can be used indefinitely while underwater.
+CA_SWIM = 5
+
+-- Pressing jump a second time in mid-air will make the player perform a second jump.
+CA_DOUBLEJUMP = 6
+
+-- Metal Sonic's default ability.
+-- * Pressing jump a second time in mid-air and holding the button down will allow the player to hold their vertical position in mid-air continuously, but without spinning.
+-- * While moving slowly, they will slowly fall over time.
+CA_FLOAT = 7
+
+-- Pressing jump a second time in mid-air and holding the button down will cause the player to fall downwards at a slower rate than normal, again without spinning.
+-- * This is similar to E-102 Gamma's booster powerup from Sonic Adventure.
+-- * The falling speed is fixed and cannot be adjusted with the `actionspd` parameter.
+CA_SLOWFALL = 8
+
+-- Pressing the jump button a second time in mid-air will push enemies and players within a radius of `(384*FRACUNIT)` around the player away; pressing the spin button in mid-air will pull them closer instead.
+-- * The thrust of the pushing/pulling is determined by `actionspd`.
+CA_TELEKINESIS = 9
+
+-- Reverses the player's vertical momentum when pressing jump a second time in mid-air, thrusting them in the opposite direction instead.
+CA_FALLSWITCH = 10
+
+-- The player's jump strength increases with the player's running speed; the faster the player moves, the higher they can jump.
+-- * `actionspd` is used as a multiplier for the jump boost given.
+-- * Pressing the jump button in mid-air has no effect.
+CA_JUMPBOOST = 11
+
+-- Pressing jump a second time in mid-air will initiate an air drill, thrusting the player forward and upward.
+-- * The player will fly upwards in an arc, eventually finishing the drill when the player starts falling down to the ground.
+-- * Holding the spin button while drilling will cause the player to descend more quickly.
+-- * `actionspd` is used as an angular speed for the drill; the higher the value is, the steeper and quicker the player's ascent will be.
+CA_AIRDRILL = 12
+
+-- A hybrid between the thok and the double jump, which thrusts the player both forward and upward.
+-- * As with the regular thok, `actionspd` determines the horizontal thrust.
+CA_JUMPTHOK = 13
+
+-- Fang's default ability.
+-- * Pressing jump a second time and holding it lets you bounce high off of enemies and on any hazards, similar to Scrooge McDuck's ability from DuckTales.
+--
+-- This uses the sprite name `BNCE` while in the air, and `LAND` during the pause when hitting the ground.
+-- * If the player does not have a `BNCE` and `LAND` sprite, `FALL` and `SPIN` are used instead.
+CA_BOUNCE = 14
+
+-- Amy's default ability.
+-- * Lets you roll up temporarily, allowing you to damage enemies, get a boost from springs, and break spikes, by timing a second jump press.
+-- * This ability will also occur when you press jump and spin without a shield.
+-- * Bustable FOFs that have the `FF_KNUXONLY` flag set can be destroyed by characters with this ability.
+CA_TWINSPIN = 15
 
 
 --//
 
 
--- TODO: player states
+-- The player will not have a secondary special ability.
+CA2_NONE = 0
+
+-- The default secondary ability, which is used by Sonic, Tails, Knuckles, and Metal Sonic.
+-- * The player can use the Spin control to charge a spindash, or otherwise spin on the ground while moving.
+-- * The player will also jump with the spinning animation (sprite prefix `ROLL`).
+CA2_SPINDASH = 1
+
+-- The secondary ability used by Fang.
+-- * This character will get an arrow hovering over enemies and monitors.
+-- * Pressing the Spin control while not moving will put the character in their firing animation and shoot their `revitem` toward the target.
+CA2_GUNSLINGER = 2
+
+-- The secondary ability used by Amy.
+-- * This character will do a small hop and damage any enemies from the front when they press the Spin control on the ground.
+-- * Bustable FOFs that have the `FF_KNUXONLY` flag set can be destroyed by characters with this ability.
+--
+-- The parameters `mindash` and `maxdash` control the vertical and horizontal thrust of the hop, respectively.
+CA2_MELEE = 3
+
+
+--//
+
+
+-- The player is alive.
+PST_LIVE = 0
+
+-- The player is dead and waiting to respawn.
+PST_DEAD = 1
+
+-- The player just respawned, after being dead.
+PST_REBORN = 2
 
 
 --//
