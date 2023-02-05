@@ -189,7 +189,7 @@ function addHook(hookname, callback, extra) end
 -- * This function will return the integer representing each resource successfully allocated; unsuccessful allocations will not be returned.
 --
 ---@param resource string
----@vararg string
+---@param ... string
 ---@return integer
 function freeslot(resource, ...) end
 
