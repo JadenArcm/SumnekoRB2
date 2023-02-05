@@ -5,7 +5,7 @@
 
 
 ---@alias hookTypes
----| "HUD"					  # function(v: drawerlib_t, ...)
+---| "HUD"					  # function(v: drawerlib, ...)
 ---| "IntermissionThinker"	  # function()
 ---| "KeyDown"				  # function(keyevent: keyevent_t)
 ---| "KeyUp"				  # function(keyevent: keyevent_t)
@@ -81,11 +81,11 @@
 ---| "intermissionmessages" # Information text on intermissions. (Countdown for next stage, ...)
 
 ---@alias hudLayers
----| "game" 		# function(v: drawerlib_t, stplyr?: player_t, cam?: camera_t)
----| "scores" 		# function(v: drawerlib_t)
----| "title" 		# function(v: drawerlib_t)
----| "titlecard"	# function(v: drawerlib_t, stplyr?: player_t, ticker?: integer, endtime?: integer)
----| "intermission" # function(v: drawerlib_t, stagefailed?: boolean)
+---| "game" 		# function(v: drawerlib, stplyr?: player_t, cam?: camera_t)
+---| "scores" 		# function(v: drawerlib)
+---| "title" 		# function(v: drawerlib)
+---| "titlecard"	# function(v: drawerlib, stplyr?: player_t, ticker?: integer, endtime?: integer)
+---| "intermission" # function(v: drawerlib, stagefailed?: boolean)
 
 ---@alias genericAlignments
 ---| "left"
@@ -171,7 +171,7 @@
 --//
 
 
----@class drawerlib_t
+---@class drawerlib
 local v = {}
 
 
@@ -452,6 +452,145 @@ function All7Emeralds(flags) end
 ---@param color skincolor_t
 ---@return skincolor_t, integer
 function ColorOpposite(color) end
+
+
+--//
+
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.linear(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.insine(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.outsine(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.inoutsine(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.inquad(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.outquad(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.inoutquad(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.incubic(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.outcubic(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.inoutcubic(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.inquart(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.outquart(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.inoutquart(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.inquint(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.outquint(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.inoutquint(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.inexpo(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.outexpo(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t
+---@param fin? fixed_t
+function ease.inoutexpo(x, start, fin) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t | nil
+---@param fin? fixed_t | nil
+---@param param? fixed_t
+function ease.inback(x, start, fin, param) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t | nil
+---@param fin? fixed_t | nil
+---@param param? fixed_t
+function ease.outback(x, start, fin, param) end
+
+---@overload fun(x: fixed_t, fin: fixed_t)
+---@param x fixed_t
+---@param start? fixed_t | nil
+---@param fin? fixed_t | nil
+---@param param? fixed_t
+function ease.inoutback(x, start, fin, param) end
 
 
 --//

@@ -522,11 +522,12 @@
 --//
 
 
----@class hudlib_t
----@class drawerlib_t
+---@class hudlib
+---@class drawerlib
+---@class colormap
+
 ---@class spriteinfo_t
 ---@class playersprite_t
----@class colormap
 
 
 --//

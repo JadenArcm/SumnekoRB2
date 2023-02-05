@@ -403,13 +403,13 @@ gamekeydown = {}
 --//
 
 
----@class hudlib_t
+---@class hudlib
 hud = {}
 
----@class easelib_t
+---@class easelib
 ease = {}
 
----@class inputlib_t
+---@class inputlib
 input = {}
 
 
