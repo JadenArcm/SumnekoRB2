@@ -235,64 +235,6 @@ function userdataMetatable(userdataname) end
 --//
 
 
--- Iterates over all Objects in the map that use `P_MobjThinker`.
--- * This excludes all precipitations (rain and snow).
--- * **`NOTE:`** This iterator is extremely slow due to the massive amount of thinkers in a typical map, and should not be used repeatedly so as not to cause framerate drops.
---
----@return mobj_t
-function mobjs.iterate() end
-
--- Iterates over all players currently playing in the map.
--- * **`NOTE:`** `<player_t>.mo` will return nil for spectating players.
---
----@return player_t
-function players.iterate() end
-
--- Iterates over all valid skins loaded in the game.
---
----@return skin_t
-function skins.iterate() end
-
--- Iterates over all MapThings in the map.
--- * Remember that not all Objects will necessarily have a respective MapThing, and not all MapThings will necessarily have a respective Object.
---
----@return mapthing_t
-function mapthings.iterate() end
-
--- Iterates over all Sectors in the map.
---
----@return sector_t
-function sectors.iterate() end
-
--- Iterates over all Subsectors in the map.
---
----@return subsector_t
-function subsectors.iterate() end
-
--- Iterates over all Linedefs in the map.
---
----@return line_t
-function lines.iterate() end
-
--- Iterates over all Sidedefs in the map.
---
----@return side_t
-function sides.iterate() end
-
--- Iterates over all Vertexes in the map.
---
----@return vertex_t
-function vertexes.iterate() end
-
--- Iterates over all PolyObjects in the map.
---
----@return polyobj_t
-function polyobjects.iterate() end
-
-
---//
-
-
 -- Returns the absolute value (the number's distance from zero) of `a`.
 --
 ---@param a integer
@@ -335,6 +277,18 @@ function cos(a) end
 ---@param a angle_t
 ---@return fixed_t
 function tan(a) end
+
+-- **`FIXME:`** Add a description when the wiki does.
+--
+---@param x fixed_t
+---@return angle_t
+function asin(x) end
+
+-- **`FIXME:`** Add a description when the wiki does.
+--
+---@param x fixed_t
+---@return angle_t
+function acos(x) end
 
 -- Converts an integer in the fixed-point scale to an angle value.
 -- * Example: `FixedAngle(90*FRACUNIT)` will return `ANGLE_90`.
@@ -1198,12 +1152,10 @@ function G_EnoughPlayersFinished() end
 --
 ---@param nextmap? integer
 ---@param skipstats? integer
----@return nil
 function G_SetCustomExitVars(nextmap, skipstats) end
 
 -- Immediately exits the level.
 -- * If `G_SetCustomExitVars` was called beforehand, the level will exit using the custom settings set.
---
 function G_ExitLevel() end
 
 -- Returns true if the map with the given map number is a Special Stage, returns false otherwise.
@@ -1787,6 +1739,7 @@ function S_StopFadingMusic(player) end
 -- * If `source_volume` is not specified, the source volume is the current internal volume. `ms` is the length of the fade, measured in milliseconds. To set a time in seconds, multiply the time in seconds by the constant `MUSICRATE`; e.g.: `2*MUSICRATE` for 2 seconds.
 -- * Returns true if the fade was done for all players or the user's local player, returns false if not.
 --
+---@overload fun(target_volume: integer, ms: integer, source_volume?: integer, player?: player_t)
 ---@param target_volume integer
 ---@param ms integer
 ---@param player? player_t
@@ -1853,6 +1806,87 @@ function S_SetMusicPosition(position) end
 
 --//
 
+
+-- Iterates over all Objects in the map that use `P_MobjThinker`.
+-- * This excludes all precipitations (rain and snow).
+-- * **`NOTE:`** This iterator is extremely slow due to the massive amount of thinkers in a typical map, and should not be used repeatedly so as not to cause framerate drops.
+--
+---@return mobj_t
+function mobjs.iterate() end
+
+-- Iterates over all players currently playing in the map.
+-- * **`NOTE:`** `<player_t>.mo` will return nil for spectating players.
+--
+---@return player_t
+function players.iterate() end
+
+-- Iterates over all valid skins loaded in the game.
+--
+---@return skin_t
+function skins.iterate() end
+
+-- Iterates over all MapThings in the map.
+-- * Remember that not all Objects will necessarily have a respective MapThing, and not all MapThings will necessarily have a respective Object.
+--
+---@return mapthing_t
+function mapthings.iterate() end
+
+-- Iterates over all Sectors in the map.
+--
+---@return sector_t
+function sectors.iterate() end
+
+-- Iterates over all Subsectors in the map.
+--
+---@return subsector_t
+function subsectors.iterate() end
+
+-- Iterates over all Linedefs in the map.
+--
+---@return line_t
+function lines.iterate() end
+
+-- Iterates over all Sidedefs in the map.
+--
+---@return side_t
+function sides.iterate() end
+
+-- Iterates over all Vertexes in the map.
+--
+---@return vertex_t
+function vertexes.iterate() end
+
+-- Iterates over all PolyObjects in the map.
+--
+---@return polyobj_t
+function polyobjects.iterate() end
+
+
+--//
+
+
+-- This loads the lua script file from the `Lua/` folder in the last loaded add-on, which must be a PK3.
+-- * For instance, to load the file `Lua/script.lua`, use `dofile("script.lua")`.
+-- * It is highly recommended this only be used in `init.lua` as the add-on is loading, though it can technically be used at any time.
+-- * For addons that are developed on folders, this is highly recommended for file loading.
+function dofile(file) end
+
+
+--//
+
+
+-- This function opens a file, in the mode specified in the string mode.
+-- * It returns a new file handle, or, in case of errors, `nil` plus an error message.
+--
+-- The `mode` string can also have a `"b"` at the end, which is needed to open the file in binary (non-text) mode.
+-- * **`NOTE:`** This function is run locally, and thus isn't network safe.
+-- > 1. It is primarily intended to be used for writing to a file.
+-- > 2. For reading from a file, it is HIGHLY recommended that you use `io.open` instead, unless you actually need to access data locally, such as a list of passwords.
+--
+---@param filename string
+---@param mode? string
+---@return file* | string | nil
+function io.openlocal(filename, mode) end
 
 
 --//
