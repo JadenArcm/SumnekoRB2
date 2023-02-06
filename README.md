@@ -16,7 +16,7 @@ This is a friendly repositiory that focus on giving some kind of support for SRB
 
 # Settings?
 I recommend these settings in `"Lua.diagnostics.disable"` for a "good" experience:
-> * `lowercase-global`: For SRB2's global variables...
-> * `undefined-global`: Since this repo is incomplete, of course.
-> * `undefined-field`: Some fields for userdata may be unfinished.
-> * `param-type-mismatch` and `assign-type-mismatch`: Blua is weird.
+> * `lowercase-global`: Why does this exist?
+> * `undefined-global`: Since this repository is unfinished, of course.
+> * `undefined-field`: Some fields for userdata may be missing.
+> * `cast-local-type`, `param-type-mismatch` and `assign-type-mismatch`: Weirdness.
