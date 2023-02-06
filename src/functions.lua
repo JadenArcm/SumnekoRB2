@@ -1347,7 +1347,55 @@ function M_MapNumber(name) end
 --//
 
 
+-- Returns true if `actor`'s target is within the actor's melee range, false if not.
+--
+---@param actor mobj_t
+---@return boolean
+function P_CheckMeleeRange(actor) end
 
+-- Same as `P_CheckMeleeRange`, except the melee range is adjusted for use with the Jetty-Syn Bomber.
+--
+---@param actor mobj_t
+---@return boolean
+function P_JetbCheckMeleeRange(actor) end
+
+-- Same as `P_CheckMeleeRange`, except the melee range is adjusted for use with the CastleBot FaceStabber.
+--
+---@param actor mobj_t
+---@return boolean
+function P_FaceStabCheckMeleeRange(actor) end
+
+-- Same as `P_CheckMeleeRange`, except the melee range is adjusted for use with the Skim.
+--
+---@param actor mobj_t
+---@return boolean
+function P_SkimCheckMeleeRange(actor) end
+
+-- Returns true if `actor` is able to shoot its target at the moment.
+-- * Returns false if `actor.reactiontime` has not reached 0 or actor cannot see the target. Otherwise, the result is randomly decided based on the distance between them.
+--
+---@param actor mobj_t
+---@return boolean
+function P_CheckMissileRange(actor) end
+
+-- Changes `actor.movedir` to be the decided best direction of the actor to be in relation to its target (provided it has one, of course).
+-- * **`NOTE:`** These directions include only the 8 basic cardinal directions.
+--
+---@param actor mobj_t
+function P_NewChaseDir(actor) end
+
+-- Can `actor` find a player with the conditions provided? If yes, this returns true and the `actor`'s target is set to the first player found. Otherwise this returns false and the `actor`'s target is unchanged.
+-- * `dist` determines the distance limit for the `actor` to check for players in. If dist is set to 0, the distance limit will be infinite.
+-- * `allaround` determines whether the `actor` will look all around itself for players or just within 90° of the direction it is currently facing.
+-- * `tracer` determines whether to use `actor.tracer` instead of `actor.target`. This is useful for homing missiles such as the Deton, since missiles set their target to the Object who shot them and thus cannot harm it.
+--
+-- `dist` defaults to 0 if not given, while `allaround` and `tracer` both default to false if not given.
+--
+---@param actor mobj_t
+---@param dist? fixed_t 
+---@param allaround? boolean
+---@param tracer? boolean
+function P_LookForPlayers(actor, dist, allaround, tracer) end
 
 
 --//
@@ -1359,11 +1407,81 @@ function M_MapNumber(name) end
 ---@param player player_t
 function P_RemoveShield(player) end
 
+-- Inflicts `damage` on the target Object, causing it to lose a certain amount of health and use the state determined by `target.info.painstate`. However, if target has lost all health as a result of this function, `P_KillMobj` is called by this function instead.
+-- * The return value of this function depends on whether target was damaged or not – if it was, this returns true; otherwise, this returns false.
+--
+-- `inflictor` and `source` determine where the damage came from: `inflictor` is the Object that dealt the damage, `source` is the source of the damage (or where inflictor came from).
+-- * For instance, when a projectile fired by a player or enemy damages target, `inflictor` should be set the projectile itself, and `source` to the Object that fired the projectile.
+-- * However, in situations where a player or enemy directly damages `target`, `inflictor` and `source` are usually both set to the same Object.
+-- * If the damage comes from a level hazard such as damaging sector specials or crushers (or otherwise from nowhere at all), it is best to set both these arguments to `nil`.
+--
+-- `damage` determines the amount of damage to deal to target, or the number of health points removed from it.
+--
+-- `damagetype` determines the damage type that will be dealt.
+-- * If the damage type has `DMG_INSTAKILL` set, the target will be killed.
+--
+-- **`NOTE:`** If not given, `inflictor` and `source` both default to `nil`, `damage` defaults to 1 and `damagetype` to 0.
+-- * The hooks `ShouldDamage` and `MobjDamage` can be used modify or replace some of the effects of this function.
+--
+---@param target mobj_t
+---@param inflictor? mobj_t
+---@param source? mobj_t
+---@param damage? integer
+---@param damagetype? integer
+---@return boolean
+function P_DamageMobj(target, inflictor, source, damage, damagetype) end
+
+-- Kills the `target` Object, making it become intangible as well as using the state determined by `target.info.deathstate` (if set to `nil`, the Object will be removed from existence).
+-- * If `target` is an enemy or boss, and the Object that killed it was a player or one of their projectiles, points may be awarded to this player.
+-- * Flickies (and/or other items) will also be spawned by enemies killed by this function.
+-- * `damagetype` determines the damage type that was dealt.
+--
+-- `inflictor` and `source` follow the same meanings as in `P_DamageMobj`, and both default to `nil` if not given.
+-- * The hook `MobjDeath` can be used to modify or replace some of the effects of this function.
+--
+---@param target mobj_t
+---@param inflictor? mobj_t
+---@param source? mobj_t
+---@param damagetype? integer
+function P_KillMobj(target, inflictor, source, damagetype) end
+
 
 --//
 
 
 -- TODO: P_Map
+
+
+--//
+
+
+-- Returns the approximate distance between two points, where dx is the distance between the X coordinates and dy is the distance between the Y coordinates.
+-- * **`NOTE:`** This function will normally return a positive value, except if the distance is `38768*FRACUNIT` or larger, in which case it will return negative values.
+--
+---@param dx fixed_t
+---@param dy fixed_t
+---@return fixed_t
+function P_AproxDistance(dx, dy) end
+
+-- Returns the X and Y coordinates (as two separate returned values) of the closest point to the point (`x`, `y`) on the line `line`.
+-- * If a set of 4 fixed-point integers (`x1`, `y1`, `x2`, `y2`) is given instead of a `line_t` variable, these become the coordinates of a custom-defined line that goes through the points (`x1`, `y1`) and (`x2`, `y2`).
+--
+---@overload fun(x: fixed_t, y: fixed_t, x1: fixed_t, y1: fixed_t, x2: fixed_t, y2: fixed_t): fixed_t, fixed_t
+---@param x fixed_t
+---@param y fixed_t
+---@param line line_t
+---@return fixed_t, fixed_t
+function P_ClosestPointOnLine(x, y, line) end
+
+-- Returns 0 if the point (x,y) is on the "front" side of the given line, or 1 if it is on the "back" side.
+-- * If a set of 4 fixed-point integers (`x1`, `y1`, `x2`, `y2`) is given instead of a `line_t` variable, these become the coordinates of a custom-defined line that goes through the points (`x1`, `y1`) and (`x2`, `y2`).
+--
+---@overload fun(x: fixed_t, y: fixed_t, x1: fixed_t, y1: fixed_t, x2: fixed_t, y2: fixed_t): integer
+---@param x fixed_t
+---@param y fixed_t
+---@param line line_t
+---@return integer
+function P_PointOnLineSide(x, y, line) end
 
 
 --//
@@ -1540,6 +1658,21 @@ function P_SetObjectMomZ(mobj, momz, relative) end
 -- Restores the music to whatever should be depending on whether `player` has any powerups or not.
 ---@param player player_t
 function P_RestoreMusic(player) end
+
+-- Resets `player`'s shield orb appearance to the appropriate one for the `player`'s current shield powers.
+---@param player player_t
+function P_SpawnShieldOrb(player) end
+
+-- Spawns a "ghost" of mobj.
+-- * A 50% translucent clone of the Object that lasts only 8 tics normally before disappearing.
+--
+-- Useful for creating afterimages of Objects such as players, such as with the Super Sneakers power-up or when a player is in Super form.
+-- * Returns the ghost Object spawned.
+-- * If a player Object the ghost was made after possesses a `followitem`, a ghost of that item's Object will additionally be spawn and assigned as the player ghost's tracer, and vice versa.
+--
+---@param mobj mobj_t
+---@return mobj_t
+function P_SpawnGhostMobj(mobj) end
 
 
 --//
