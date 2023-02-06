@@ -1629,11 +1629,11 @@ function R_Char2Frame(char) end
 ---@return integer
 function R_Frame2Char(frame) end
 
--- Sets the player's skin. `skin` can be either a skin number or a skin name string.
+-- Sets the player's skin.
+-- * `skin` can be either a skin number or a skin name string.
 --
 ---@param player player_t
 ---@param skin integer | string
----@return nil
 function R_SetPlayerSkin(player, skin) end
 
 -- Checks if `skin` is legal to switch to and returns true if so.
