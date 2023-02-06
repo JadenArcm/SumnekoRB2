@@ -182,7 +182,7 @@ local v = {}
 --
 ---@param hookname hookTypes
 ---@param callback function
----@param extra?   integer | string
+---@param extra? integer | string
 function addHook(hookname, callback, extra) end
 
 -- Automatically initializes a new named resource based on the name given, declaring the name for the next "freeslot" available for the appropriate resource type.
@@ -221,14 +221,14 @@ function reserveLuaBanks() end
 -- * This issue can be solved by calling this function during script loading to have SRB2 register the given metatable, in such a way that the `tables`/`userdata` this metatable is attached to (via `setmetatable()`) will not lose their metatable when sent to a client connecting to the server.
 --
 ---@param metatable table
----@return table|nil
+---@return table | nil
 function registerMetatable(metatable) end
 
 -- Takes a string as only argument and returns the metatable associated to the userdata type this string refers to.
 -- * Returns nil if the string does not refer to a valid userdata type.
 --
 ---@param userdataname string
----@return table|nil
+---@return table | nil
 function userdataMetatable(userdataname) end
 
 
@@ -310,6 +310,10 @@ function AngleFixed(a) end
 ---@param a angle_t
 ---@return angle_t
 function InvAngle(a) end
+
+
+--//
+
 
 -- Returns the result of multiplying `a` by `b` in the fixed-point scale.
 -- * Example: `FixedMul(2*FRACUNIT, 3*FRACUNIT)` will return `6*FRACUNIT`.
@@ -803,6 +807,10 @@ function v.getStringColormap(textcolor) end
 ---@param strength integer
 function v.fadeScreen(color, strength) end
 
+
+--//
+
+
 -- Returns the screen width.
 --
 ---@return integer
@@ -822,6 +830,10 @@ function v.dupx() end
 --
 ---@return integer, fixed_t
 function v.dupy() end
+
+
+--//
+
 
 -- Returns the current renderer used, as a string.
 --
@@ -843,6 +855,10 @@ function v.userTransFlag() end
 --
 ---@return integer
 function v.localTransFlag() end
+
+
+--//
+
 
 -- Returns a random integer between 0 and `FRACUNIT-1` (65535).
 --
@@ -885,7 +901,7 @@ function v.RandomChance(p) end
 --//
 
 
--- * `callback` format: `function(player: player_t, [arg1: string, [...]])`
+-- * `callback` format: `function(player: player_t, [arg: string, ...])`
 --
 -- Registers a console command with the name `name` that executes the specified function when called.
 -- * The first argument of the function is the player who executed the command, and all subsequent arguments are arguments passed to the command.
@@ -929,13 +945,13 @@ function CV_FindVar(var) end
 -- * This will call the console variable's callback function, if it has one.
 --
 ---@param cvar consvar_t
----@param value string|integer
+---@param value string | integer
 function CV_Set(cvar, value) end
 
 -- Sets the value of the target console variable (`cvar`) to the given value (`value`) without calling its callback function.
 --
 ---@param cvar consvar_t
----@param value string|integer
+---@param value string | integer
 function CV_StealthSet(cvar, value) end
 
 -- Adds a value (`increment`) to the console variable. (`cvar`)
@@ -954,16 +970,23 @@ function CV_AddValue(cvar, increment) end
 --//
 
 
+-- Outputs text in the console. Each output string will be separated into different lines.
+-- * Certain ASCII characters will have special effects when printed out to the console by this function. These can either be given using decimal (`\nnn`) or hexadecimal codes (`\xnn` or `\xnnnn`). For example, \`130` and `\x82` will both cause text following the code to turn yellow.
+--
+---@param ... string
+function print(...) end
+
+
 -- Prints the text given to the console for `player`. This is similar to `print(text)`, but this will only print for one player.
--- * Certain ASCII characters will have special effects when printed out to the console by this function. These can either be given using decimal (`\nnn`) or hexadecimal codes (`\xnn` or `\xnnnn`), e.g.: `\130` and `\x82` will both cause text following the code to turn yellow.
+-- * Certain ASCII characters will have special effects when printed out to the console by this function. These can either be given using decimal (`\nnn`) or hexadecimal codes (`\xnn` or `\xnnnn`), For example, `\130` and `\x82` will both cause text following the code to turn yellow.
 --
 ---@param player player_t
----@param text string
-function CONS_Printf(player, text) end
+---@param ... string
+function CONS_Printf(player, ...) end
 
 -- Outputs text in the chat window (or the console if it cannot be output in the chat window). Each output string will be separated into different lines.
 -- * If `sound` is set to true (defaults to false), a sound will be played when sent.
--- * Certain ASCII characters will have special effects when printed out to the chat window or console by this function. These can either be given using decimal (`\nnn`) or hexadecimal codes (`\xnn` or `\xnnnn`).For example, `\130` and `\x82` will both cause text following the code to turn yellow.
+-- * Certain ASCII characters will have special effects when printed out to the chat window or console by this function. These can either be given using decimal (`\nnn`) or hexadecimal codes (`\xnn` or `\xnnnn`). For example, `\130` and `\x82` will both cause text following the code to turn yellow.
 --
 ---@param output string
 ---@param sound? boolean
@@ -1130,7 +1153,7 @@ function G_FindMap(query) end
 -- **`FIXME:`** Complete and update the description when the Wiki does.
 --
 ---@param query string
----@return INT32, string|nil
+---@return INT32, string | nil
 function G_FindMapByNameOrCode(query) end
 
 -- Respawns the player whose player number is `playernum`.
@@ -1324,7 +1347,7 @@ function M_MapNumber(name) end
 --//
 
 
--- TODO: P_Enemy
+
 
 
 --//
