@@ -190,7 +190,7 @@ function addHook(hookname, callback, extra) end
 --
 ---@param resource string
 ---@param ... string
----@return integer
+---@return integer ...
 function freeslot(resource, ...) end
 
 -- This calls the original version of the current action.
@@ -885,10 +885,11 @@ function v.RandomChance(p) end
 --//
 
 
+-- * `callback` format: `function(player: player_t, [arg1: string, [...]])`
+--
 -- Registers a console command with the name `name` that executes the specified function when called.
 -- * The first argument of the function is the player who executed the command, and all subsequent arguments are arguments passed to the command.
--- * `flags` may be any of the flags listed below, `OR`'ed together, or none.
--- > `callback` format: `function(player: player_t, [arg1: string, [...]])`
+-- * `flags` may be any of the `COM_*` flags, `OR`'ed together, or none.
 --
 ---@param name string
 ---@param callback function
