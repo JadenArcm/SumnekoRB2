@@ -1969,6 +1969,9 @@ V_80TRANS = 0x00080000
 -- Text or patches are 90% translucent.
 V_90TRANS = 0x00090000
 
+-- Text or patches will be adjusted to be twice as opaque as the translucency determined by the `translucenthud` console variable.
+V_HUDTRANSDOUBLE = 0x000C0000
+
 -- Text or patches will be adjusted to be half as opaque (twice as translucent) as the translucency determined by the `translucenthud` console variable.
 V_HUDTRANSHALF = 0x000A0000
 
