@@ -60,22 +60,22 @@ ANGLE_MAX = -1
 
 -- The basic unit of measurement for lengths, speeds, object scales and sometimes angles.
 -- * Values for these measurements are interpreted as fixed-point numbers with `FRACUNIT` as the base unit.
--- * `FRACUNIT` represents one unit/pixel, `2*FRACUNIT` represents 2.0 units/pixels, `FRACUNIT/2` represents 0.5 units/pixels, and so on. 
+-- * `FRACUNIT` represents one unit/pixel, `2*FRACUNIT` represents 2.0 units/pixels, `FRACUNIT/2` represents 0.5 units/pixels, and so on.
 FRACUNIT = 1 << 16
 
 -- The number of bits to shift up to convert integers to fixed-point numbers in `FRACUNIT` scale, or the number of bits to shift down for vice versa.
 -- * This constant is used to define the value of `FRACUNIT` itself.
 -- * Modifying the value of `FRACBITS` in the source code would also modify `FRACUNIT`'s value.
--- * **`NOTE:`** Bit-shifting an integer by `FRACBITS` in either direction is equivalent to multiplication or division by `FRACUNIT`. 
+-- * **`NOTE:`** Bit-shifting an integer by `FRACBITS` in either direction is equivalent to multiplication or division by `FRACUNIT`.
 FRACBITS = 16
 
--- The number of tics in a second. 
+-- The number of tics in a second.
 -- * Anything multiplied by this value is a measurement in seconds.
 TICRATE = 35
 
 -- The music playback rate, or the number of milliseconds in a second.
 -- * Anything multiplied by this value is a measurement in seconds (in the context of music playback).
--- * This is intended for use with SOC parameters and Lua functions that change or set positions within music tracks and/or applying fade in/out effects to them. 
+-- * This is intended for use with SOC parameters and Lua functions that change or set positions within music tracks and/or applying fade in/out effects to them.
 MUSICRATE = 1000
 
 -- The maximum distance that rings can be from players with an Attraction Shield to be attracted to them.
@@ -86,11 +86,11 @@ RING_DIST = 512 * FRACUNIT
 PUSHACCEL = 2 * FRACUNIT
 
 -- The executable's Mod ID.
--- * In SRB2 v2.2, `18` is the default value for this constant. 
+-- * In SRB2 v2.2, `18` is the default value for this constant.
 MODID = 18
 
 -- The executable's Mod Version.
--- * In SRB2 v2.2.10, `51` is the default value for this constant. 
+-- * In SRB2 v2.2.10, `51` is the default value for this constant.
 MODVERSION = 51
 
 -- The SRB2 version number the executable is based on.
@@ -122,7 +122,7 @@ MELEERANGE = 64 * FRACUNIT
 MISSILERANGE = 32 * 64 * FRACUNIT
 
 -- Used by the MapThing spawning code to signify that the Thing's Z position is on the sector's floor.
--- * This is corrected to the appropriate height in `P_SpawnMobj` for newly spawned Objects. 
+-- * This is corrected to the appropriate height in `P_SpawnMobj` for newly spawned Objects.
 ONFLOORZ = INT32_MIN
 
 -- Used by the MapThing spawning code to signify that the Thing's Z position is on the sector's ceiling.
@@ -143,17 +143,17 @@ JOYAXISRANGE = 1023
 -- * Objects that interact with the player in some way upon being touched, such as enemies, hazards or collectible items, should have this flag.
 -- * Objects with `MF_ENEMY`, `MF_BOSS` and/or `MF_FIRE` in particular require this flag to be able to damage the player on touch or be damaged by the player on touch.
 -- * If there is no existing behavior set, touching the Object will by default kill the Object (sending it to its `DeathState`) and play its `DeathSound`.
--- * Lua is capable of modifying the effect of this flag for particular Object types, using the `TouchSpecial` Lua hook. 
+-- * Lua is capable of modifying the effect of this flag for particular Object types, using the `TouchSpecial` Lua hook.
 MF_SPECIAL = 1 << 0
 
 -- This makes the Object solid, and it will act as such to the player.
 MF_SOLID = 1 << 1
 
 -- The Object can be damaged.
--- * Combined with `MF_SOLID`, this makes it vulnerable to missiles, but not normal attacks. 
+-- * Combined with `MF_SOLID`, this makes it vulnerable to missiles, but not normal attacks.
 MF_SHOOTABLE = 1 << 2
 
--- Removes the Object from the sector links, making it invisible. 
+-- Removes the Object from the sector links, making it invisible.
 -- * Don't change this flag during runtime. To make something invisible during the game, use `MF2_DONTDRAW` or set the sprite to `SPR_NULL`.
 MF_NOSECTOR = 1 << 3
 
@@ -161,7 +161,7 @@ MF_NOSECTOR = 1 << 3
 -- * Just like `MF_NOSECTOR` though, don't change this flag during runtime; use `MF_NOCLIP` instead.
 MF_NOBLOCKMAP = 1 << 4
 
--- The Object's hitbox will be treated as a line instead of a box, lining up with the appearance of states with the `FF_PAPERSPRITE` flag. 
+-- The Object's hitbox will be treated as a line instead of a box, lining up with the appearance of states with the `FF_PAPERSPRITE` flag.
 MF_PAPERCOLLISION = 1 << 5
 
 -- The Object is a pushable, and as such can be pushed by players and other pushables.
@@ -170,14 +170,14 @@ MF_PUSHABLE = 1 << 6
 -- The Object is a boss and will use a boss thinker.
 MF_BOSS = 1 << 7
 
--- The Object spawns on the ceiling rather than the floor, unless the `Flip` flag is checked on the Object's MapThing. 
+-- The Object spawns on the ceiling rather than the floor, unless the `Flip` flag is checked on the Object's MapThing.
 MF_SPAWNCEILING = 1 << 8
 
 -- The Object is unaffected by gravity and will keep its height unless moved by something else.
 MF_NOGRAVITY = 1 << 9
 
 -- The Object is an ambient sound effect.
--- * The Object's `SeeSound` is constantly played, and `SpawnHealth` sets the interval between each time `SeeSound` is played. 
+-- * The Object's `SeeSound` is constantly played, and `SpawnHealth` sets the interval between each time `SeeSound` is played.
 MF_AMBIENT = 1 << 10
 
 -- The Object will slide along walls when colliding with them.
@@ -187,7 +187,7 @@ MF_SLIDEME = 1 << 11
 -- * When `noclip` is turned on, the player will be given this flag.
 MF_NOCLIP = 1 << 12
 
--- The Object will automatically floats up or down to the height of its target, unless `MF2_INFLOAT` or `MF2_SKULLFLY` are set. 
+-- The Object will automatically floats up or down to the height of its target, unless `MF2_INFLOAT` or `MF2_SKULLFLY` are set.
 -- * This is most commonly used by flying or underwater enemies and bosses that need to chase the player vertically.
 -- * `MF_NOGRAVITY` has to be checked for this to work as intended.
 -- * The Object will move up/down at a fixed speed of `4` fracunits/tic.
@@ -209,10 +209,10 @@ MF_BOUNCE = 1 << 17
 
 -- The Object is a monitor; it will be popped when hit by a normal attack from the player and award a power.
 -- * If the Object falls on a player, the player will be crushed and die.
--- * In multiplayer, a player is awarded points if they manage to pop the monitor Object before it falls on another player. 
+-- * In multiplayer, a player is awarded points if they manage to pop the monitor Object before it falls on another player.
 MF_MONITOR = 1 << 18
 
--- The Object has no AI. 
+-- The Object has no AI.
 -- * Use this to save CPU power for static scenery Objects.
 -- * Objects with this flag will not animate and cannot use any actions.
 MF_NOTHINK = 1 << 19
@@ -269,7 +269,7 @@ MF2_TWOD = 1 << 1
 
 -- The Object does not respawn.
 -- * Given to any rings, ammo and panels dropped by players who have been hit.
--- * This does not do anything for most Objects otherwise. 
+-- * This does not do anything for most Objects otherwise.
 MF2_DONTRESPAWN = 1 << 2
 
 -- The Object does not generate a visible sprite.
@@ -401,24 +401,24 @@ MF2_SPLAT = 1 << 30
 
 
 -- This flag is given when the Object's "ground" is a solid floor, whether it is the sector's main floor or the top of an FOF/PolyObject.
--- * If the Object's ground is instead an Object with `MF_SOLID`, this flag will not be given. 
+-- * If the Object's ground is instead an Object with `MF_SOLID`, this flag will not be given.
 MFE_ONGROUND = 1 << 0
 
 -- This flag is given to mark when the Object has just landed on the floor from falling down (or on the ceiling when in flipped gravity).
 -- * The flag will subsequently be removed on the next tic afterwards.
 MFE_JUSTHITFLOOR = 1 << 1
 
--- The Object is "touching" water. 
+-- The Object is "touching" water.
 -- * For example: The Object's bottom is below the surface of a water FOF, but the Object's top is still above.
 MFE_TOUCHWATER = 1 << 2
 
--- The Object is "underwater". 
+-- The Object is "underwater".
 -- * For example: The Object is submerged at least half its height into a water FOF.
 -- * For players, this causes the underwater timer to activate, which may result in drowning unless the player escapes or is wearing an Elemental Shield; however, it allows characters with the Swim ability (`CA_SWIM`) to use their ability while this flag is set.
 MFE_UNDERWATER = 1 << 3
 
 -- This flag is given to mark when a player has just "stepped" down from a floor to another floor under `24*FRACUNIT`'s below it (the flag is not given for non-player Objects).
--- * If the `Non-Ramp Sector` sector special is applied to the sector floor the player is standing in, the player will instead fall down and this flag will not be given. 
+-- * If the `Non-Ramp Sector` sector special is applied to the sector floor the player is standing in, the player will instead fall down and this flag will not be given.
 MFE_JUSTSTEPPEDDOWN = 1 << 4
 
 -- This flag is given to mark when the Object's sprites/physics should be vertically flipped.
@@ -447,12 +447,12 @@ MFE_TRACERANGLE = 1 << 11
 --//
 
 -- This is a special flag that has no general effect.
--- * This is rather used by certain Thing types for turning on extra features or alternative behavior. 
+-- * This is rather used by certain Thing types for turning on extra features or alternative behavior.
 MTF_EXTRA = 1 << 0
 
 -- This flag inverts the Thing's gravity direction, and also inverts whether the Thing's Z position is measured from the floor or ceiling.
 -- * For instance, power-up monitors will be flipped upside-down and laid on the ceiling instead of the floor.
--- * Things that hang from the ceiling by default (e.g., chains) will be flipped upside-down but laid on the floor instead of the ceiling. 
+-- * Things that hang from the ceiling by default (e.g., chains) will be flipped upside-down but laid on the floor instead of the ceiling.
 --
 -- In most cases, this flag will also give the corresponding Object(s) the secondary Object flag `MF2_OBJECTFLIP` when checked. Exceptions to this include the following Thing types:
 -- * **NiGHTS Bumper**.
@@ -461,7 +461,7 @@ MTF_EXTRA = 1 << 0
 MTF_OBJECTFLIP = 1 << 1
 
 -- This is a special flag that has no general effect.
--- This is rather used by certain Thing types for turning on extra features or alternative behavior. 
+-- This is rather used by certain Thing types for turning on extra features or alternative behavior.
 MTF_OBJECTSPECIAL = 1 << 2
 
 -- This is a special flag that has no general effect.
@@ -472,7 +472,7 @@ MTF_OBJECTSPECIAL = 1 << 2
 -- * **NiGHTS Bumper**.
 -- * **Star Post**.
 -- * All **monitors** that cannot turn into **WRMs**.
--- * **Pushable** Objects if `MTF_OBJECTSPECIAL` is also set.	
+-- * **Pushable** Objects if `MTF_OBJECTSPECIAL` is also set.
 MTF_AMBUSH = 1 << 3
 
 
@@ -597,7 +597,7 @@ RF_HORIZONTALFLIP = 1 << 0
 -- Flips the sprite vertically.
 RF_VERTICALFLIP = 1 << 1
 
--- The sprite will use the values of `spritexoffset` and `spriteyoffset` absolutely, instead of relatively to the sprite's original offsets. 
+-- The sprite will use the values of `spritexoffset` and `spriteyoffset` absolutely, instead of relatively to the sprite's original offsets.
 RF_ABSOLUTEOFFSETS = 1 << 2
 
 -- The values of `spritexoffset` and `spriteyoffset` will be applied flipped to the sprite's original offsets.
@@ -691,7 +691,7 @@ SF_X4AWAYSOUND = 1 << 3
 SF_X8AWAYSOUND = 1 << 4
 
 -- The sound does not interrupt other sounds; if it is attempted to be played in a situation where it would be interrupting another sound, it is not played.
--- * This does not work in combination with the `Singular` parameter, use the `SF_NOMULTIPLESOUND` flag instead. 
+-- * This does not work in combination with the `Singular` parameter, use the `SF_NOMULTIPLESOUND` flag instead.
 SF_NOINTERRUPT = 1 << 5
 
 -- The sound can be heard from two times the regular distance.
@@ -858,18 +858,18 @@ SF_MACHINE = 1 << 10
 SF_DASHMODE = 1 << 11
 
 -- This character's edge teeter animation will play faster than usual.
--- * Used by Fang in unmodified SRB2. 
+-- * Used by Fang in unmodified SRB2.
 SF_FASTEDGE = 1 << 12
 
 -- This character's primary ability can be used more than once per jump.
--- * Used by Metal Sonic in unmodified SRB2. 
+-- * Used by Metal Sonic in unmodified SRB2.
 SF_MULTIABILITY = 1 << 13
 
 -- The character's NiGHTS Mode sprites will not use automatic sprite rotation.
 SF_NONIGHTSROTATION = 1 << 14
 
 -- The character's NiGHTS Mode sprites will not use super color gradients.
--- * The skin must also have `SF_SUPER` for this flag to work. 
+-- * The skin must also have `SF_SUPER` for this flag to work.
 SF_NONIGHTSSUPER = 1 << 15
 
 -- The character will not use super sprites while super.
@@ -908,7 +908,7 @@ CA_THOK = 1
 -- * The spin button can be used to descend more quickly if necessary.
 -- * The player will be unable to inflict damage to enemies, except by flying into them from below.
 --
--- The sprite name `FLY_` is used for the flying animation, `SWIM` is used when flying underwater, and `TIRE` is used when the character is tired and cannot fly anymore. 
+-- The sprite name `FLY_` is used for the flying animation, `SWIM` is used when flying underwater, and `TIRE` is used when the character is tired and cannot fly anymore.
 -- * If the player does not have a `FLY_` sprite, `SPNG` is used instead.
 CA_FLY = 2
 
@@ -1122,8 +1122,8 @@ PF_GODMODE = 1 << 4
 -- * This is controlled by the console command `noclip`.
 PF_NOCLIP = 1 << 5
 
--- Prevents enemies and bosses from noticing the player, except after the player has attacked them. 
--- * This is controlled by the console command `notarget`. 
+-- Prevents enemies and bosses from noticing the player, except after the player has attacked them.
+-- * This is controlled by the console command `notarget`.
 PF_INVIS = 1 << 6
 
 -- The Ring Toss control button was pressed the previous tic.
@@ -1135,7 +1135,7 @@ PF_SPINDOWN = 1 << 8
 -- The Jump control button was pressed the previous tic.
 PF_JUMPDOWN = 1 << 9
 
--- The Next Weapon or Prev Weapon control buttons were pressed the previous tic. 
+-- The Next Weapon or Prev Weapon control buttons were pressed the previous tic.
 PW_WPNDOWN = 1 << 10
 
 -- The player is not allowed to move, except for jumping.
@@ -1302,7 +1302,7 @@ SH_ATTRACT = 0x1001
 SH_FLAMEAURA = 0x0401
 
 -- The player has the S3K Bubble Shield.
--- * This is equivalent to combining `SH_PITY|SH_PROTECTWATER`. 
+-- * This is equivalent to combining `SH_PITY|SH_PROTECTWATER`.
 SH_BUBBLEWRAP = 0x0801
 
 -- The player has the S3K Lightning Shield.
@@ -1312,16 +1312,16 @@ SH_THUNDERCOIN = 0x1002
 -- The player has the force shield. Take account that this is a **flag**.
 -- * On its own this flag only gives one health point to the shield, the lower 8 bits can be used as extra health points.
 -- * **`NOTE:`** This cannot be combined with any of the values `SH_PITY` to `SH_PINK`.
--- * In Lua scripts, use `<player_t>.powers[pw_shield] & SH_FORCE` to check if a player has the Force Shield. 
+-- * In Lua scripts, use `<player_t>.powers[pw_shield] & SH_FORCE` to check if a player has the Force Shield.
 SH_FORCE = 0x0100
 
 -- The amount for max extra health points of the Force Shield.
--- * In Lua scripts, if the player is known to have a Force Shield, use `<player_t>.powers[pw_shield] & SH_FORCEHP` to check if the shield has extra health points. 
+-- * In Lua scripts, if the player is known to have a Force Shield, use `<player_t>.powers[pw_shield] & SH_FORCEHP` to check if the shield has extra health points.
 SH_FORCEHP = 0x00FF
 
 -- The player has the Fire Flower. Take account that this is a **flag**.
 -- * **`NOTE:`** This can be combined with any of the other shields.
--- * In Lua scripts, use `<player_t>.powers[pw_shield] & SH_FIREFLOWER` to check if the player has the Fire Flower power-up. 
+-- * In Lua scripts, use `<player_t>.powers[pw_shield] & SH_FIREFLOWER` to check if the player has the Fire Flower power-up.
 SH_FIREFLOWER = 0x0200
 
 -- Mask for all shields that can be combined with others.
@@ -1414,7 +1414,7 @@ pw_tailsfly = 5
 -- The player's current drowning timer.
 pw_underwater = 6
 
--- The player's current space countdown timer. 
+-- The player's current space countdown timer.
 pw_spacetime = 7
 
 -- How long the extra life music lasts?
@@ -1461,7 +1461,7 @@ pw_railring = 20
 -- The player's current flags of multiplayer Chaos Emeralds.
 pw_emeralds = 21
 
--- The current Super Paraloop power-up timer. (NiGHTs only) 
+-- The current Super Paraloop power-up timer. (NiGHTs only)
 pw_nights_superloop = 22
 
 -- The current Nightopian Helper power-up timer. (NiGHTs only)
@@ -1471,7 +1471,7 @@ pw_nights_helper = 23
 pw_nights_linkfreeze = 24
 
 -- Takes control away from the player.
--- * Adding `32768` to this value will allow the player to jump while affected. 
+-- * Adding `32768` to this value will allow the player to jump while affected.
 pw_nocontrol = 25
 
 -- Sets the player's color to this value, and sets `<player_t>.mo.colorized` to `true`.
@@ -1583,7 +1583,7 @@ WEP_EXPLODE = 5
 WEP_RAIL = 6
 
 -- Total number of weapons.
-MAXWEAPONS = 7
+NUM_WEAPONS = 7
 
 
 --//
@@ -1623,7 +1623,7 @@ PAL_MIXUP = 2
 -- * This flash is palette used for Recycler Monitors.
 PAL_RECYCLE = 3
 
--- SRB2's palette tinted red. 
+-- SRB2's palette tinted red.
 -- * This flash palette is used for Armageddon Shield explosions.
 -- * **`NOTE:`** This palette can be reproduced by tinting SRB2's palette 75% white as with the palettes above, but then changing the green/blue levels of all color indexes to `113`.
 PAL_NUKE = 4
@@ -1719,7 +1719,7 @@ GTR_POINTLIMIT = 1 << 14
 GTR_TIMELIMIT = 1 << 15
 
 -- This gametype will start an overtime when both teams, or two or more players are tied.
--- * Can be overriden by the `overtime` console variable. 
+-- * Can be overriden by the `overtime` console variable.
 GTR_OVERTIME = 1 << 16
 
 -- This gametype will display a battle log in the console.
@@ -1734,7 +1734,7 @@ GTR_FRIENDLYFIRE = 1 << 18
 GTR_STARTCOUNTDOWN = 1 << 19
 
 -- In `GTR_TAG` gametypes, players won't be allowed to move after `GTR_STARTCOUNTDOWN`'s countdown timer has elapsed, or not been set.
--- * Used by Hide & Seek only. 
+-- * Used by Hide & Seek only.
 GTR_HIDEFROZEN = 1 << 20
 
 -- In `GTR_TAG` gametypes, this will blindfold the "it" player during fleeing/hiding time if `GTR_STARTCOUNTDOWN` has been set.
@@ -1749,7 +1749,7 @@ GTR_SPAWNDELAY = 1 << 22
 GTR_PITYSHIELD = 1 << 23
 
 -- This gametype penalizes players by 50 points for dying.
--- * Used by Match only. 
+-- * Used by Match only.
 GTR_DEATHPENALTY = 1 << 24
 
 -- Players spawn in the game by default, instead of as spectators.
@@ -1764,7 +1764,7 @@ GTR_DEATHMATCHSTARTS = 1 << 26
 GTR_SPAWNINVUL = 1 << 27
 
 -- Enemies are allowed to spawn in this gametype.
--- * Used by Co-op, Competition and Race. 
+-- * Used by Co-op, Competition and Race.
 GTR_SPAWNENEMIES = 1 << 28
 
 -- Players can end a level by touching an Exit Sector.
@@ -1798,7 +1798,7 @@ CV_CALL = 1 << 1
 -- The variable is synchronized for everyone in netgames; only the server or admin can modify it.
 CV_NETVAR = 1 << 2
 
--- If a function is called when the variable is changed (`CV_CALL`), the function is not called when the variable is first registered. 
+-- If a function is called when the variable is changed (`CV_CALL`), the function is not called when the variable is first registered.
 CV_NOINIT = 1 << 3
 
 -- The variable takes floating-point values, so numbers such as `0.5` and `0.45` are accepted.
@@ -1823,7 +1823,7 @@ CV_NOSHOWHELP = 1 << 9
 -- The variable is not accessible by the console.
 CV_HIDDEN = 1 << 10
 
--- The variable is a cheat, and can be reset to its default value by using `cheats off` in the console. 
+-- The variable is a cheat, and can be reset to its default value by using `cheats off` in the console.
 CV_CHEAT = 1 << 11
 
 -- The variable cannot be set from Lua.
@@ -1858,7 +1858,7 @@ V_SCALEPATCHMASK = 0x00000300
 -- These bits determine text spacing types.
 V_SPACINGMASK = 0x00000C00
 
--- These bits determine the color of text. 
+-- These bits determine the color of text.
 V_CHARCOLORMASK = 0x0000F000
 
 -- These bits determine the alpha or translucency of text and patches.
@@ -1980,15 +1980,15 @@ V_HUDTRANS = 0x000B0000
 
 
 -- Text or patches use additive blending.
--- * By default, the intensity is at 100%, but can be combined with `V_10TRANS`–`V_90TRANS` for 90%–10% intensity. 
+-- * By default, the intensity is at 100%, but can be combined with `V_10TRANS`–`V_90TRANS` for 90%–10% intensity.
 V_ADD = 0x00100000
 
 -- Text or patches use subtractive blending.
--- * By default, the intensity is at 100%, but can be combined with `V_10TRANS`–`V_90TRANS` for 90%–10% intensity. 
+-- * By default, the intensity is at 100%, but can be combined with `V_10TRANS`–`V_90TRANS` for 90%–10% intensity.
 V_SUBSTRACT = 0x00200000
 
 -- Text or patches use reverse subtractive blending.
--- * By default, the intensity is at 100%, but can be combined with `V_10TRANS`–`V_90TRANS` for 90%–10% intensity. 
+-- * By default, the intensity is at 100%, but can be combined with `V_10TRANS`–`V_90TRANS` for 90%–10% intensity.
 V_REVERSESUBSTRACT = 0x00300000
 
 -- Text or patches use modulate blending.
@@ -2032,7 +2032,7 @@ V_SNAPTORIGHT = 0x08000000
 
 
 -- Makes `cecho` text automatically fade out before disappearing.
--- * This does not have any effect for non-`cecho` text or patches. 
+-- * This does not have any effect for non-`cecho` text or patches.
 V_AUTOFADEOUT = 0x10000000
 
 -- Line breaks in text move the start of the next line of text down by 8 pixels rather than 12.
@@ -2045,7 +2045,7 @@ V_RETURN8 = 0x20000000
 -- * This causes the text/patch to be in the top-left in higher resolutions.
 -- * Generally not recommended because the resulting appearance will vary depending on the resolution used.
 --
--- If this flag is set, the flags `V_SNAPTOTOP`, `V_SNAPTOBOTTOM`, `V_SNAPTOLEFT` and `V_SNAPTORIGHT` will have no effect. 
+-- If this flag is set, the flags `V_SNAPTOTOP`, `V_SNAPTOBOTTOM`, `V_SNAPTOLEFT` and `V_SNAPTORIGHT` will have no effect.
 V_NOSCALESTART = 0x40000000
 
 -- In Splitscreen mode, text and patches will automatically adjust coordinates and scaling to fit on-screen.
@@ -2132,7 +2132,7 @@ HUD_TIME = 6
 HUD_MINUTES = 7
 
 -- The colon graphic between minutes and seconds in the time display in normal stages.
--- * Shown when `Options > Video Options... > Heads-Up Display > Score/Time/Rings` **is not** set to "Tics". 
+-- * Shown when `Options > Video Options... > Heads-Up Display > Score/Time/Rings` **is not** set to "Tics".
 -- > Properties:
 -- > * `x`: 72
 -- > * `y`: 26
