@@ -368,7 +368,7 @@
 --- The name of the key that triggered this event.
 ---@field name string
 ---
---- The number of the key that triggered this event. 
+--- The number of the key that triggered this event.
 ---@field num INT32
 ---
 --- Whether this event is a continuation of a previously triggered event.
@@ -384,10 +384,10 @@
 --- The name of the console variable, as it should be written in the console.
 ---@field name string
 ---
---- The default value set for the console variable, expressed as a string. 
+--- The default value set for the console variable, expressed as a string.
 ---@field defaultvalue string
 ---
---- Contains the flags set for the console variable (`CV_*`). 
+--- Contains the flags set for the console variable (`CV_*`).
 ---@field flags INT32
 ---
 --- The current value set for the console variable, expressed as a number.
@@ -396,7 +396,7 @@
 --- The current value set for the console variable, expressed as a string.
 ---@field string string
 ---
---- Returns a boolean whether the console variable has been changed by the player. 
+--- Returns a boolean whether the console variable has been changed by the player.
 ---@field changed boolean
 
 
@@ -456,7 +456,7 @@
 
 ---@class state_t
 ---
---- Sprite prefix number used for the state. 
+--- Sprite prefix number used for the state.
 ---@field sprite number
 ---
 --- Frame number of the sprite used for the state; it also contains full brightness/translucency information. (`tr_*`, `FF_*`)
@@ -505,7 +505,7 @@
 ---@field flags INT32
 ---
 --- Skinsound ID number.
---- * For sounds that are not changeable by the skin, this will be -1. (`SKS*`) 
+--- * For sounds that are not changeable by the skin, this will be -1. (`SKS*`)
 ---@field skinsound INT32
 ---
 --- The caption to display onscreen when this sound is played with Closed Captioning enabled.
@@ -521,7 +521,7 @@
 --- * Used in the console and Player Setup menu. Names containing spaces must be put in quotes in the console.
 ---@field name string
 ---
---- An array of 16 palette indices, which in whole represent the skincolor's color ramp. 
+--- An array of 16 palette indices, which in whole represent the skincolor's color ramp.
 ---@field ramp UINT8[]
 ---
 --- The opposite skincolor.

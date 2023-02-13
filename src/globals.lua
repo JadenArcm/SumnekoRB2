@@ -4,7 +4,7 @@
 --//
 
 
--- The map number of the map currently being played. 
+-- The map number of the map currently being played.
 ---@type number
 gamemap = nil
 
@@ -16,7 +16,7 @@ maptol = nil
 ---@type number
 gamestate = nil
 
--- Returns true if playing in Ultimate mode, false if not. 
+-- Returns true if playing in Ultimate mode, false if not.
 ---@type boolean
 ultimatemode = nil
 
@@ -60,7 +60,7 @@ gamecomplete = nil
 ---@type integer
 marathonmode = nil
 
--- Returns true if the game is being run with the command line parameter `-debug`, false if not. 
+-- Returns true if the game is being run with the command line parameter `-debug`, false if not.
 ---@type boolean
 devparm = nil
 
@@ -100,12 +100,12 @@ spstage_start = nil
 ---@type number
 spmarathon_start = nil
 
--- The map number of the first Single Player Special Stage. 
+-- The map number of the first Single Player Special Stage.
 ---@type number
 sstage_start = nil
 
 -- The map number of the final Single Player Special Stage, including the unlockable Black Hole Zone.
--- * This will always be equal to `sstage_start + 7`. 
+-- * This will always be equal to `sstage_start + 7`.
 ---@type number
 sstage_end = nil
 
@@ -114,7 +114,7 @@ sstage_end = nil
 smpstage_start = nil
 
 -- The map number of the final Coop Special Stage.
--- * This will always be equal to `smpstage_start + 6`. 
+-- * This will always be equal to `smpstage_start + 6`.
 ---@type number
 smpstage_end = nil
 
@@ -199,13 +199,13 @@ ammoremovaltics = nil
 gametype = nil
 
 -- The rules of the current gametype being played as a set of `GTR_*` flags.
----@type integer 
+---@type integer
 gametyperules = nil
 
 -- The amount of time that has passed in the current level since it has been loaded, measured in tics.
 -- * In most gametypes, this is normally equal to the time displayed on the HUD; however, in Race and Competition modes, `leveltime` includes the 4-second pre-timer, meaning that `leveltime` will be `4*TICRATE` tics ahead of the HUD's displayed time once the latter has started running.
 -- * **`NOTE:`** `leveltime` will continue to increase after the level is finished, even after the HUD time has stopped, until the tally screen appears.
--- > * The actual time displayed on the player's HUD is set by `<player_t>.realtime`. 
+-- > * The actual time displayed on the player's HUD is set by `<player_t>.realtime`.
 ---@type tic_t
 leveltime = nil
 
@@ -283,7 +283,7 @@ consoleplayer = nil
 displayplayer = nil
 
 -- The secondary player, when `splitscreen` mode is active.
----@type player_t 
+---@type player_t
 secondarydisplayplayer = nil
 
 -- The primary camera in-game.
@@ -307,12 +307,12 @@ mouse2 = nil
 
 
 -- This table is used to look up the properties of a player, where the table key is an integer between 0 and 31.
--- * For example, `players[0]` is the `player_t` userdata for player 1, `players[1]` for player 2, and so on. 
+-- * For example, `players[0]` is the `player_t` userdata for player 1, `players[1]` for player 2, and so on.
 ---@type player_t[]
 players = {}
 
 -- This table is used to look up the properties of a skin, where the table key is an integer between 0 and 31.
--- * Alternatively, the table key is the skin's name attribute, which can be given instead of the skin number. 
+-- * Alternatively, the table key is the skin's name attribute, which can be given instead of the skin number.
 ---@type skin_t[]
 skins = {}
 
@@ -345,7 +345,7 @@ sectors = {}
 
 
 -- This table is used to look up or modify attributes for a specific Object type, where `MT_<NAME>` is an integer that is expected to be the `MT_*` constant for the Object type in question.
--- * Whole entries for `mobjinfo[]` can be recreated from scratch if needed. 
+-- * Whole entries for `mobjinfo[]` can be recreated from scratch if needed.
 ---@type mobjinfo_t[]
 mobjinfo = {}
 

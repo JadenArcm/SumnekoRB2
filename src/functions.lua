@@ -211,7 +211,7 @@ function userdataType(var) end
 -- * `Luabanks` is a method to save and load custom information in a savefile.
 -- * The indexes 0 through 15 in the luabanks array contains `UINT32` integers, which are freely modifiable by the modder.
 -- * When reserved in an addon with custom gamedata, this array is automatically updated when a save file is loaded, and saved alongside the normal save information when the game writes the save to a file, akin to saving the emeralds collected in a save.
--- * Trying to call this function in a hook or otherwise calling it more than once, including if another mod has already called it before, will result in an error. As such, only one `luabanks` mod can be loaded in at any one time. 
+-- * Trying to call this function in a hook or otherwise calling it more than once, including if another mod has already called it before, will result in an error. As such, only one `luabanks` mod can be loaded in at any one time.
 --
 ---@return UINT32[]
 function reserveLuaBanks() end
@@ -657,7 +657,7 @@ function v.drawStretched(x, y, hscale, vscale, patch, flags, colormap) end
 -- Draws a patch at the screen coordinates given, but at a specific horizontal (`hscale`) and vertical (`vscale`) scale, with the sides cut off. (`sx`, `sy`, `w`, `h`)
 -- * `flags` determines the video flags given, which control extra effects such as translucency.
 -- * `colormap` determines the colormap applied to the patch. Use `v.getColormap` or `v.getStringColormap` to obtain a value that can be used here.
--- * `sx` and `sy` determine how many pixels to cut off the left and top sides of the patch (moving the remaining area left and up in the process). 
+-- * `sx` and `sy` determine how many pixels to cut off the left and top sides of the patch (moving the remaining area left and up in the process).
 -- * `w` and `h` determine how wide and tall an area of the patch to draw, not how much to cut off the right and bottom sides.
 -- * `sx`, `sy`, `w`, and `h` select a region of the patch to draw regardless of `hscale` and `vscale`.
 -- * If you set `w` to `5*FRACUNIT` and set `hscale` to `2*FRACUNIT`, the patch will take up 10 pixels of the screen, as the 5 pixels of the patch are doubled in size. The 5 pixels of the patch that get used will be the same regardless of `hscale` and `vscale`'s values, referring to the patch itself.
@@ -1039,7 +1039,7 @@ function IsPlayerAdmin(player) end
 ---@param searchtype string
 ---@param fn function
 ---@param refmobj mobj_t
----@param x1? fixed_t 
+---@param x1? fixed_t
 ---@param x2? fixed_t
 ---@param y1? fixed_t
 ---@param y2? fixed_t
@@ -1050,13 +1050,13 @@ function searchBlockmap(searchtype, fn, refmobj, x1, x2, y1, y2) end
 --//
 
 
--- Returns whether the game control `gc` (a `GC_*` constant) is currently pressed for the first player. 
+-- Returns whether the game control `gc` (a `GC_*` constant) is currently pressed for the first player.
 --
 ---@param gc integer
 ---@return boolean
 function input.gameControlDown(gc) end
 
--- Returns whether the game control `gc` (a `GC_*` constant) is currently pressed for the second player. 
+-- Returns whether the game control `gc` (a `GC_*` constant) is currently pressed for the second player.
 --
 ---@param gc integer
 ---@return boolean
@@ -1131,14 +1131,14 @@ function input.getCursorPosition() end
 
 
 -- Converts the given map number to a map name in `MAPXX` format, where `XX` is the extended map number. If no map number is given, the current map's number will be used.
--- * Example: `G_BuildMapName(100)` will return `"MAPA0"`. 
+-- * Example: `G_BuildMapName(100)` will return `"MAPA0"`.
 --
 ---@param map integer
 ---@return string
 function G_BuildMapName(map) end
 
 -- Returns the name and act number of map number `map`.
--- * Example: `G_BuildMapTitle(1)` will return `"Greenflower Zone 1"`. 
+-- * Example: `G_BuildMapTitle(1)` will return `"Greenflower Zone 1"`.
 --
 ---@param map integer
 ---@return string
@@ -1205,7 +1205,7 @@ function G_GametypeUsesLives() end
 ---@return boolean
 function G_GametypeUsesCoopLives() end
 
--- Returns true if the current gametype uses the `coopstarposts` console variable, otherwise it returns false. 
+-- Returns true if the current gametype uses the `coopstarposts` console variable, otherwise it returns false.
 --
 ---@return boolean
 function G_GametypeUsesCoopStarposts() end
@@ -1392,7 +1392,7 @@ function P_NewChaseDir(actor) end
 -- `dist` defaults to 0 if not given, while `allaround` and `tracer` both default to false if not given.
 --
 ---@param actor mobj_t
----@param dist? fixed_t 
+---@param dist? fixed_t
 ---@param allaround? boolean
 ---@param tracer? boolean
 function P_LookForPlayers(actor, dist, allaround, tracer) end
@@ -1512,7 +1512,7 @@ function P_SpawnMobj(x, y, z, type) end
 function P_SpawnMobjFromMobj(origin, x, y, z, type) end
 
 -- Removes the Object and its thinker from existence.
--- * The hook `MobjRemoved` can be used to apply additional effects to this function. 
+-- * The hook `MobjRemoved` can be used to apply additional effects to this function.
 -- * The removed Object ***cannot*** be referenced again in Lua after using this function.
 -- * This function will produce an error if it attempts to remove an object belonging to a player.
 --
@@ -1550,7 +1550,7 @@ function P_SpawnLockOn(player, target, state) end
 --//
 
 
--- Returns the player's normal height. 
+-- Returns the player's normal height.
 -- * This is automatically corrected to match the player's current scale.
 --
 ---@param player player_t
@@ -1582,7 +1582,7 @@ function P_GetPlayerControlDirection(player) end
 ---@param amount integer
 function P_AddPlayerScore(player, amount) end
 
--- Causes `player` to steal from everyone else's score in multiplayer. 
+-- Causes `player` to steal from everyone else's score in multiplayer.
 --
 ---@param player player_t
 ---@param amount integer
@@ -1600,8 +1600,8 @@ function P_GetJumpFlags(player) end
 ---@return boolean
 function P_PlayerInPain(player) end
 
--- Throws back the player, setting the state to the player's pain state. 
--- * `source` is the Object the damage (or `inflictor`) came from. 
+-- Throws back the player, setting the state to the player's pain state.
+-- * `source` is the Object the damage (or `inflictor`) came from.
 -- * `inflictor` (which is either `source` itself or a projectile from it) is the object that dealt the damage.
 --
 ---@param player player_t
@@ -1701,7 +1701,7 @@ function R_CheckTextureNumForName(name) end
 ---@return skincolor_t
 function R_GetColorByName(name) end
 
--- Returns the super color number that is represented by `name`. 
+-- Returns the super color number that is represented by `name`.
 -- * If no color is found, returns `SKINCOLOR_NONE`.
 --
 ---@param name string
