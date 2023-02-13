@@ -231,6 +231,39 @@ function registerMetatable(metatable) end
 ---@return table | nil
 function userdataMetatable(userdataname) end
 
+-- Returns a modified value of SDL's high resolution counter.
+--
+-- This is used as a profiling timer function: Two values returned by this function can be substracted from each other to find out how much time (in microseconds) is between them.
+-- * This can be used to measure the performance of Lua code, and as such shouldn't be used for anything else other than performance measurements.
+--
+-- * **`NOTE:`** OpenGL and HUD hooks measuring Lua API calls that contain can give unreliable/confusing results because of the asynchronous nature of OpenGL. This applies to measuring HUD drawing functions in OpenGL mode.
+--
+-- Here's a example:
+-- ```
+-- --Get the time before the code to be profiled
+-- local first = getTimeMicros()
+--
+-- -- Run a slow function/block, like:
+-- local nums = {}
+-- for i = 1,10000 do
+--     nums[i] = 0
+--
+--     for j = 1, i do
+--         nums[j] = $ + 1
+--     end
+-- end
+--
+-- -- Get the time after the code to be profiled
+-- local second = getTimeMicros()
+--
+-- -- Substract the newest time against the oldest time
+-- local result = second - first
+-- -- This result will represent the time between [first] and [second], in microseconds
+-- ```
+--
+---@return integer
+function getTimeMicros() end
+
 
 --//
 
@@ -971,7 +1004,7 @@ function CV_AddValue(cvar, increment) end
 
 
 -- Outputs text in the console. Each output string will be separated into different lines.
--- * Certain ASCII characters will have special effects when printed out to the console by this function. These can either be given using decimal (`\nnn`) or hexadecimal codes (`\xnn` or `\xnnnn`). For example, \`130` and `\x82` will both cause text following the code to turn yellow.
+-- * Certain ASCII characters will have special effects when printed out to the console by this function. These can either be given using decimal (`\nnn`) or hexadecimal codes (`\xnn` or `\xnnnn`). For example, `\130` and `\x82` will both cause text following the code to turn yellow.
 --
 ---@param ... string
 function print(...) end
