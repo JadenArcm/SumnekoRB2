@@ -1478,11 +1478,253 @@ function P_DamageMobj(target, inflictor, source, damage, damagetype) end
 ---@param damagetype? integer
 function P_KillMobj(target, inflictor, source, damagetype) end
 
+-- Spills the specified number of rings.
+-- * Also spills all weapon panels, ammo and emeralds player may be carrying at the time, but does not throw back player.
+-- * If `numrings` is not given (or set to -1), it will default to the player's current ring count (i.e. `<player_t>.rings`).
+--
+-- In normal gameplay, up to 32 rings will be spilled by this function; the remainder will not be spawned.
+-- * The speed at which the rings are flung depends on the duration since the last time this function was used (determined by `<player_t>.losstime`).
+-- * In NiGHTS levels, however, the player will drop all rings if they have the player flag `PF_NIGHTSFALL` (given when the player has run out of time as Super Sonic).
+-- * In addition, the rings will always be flung at the same speed regardless of `<player_t>.losstime`'s value.
+--
+-- **`NOTE:`** This function does not actually affect `<player_t>.rings`; this must be modified manually in order for the player to actually lose rings.
+-- * This does not apply to any weapon panels, ammo and/or emeralds also spilled by this function.
+--
+---@param player player_t
+---@param numrings? integer
+function P_PlayerRingBurst(player, numrings) end
+
+-- Spills all weapon panels that player is carrying, but does not throw back player.
+-- * Unlike the rings in `P_PlayerRingBurst`, the player will actually lose the weapon panels spilled by this function.
+--
+---@param player player_t
+function P_PlayerWeaponPanelBurst(player) end
+
+-- Spills all weapon panels and ammo that player is carrying, but does not throw back player.
+-- * Unlike the rings in `P_PlayerRingBurst`, the player will actually lose the weapon ammo spilled by this function.
+--
+---@param player player_t
+function P_PlayerWeaponAmmoBurst(player) end
+
+-- **`TODO:`** Complete the description when the wiki does.
+--
+---@param player player_t
+function P_PlayerWeaponPanelOrAmmoBurst(player) end
+
+-- Spills all emeralds that player is carrying, but does not throw back player.
+-- * If `toss` is true, all the emeralds are thrown in the player's forward direction and a toss delay of 2 seconds is set (for players tossing emeralds).
+-- * Otherwise, the emeralds are spilled around the player (for players dropping emeralds after being hurt).
+-- * Unlike the rings in `P_PlayerRingBurst`, the player will actually lose the emeralds spilled by this function.
+--
+---@param player player_t
+---@param toss? boolean
+function P_PlayerEmeraldBurst(player, toss) end
+
+-- Spills any CTF flags that player is carrying, but does not throw back player.
+-- * If `toss` is true, the flag is thrown in the player's forward direction and a toss delay of 2 seconds is set (for players tossing a flag).
+-- * Otherwise, the direction is random (for players dropping a flag after being hurt).
+function P_PlayerFlagBurst(player, toss) end
+
+-- Plays one of the 4 player ring spill sounds randomly, which can vary depending on the skin, or plays the Mario ring loss sound if in Mario mode.
+-- * `source` is the Object the sound came from.
+--
+---@param source mobj_t
+---@param player? player_t
+function P_PlayRinglossSound(source, player) end
+
+-- Plays one of the 4 player death sounds randomly, which can vary depending on the skin.
+-- * `source` is the Object the sound came from.
+--
+---@param source mobj_t
+---@param player? player_t
+function P_PlayDeathSound(source, player) end
+
+-- Plays one of the 4 player victory taunt sounds randomly, which can vary depending on the skin.
+-- * `source` is the Object the sound came from.
+--
+---@param source mobj_t
+---@param player? player_t
+function P_PlayVictorySound(source, player) end
+
+-- Plays the extra life jingle.
+-- * By default this is the extra life music, but in Mario mode maps or if `Use1upSound` is enabled in the MainCfg block, this is instead a sound effect.
+-- * If the music is used, the `player`'s `pw_extralife` timer is set to `ExtraLifeTics + 1`.
+--
+---@param player player_t
+function P_PlayLivesJingle(player) end
+
+-- Returns true if `player` can pick up the item, returns false if player is a bot or is flashing after being hurt.
+--
+---@param player player_t
+---@param weapon? boolean
+---@return boolean
+function P_CanPickupItem(player, weapon) end
+
+-- Awards score to `player` NiGHTS-style; spawns a floating score item which changes appearance depending on the player's current link count and whether the player is in bonus time.
+--
+---@param player player_t
+function P_DoNightsScore(player) end
+
+-- Gives invincibility, speed shoes, and steals score form others if `player` has all 7 Match Emeralds.
+-- * This will remove the emeralds afterwards.
+--
+---@param player player_t
+function P_DoMatchSuper(player) end
+
 
 --//
 
 
--- TODO: P_Map
+-- Checks if the position `(x, y)` is valid for the Object `mobj`.
+-- * **`NOTE:`** This does not actually teleport the Object to the given coordinates; it only tests what would happen if it was at that position.
+--
+-- This function returns false if:
+-- > * The Object has been blocked by a wall or another Object.
+-- > * The Object has been removed from the map during checking; otherwise it will return true to signal the position is not blocked.
+--
+-- This function additionally returns the `tmthing` Object set during the run of the function, which in the majority of cases will be `mobj` itself.
+--
+-- The blockmap is checked for any Objects or walls to collide with; any Objects with `MF_NOBLOCKMAP` cannot be collided with by this function.
+-- * **`NOTE:`** Objects using this function that have the `MF_NOCLIP` flag will not clip with other Objects or walls at all, while Objects with `MF_NOCLIPTHING` will not clip with Objects but can still be blocked by walls.
+--
+---@param mobj mobj_t
+---@param x fixed_t
+---@param y fixed_t
+---@return boolean, mobj_t
+function P_CheckPosition(mobj, x, y) end
+
+-- Tries to move the Object mobj to the `x`/`y` coordinates supplied (all done in the same tic), checking each position to make sure the Object is not blocked on the way there.
+-- * If it is blocked by a wall or another Object, or the height of the sector is too small to fit in, this will return false and leave the Object where it was to begin with (i.e., the move failed); otherwise this will return true with the Object at the coordinates supplied.
+-- * This function additionally returns the `tmthing` Object set during the run of the function, which in the majority of cases will be `mobj` itself.
+--
+-- `allowdropoff` determines whether to stop the Object from falling off a platform too low to step-down when moving, or let it continue regardless of this.
+-- * If `allowdropoff` is false and the Object would be falling off a platform if it continued, this will return false.
+--
+-- **`NOTE:`** Pushable Objects will also move along anything on top with them when they are moved.
+-- * Objects with `MF_NOCLIP` will be able to move straight to the specified position without being blocked by anything, and `allowdropoff` will not affect them.
+--
+---@param mobj mobj_t
+---@param x fixed_t
+---@param y fixed_t
+---@param allowdropoff? boolean
+---@return boolean, mobj_t
+function P_TryMove(mobj, x, y, allowdropoff) end
+
+-- Moves the actor Object in its current direction (using `actor.movedir` rather than the angle), moving forward a distance of `speed*FRACUNIT`.
+-- * This returns true when the actor has moved; returns false if the actor cannot move, does not have a direction to move in or is dead.
+-- * This function additionally returns the `tmthing` Object set during the run of the function, which in the majority of cases will be `actor` itself.
+--
+---@param actor mobj_t
+---@param speed integer
+---@return boolean, mobj_t
+function P_Move(actor, speed) end
+
+-- Teleports `mobj` straight to the `x`, `y`, and `z` coordinates supplied, but does not account for whether the Object will be stuck in this position, and will always return true.
+-- * This function additionally returns the `tmthing` Object set during the run of the function, which in the majority of cases will be `mobj` itself.
+--
+---@deprecated
+---@param mobj mobj_t
+---@param x fixed_t
+---@param y fixed_t
+---@param z fixed_t
+---@return boolean, mobj_t
+function P_TeleportMove(mobj, x, y, z) end
+
+-- Slides `mo` along a wall using its current `x`/`y` momentum.
+-- * This assumes that `mo` has already been blocked by a wall, so this searches for the wall that blocked it before sliding.
+--
+---@param mo mobj_t
+function P_SlideMove(mo) end
+
+-- Bounces `mo` off a wall using its current `x`/`y` momentum.
+-- * This assumes that `mo` has already been blocked by a wall, so this searches for the wall that blocked it before bouncing.
+--
+---@param mo mobj_t
+function P_BounceMove(mo) end
+
+-- Checks if `target` is visible from `source`'s position.
+-- * If it is, this returns true; otherwise it returns false.
+-- * This function is also able to check if FOFs are blocking the line of sight.
+-- * **`NOTE:`** The angles the Objects are facing are not taken into consideration, only their map coordinates and heights.
+--
+---@param source mobj_t
+---@param target mobj_t
+---@return boolean
+function P_CheckSight(source, target) end
+
+-- Optimized version of `P_CheckPosition` specifically designed for `MT_HOOPCOLLIDE`.
+--
+---@param hoop mobj_t
+---@param x fixed_t
+---@param y fixed_t
+---@param z fixed_t
+function P_CheckHoopPosition(hoop, x, y, z) end
+
+-- Damages all damageable Objects in the blockmap around `inflictor`, with `source` being the Object that inflictor came from (if not the same as inflictor itself).
+-- * `radius` is the distance limit around inflictor to damage other Objects in, which will automatically be scaled with `inflictor`'s scale.
+-- * `damagetype` determines the type of damage dealt to Objects hit by the attack.
+-- * If `sightcheck` is true or not set, the target objects will only be damaged if they have line of sight with the `inflictor`'s position; If false, the attack will be able to harm objects behind walls.
+--
+-- Objects that cannot be damaged by `P_RadiusAttack` include:
+-- > * Any Objects sharing the same type as `inflictor`.
+-- > * The `source` Object itself.
+-- > * Monitors, bosses, non-shootable Objects (if `MF_SHOOTABLE` is not set).
+-- > * Any Objects not within the blockmap at all (if `MF_NOBLOCKMAP` is set).
+--
+---@param inflictor mobj_t
+---@param source mobj_t
+---@param radius fixed_t
+---@param damagetype? integer
+---@param sightcheck? boolean
+function P_RadiusAttack(inflictor, source, radius, damagetype, sightcheck) end
+
+-- Returns what would be the `floorz` (the absolute Z position of the floor) at the `x`, `y`, and `z` coordinates supplied.
+-- * `height` should be the height of the Object you want to check this for (needed for checking solid/quicksand FOFs).
+-- * Keep in mind the coordinates and perhaps even the height do not necessarily have to be the actual position of an existing Object.
+--
+---@param x fixed_t
+---@param y fixed_t
+---@param z fixed_t
+---@param height fixed_t
+---@return fixed_t
+function P_FloorzAtPos(x, y, z, height) end
+
+-- Returns what would be the `ceilingz` (the absolute Z position of the ceiling) at the `x`, `y`, and `z` coordinates supplied.
+-- * `height` should be the height of the Object you want to check this for (needed for checking solid/quicksand FOFs).
+-- * Keep in mind the coordinates and perhaps even the height do not necessarily have to be the actual position of an existing Object.
+--
+---@param x fixed_t
+---@param y fixed_t
+---@param z fixed_t
+---@param height fixed_t
+---@return fixed_t
+function P_CeilingzAtPos(x, y, z, height) end
+
+-- The `spring` Object sends `object` into the air like a spring.
+-- * `spring` does not necessarily have to be an Object with the `MF_SPRING` flag, but it should have least all the same attributes as one.
+-- * **`NOTE:`** `object` will also be given the `MFE_SPRUNG` flag, marking it as having already touched a spring this tic; the flag will automatically be removed the next tic.
+-- * If this function is called while object has this flag set, it will have no effect.
+--
+---@param spring mobj_t
+---@param object mobj_t
+function P_DoSpring(spring, object) end
+
+-- Tries to move `camera` to the `x`/`y` coordinates supplied (all done in the same tic), checking each position to make sure `camera` is not blocked on the way there.
+-- * If it is blocked by a wall, or the height of the sector is too small to fit in, this will return false and leave `camera` where it was to begin with; otherwise this will return true with `camera` at the coordinates supplied.
+--
+---@param camera camera_t
+---@param x fixed_t
+---@param y fixed_t
+---@return boolean
+function P_TryCameraMove(camera, x, y) end
+
+-- Teleports `camera` straight to the `x`, `y`, and `z` coordinates supplied, but does not account for whether `camera` will be stuck in this position.
+--
+---@param camera camera_t
+---@param x fixed_t
+---@param y fixed_t
+---@param z fixed_t
+function P_TeleportCameraMove(camera, x, y, z) end
 
 
 --//
