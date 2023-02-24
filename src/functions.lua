@@ -1813,7 +1813,24 @@ function P_SpawnLockOn(player, target, state) end
 --//
 
 
--- TODO: P_Slopes
+-- TODO: P_Polyobj
+
+
+--//
+
+
+-- Returns the corresponding `z` position on the slope for the `x`/`y` coordinates given.
+--
+---@param slope pslope_t
+---@param x fixed_t
+---@param y fixed_t
+---@return fixed_t
+function P_GetZAt(slope, x, y) end
+
+-- **`TODO:`** Add a description when the wiki does.
+--
+---@param mobj mobj_t
+function P_ButteredSlope(mobj) end
 
 
 --//
