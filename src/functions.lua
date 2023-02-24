@@ -1949,6 +1949,226 @@ function P_SpawnShieldOrb(player) end
 ---@return mobj_t
 function P_SpawnGhostMobj(mobj) end
 
+-- Adds `amount` to `player`'s ring count.
+-- * This corrects ring count if `amount` is above 9999 or below 0.
+-- * This also awards extra life bonuses for multiples of 100 rings up to the value of `maxXtraLife` in the MainCfg block (by default this is 2, which allows for extra life bonuses up to 200 rings).
+--
+---@param player player_t
+---@param amount integer
+function P_GivePlayerRings(player, amount) end
+
+-- Adds `amount` to `player`'s lives count.
+-- This corrects lives count if `amount` is above 99 or below 1.
+--
+---@param player player_t
+---@param amount integer
+function P_GivePlayerLives(player, amount) end
+
+-- Adds `amount` to the lives pool if the game is using shared lives.
+-- * When not using shared lives, adds `amount` of lives to all individual players.
+--
+---@param player player_t
+---@param amount integer
+---@param playsound? boolean
+function P_GiveCoopLives(player, amount, playsound) end
+
+-- Resets `<player_t>.scoreadd` value to 0, ending any score chains in progress.
+--
+---@param player player_t
+function P_ResetScore(player) end
+
+-- If `player` has the shield power `SH_PROTECTELECTRIC`, this will activate the Lightning Shield's double jump.
+-- * In any other case, `player` peforms a Whirlwind Shield-style jump and switches to their falling animations.
+--
+---@param player player_t
+function P_DoJumpShield(player) end
+
+-- Landing handler for the Bubble Shield.
+-- * Bounces `player` upwards.
+--
+---@param player player_t
+function P_DoBubbleBounce(player) end
+
+-- This is used by the Armageddon Shield to blow up enemies, flash the palettes of all players within the explosion radius (`1536*FRACUNIT`) and destroy the shield currently being held by `player`.
+-- * This also plays the Armageddon explosion sound.
+--
+---@param player player_t
+function P_BlackOw(player) end
+
+-- Spawns two Elemental Shield-style flames for both sides and behind `player`, but needs to be used repeatedly to spawn a true Elemental Shield fire trail.
+-- * If `cropcircle` is true, this instead spawns flames in a circle pattern like that of the Elemental Shield's ground pound attack.
+--
+---@param player player_t
+---@param cropcircle? boolean
+function P_ElementalFire(player, cropcircle) end
+
+-- Sets the flag `PF_FINISHED` to `player`, causing it to "finish" the level, while still allowing them to continue moving.
+-- * If in singleplayer, or if the console variable `exitmove` is not set, this will cause the player thinker to call `P_DoPlayerExit`.
+--
+---@param player player_t
+function P_DoPlayerFinish(player) end
+
+-- This is used to have `player` "complete" the level and become immobile.
+-- * This will not immediately end the level itself, but prepares to end the level after a set amount of time.
+--
+---@param player player_t
+function P_DoPlayerExit(player) end
+
+-- Set `mobj`'s horizontal momentum to the value of move in the direction of `angle`.
+-- * **`NOTE:`** This will apply momentum absolutely; i.e., all existing momentum applied to the Object in any direction is lost.
+-- * If `mobj` has `MF2_TWOD` applied, only momentum in the `x`-direction is modified; momentum in the `y`-direction is unaffected.
+--
+-- To add to existing momentum rather than completely replace it, see `P_Thrust`.
+function P_InstaThrust(mobj, angle, move) end
+
+-- Returns the `x` component of a set thrust value at a specified `angle`.
+-- * `mobj` is unused.
+--
+---@param mobj? mobj_t
+---@param angle angle_t
+---@param move fixed_t
+---@return fixed_t
+function P_ReturnThrustX(mobj, angle, move) end
+
+-- Returns the `y` component of a set thrust value at a specified `angle`.
+-- * `mobj` is unused.
+--
+---@param mobj? mobj_t
+---@param angle angle_t
+---@param move fixed_t
+---@return fixed_t
+function P_ReturnThrustY(mobj, angle, move) end
+
+-- Returns a nearby Object that `player` can hit, if one is found.
+-- * This is used by the `CA_HOMINGTHOK` and `CA2_GUNSLINGER` character abilities, as well as the Attraction Shield's homing attack ability.
+--
+-- By default, this only looks for shootable enemies or bosses (not including the Deton), they must be within `RING_DIST` from the `player`'s position, and they cannot be more than `24*FRACUNIT` above the `player`'s `z` position.
+-- * If `nonenemies` is true, this function will also look for springs and monitors.
+-- * If `bullet` is true, the function can look upwards but is limited to a looking span of 30 degrees up or down, the searching distance is doubled (`1024*FRACUNIT`), and monitors and Detons are included in the search.
+--
+-- **`NOTE:`** Objects with the secondary flag `MF2_INVERTAIMABLE` may invert some of the effects of this function when found by it.
+--
+---@param player player_t
+---@param nonenemies? boolean
+---@param bullet? boolean
+---@return mobj_t
+function P_LookForEnemies(player, nonenemies, bullet) end
+
+-- Instantly defeats all enemies and damages bosses (as well as players in shooting gametypes) within a radius around the `inflictor` Object (the Object causing the damage).
+-- * `source` is where `inflictor` came from, if not the inflictor itself.
+--
+---@param inflictor mobj_t
+---@param source mobj_t
+---@param radius fixed_t
+function P_NukeEnemies(inflictor, source, radius) end
+
+-- The `source` Object faces the target Object and moves towards it; needs to be repeatedly used to work properly.
+-- * `source`'s movement speed depends on what source is; players will move at 2/3 of their `actionspd` value, the Deton will move at 17/20 of the enemy `<player_t>.normalspeed` value, otherwise all other Objects will use their Object type's `speed` value.
+-- * Returns true if the homing attack was successful, returns false if not.
+--
+---@param source mobj_t
+---@param target mobj_t
+---@return boolean
+function P_HomingAttack(source, target) end
+
+-- Returns true if the conditions are right for `player` to turn Super, false if not.
+--
+---@param player player_t
+---@return boolean
+function P_SuperReady(player) end
+
+-- Makes `player` jump.
+-- * `<player_t>.mo.momz` is set to a particular value depending on the situation, and the `PF_JUMPED` flag is given to `<player_t>.pflags`.
+-- * If `soundandstate` is set to true, `<player_t>.mo.state` will be changed to the appropriate jump states and play the jump sound.
+-- * If `player` has `PF_JUMPSTASIS` in `<player_t.pflags`, or `<player_t>.jumpfactor` is 0s, this function will do nothing.
+--
+---@param player player_t
+---@param soundandstate? boolean
+function P_DoJump(player, soundandstate) end
+
+-- Spawns `<player_t>.thokitem` (defined in S_SKIN) at `player`'s location.
+-- * Defaults to `MT_THOK` if no object is defined.
+--
+---@param player player_t
+function P_SpawnThokMobj(player) end
+
+-- Spawns a spin trail Object at `player`'s location.
+-- * `type` determines the type of the Object spawned.
+--
+---@param player player_t
+---@param type integer
+function P_SpawnSpinMobj(player, type) end
+
+-- Pushes away all enemies and players within a radius of `range` around `player` with the thrust value `thrust`.
+-- * If `thrust` is negative, this will instead pull in enemies and players towards player.
+--
+---@param player player_t
+---@param thrust fixed_t
+---@param range fixed_t
+function P_Telekinesis(player, thrust, range) end
+
+-- Switches the current shield player has with `shieldtype`.
+-- * This will also cause an unused Armageddon Shield to explode.
+--
+---@param player player_t
+---@param shield integer
+function P_SwitchShield(player, shield) end
+
+-- Calls `P_PlayJingleMusic` for the player player with the appropriate arguments as set by `jingletype`.
+-- * `jingletype` should be one of the `JT_*` constants.
+--
+---@param player player_t
+---@param jingletype integer
+function P_PlayJingle(player, jingletype) end
+
+-- Pushes the music `musname` to `player`'s music stack with the properties set by `musflags`, `looping`, and `jingletype`, and plays the music for that player.
+-- * If not specified, `musflags` will be set to 0, `looping` will be set to true, and `jingletype` will be set to `JT_OTHER`.
+--
+---@param player player_t
+---@param musname string
+---@param musflags? integer
+---@param looping? boolean
+---@param jingletype? integer
+function P_PlayJingleMusic(player, musname, musflags, looping, jingletype) end
+
+-- Spawns spindash dust randomly around `player` within a certain `radius`, and plays `sound` if given.
+--
+---@param player player_t
+---@param radius fixed_t
+---@param sound? integer
+function P_SpawnSkidDust(player, radius, sound) end
+
+-- Damages enemies within the given `radius`.
+-- * Used for Super Knuckles' landing.
+--
+---@param inflictor mobj_t
+---@param source mobj_t
+---@param radius fixed_t
+function P_Earthquake(inflictor, source, radius) end
+
+-- **`TODO:`** Complete the description when the wiki does.
+--
+---@param player player_t
+---@return boolean
+function P_PlayerFullbright(player) end
+
+-- **`TODO:`** Complete the description when the wiki does.
+--
+---@param player player_t
+function P_MovePlayer(player) end
+
+-- **`TODO:`** Complete the description when the wiki does.
+--
+---@param player player_t
+---@return boolean
+function P_PlayerCanEnterSpinGaps(player) end
+
+-- **`TODO:`** Complete the description when the wiki does.
+--
+---@param player player_t
+---@return boolean
+function P_PlayerShouldUseSpinHeight(player) end
+
 
 --//
 
