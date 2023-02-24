@@ -987,9 +987,10 @@ function CV_Set(cvar, value) end
 ---@param value string | integer
 function CV_StealthSet(cvar, value) end
 
--- Adds a value (`increment`) to the console variable. (`cvar`)
+-- Adds `increment` to the console variable `cvar`.
 -- * `increment` can also be a negative number.
--- * If performing the addition causes the variable's value to go below its minimum or above its maximum, the final value will wrap around those bounds.
+--
+-- If performing the addition causes the variable's value to go below its minimum or above its maximum, the final value will wrap around those bounds.
 --
 -- * There are special cases for some console variables:
 -- > * `pointlimit`: If the current gametype is `GT_MATCH`, `increment` is multiplied by 50.
@@ -1018,7 +1019,7 @@ function print(...) end
 function CONS_Printf(player, ...) end
 
 -- Outputs text in the chat window (or the console if it cannot be output in the chat window). Each output string will be separated into different lines.
--- * If `sound` is set to true (defaults to false), a sound will be played when sent.
+-- * If `sound` is set to true, a sound will be played when sent.
 -- * Certain ASCII characters will have special effects when printed out to the chat window or console by this function. These can either be given using decimal (`\nnn`) or hexadecimal codes (`\xnn` or `\xnnnn`). For example, `\130` and `\x82` will both cause text following the code to turn yellow.
 --
 ---@param output string
@@ -1028,7 +1029,7 @@ function chatprint(output, sound) end
 
 -- Outputs text in the chat window (or the console if it cannot be output in the chat window). Each output string will be separated into different lines.
 -- * Unlike `chatprint`, the text will only be output for the player supplied in `player`.
--- * If `sound` is set to true (defaults to false), a sound will be played when sent.
+-- * If `sound` is set to true, a sound will be played when sent.
 -- * Certain ASCII characters will have special effects when printed out to the chat window or console by this function. These can either be given using decimal (`\nnn`) or hexadecimal codes (`\xnn` or `\xnnnn`). For example, `\130` and `\x82` will both cause text following the code to turn yellow.
 --
 ---@param player player_t
@@ -1622,7 +1623,6 @@ function P_Move(actor, speed) end
 -- Teleports `mobj` straight to the `x`, `y`, and `z` coordinates supplied, but does not account for whether the Object will be stuck in this position, and will always return true.
 -- * This function additionally returns the `tmthing` Object set during the run of the function, which in the majority of cases will be `mobj` itself.
 --
----@deprecated
 ---@param mobj mobj_t
 ---@param x fixed_t
 ---@param y fixed_t
