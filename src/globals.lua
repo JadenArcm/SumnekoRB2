@@ -423,3 +423,10 @@ CV_Natural = {MIN = 1, MAX = 999999999}
 
 
 --//
+
+-- Inputting this on the game will throw an error and return `nil`.
+-- * Created for the sole purpose of the `mobjs.iterate()` function.
+---@type nil
+mobjs = {}
+
+--//
