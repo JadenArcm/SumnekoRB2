@@ -286,6 +286,10 @@ displayplayer = nil
 ---@type player_t
 secondarydisplayplayer = nil
 
+-- The player/s have failed the current stage.
+---@type boolean
+stagefailed = nil
+
 -- The primary camera in-game.
 ---@type camera_t
 camera = nil

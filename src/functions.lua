@@ -216,7 +216,7 @@ function userdataType(var) end
 ---@return UINT32[]
 function reserveLuaBanks() end
 
--- Registers the metatable metatable.
+-- Registers the metatable `metatable`.
 -- * Currently, tables passed through `NetVars` hooks or stored in custom `player_t`/`mobj_t` fields will not keep their metatable, because SRB2 does not keep track of them by default.
 -- * This issue can be solved by calling this function during script loading to have SRB2 register the given metatable, in such a way that the `tables`/`userdata` this metatable is attached to (via `setmetatable()`) will not lose their metatable when sent to a client connecting to the server.
 --
@@ -1620,7 +1620,7 @@ function P_TryMove(mobj, x, y, allowdropoff) end
 ---@return boolean, mobj_t
 function P_Move(actor, speed) end
 
--- Teleports `mobj` straight to the `x`, `y`, and `z` coordinates supplied, but does not account for whether the Object will be stuck in this position, and will always return true.
+-- Sets `mobj`'s origin (*without* interpolation) straight to the `x`, `y`, and `z` coordinates supplied, but does not account for whether the Object will be stuck in this position, and will always return true.
 -- * This function additionally returns the `tmthing` Object set during the run of the function, which in the majority of cases will be `mobj` itself.
 --
 ---@param mobj mobj_t
@@ -1628,6 +1628,25 @@ function P_Move(actor, speed) end
 ---@param y fixed_t
 ---@param z fixed_t
 ---@return boolean, mobj_t
+function P_SetOrigin(mobj, x, y, z) end
+
+-- Moves `mobj`'s origin (*with* interpolation) to the `x`, `y`, and `z` coordinates supplied, but does not account for whether the Object will be stuck in this position, and will always return true.
+-- * This function additionally returns the `tmthing` Object set during the run of the function, which in the majority of cases will be `mobj` itself.
+--
+---@param mobj mobj_t
+---@param x fixed_t
+---@param y fixed_t
+---@param z fixed_t
+---@return boolean, mobj_t
+function P_MoveOrigin(mobj, x, y, z) end
+
+-- Since 2.2.11, interpolation was added to the game. Please use `P_SetOrigin` or `P_MoveOrigin` functions instead.
+--
+---@param mobj mobj_t
+---@param x fixed_t
+---@param y fixed_t
+---@param z fixed_t
+---@deprecated
 function P_TeleportMove(mobj, x, y, z) end
 
 -- Slides `mo` along a wall using its current `x`/`y` momentum.
@@ -2528,6 +2547,7 @@ function vertexes.iterate() end
 -- Iterates over all PolyObjects in the map.
 --
 ---@return polyobj_t
+---@diagnostic disable-next-line
 function polyobjects.iterate() end
 
 

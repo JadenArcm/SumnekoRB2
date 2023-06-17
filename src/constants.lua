@@ -1826,8 +1826,8 @@ CV_HIDDEN = 1 << 10
 -- The variable is a cheat, and can be reset to its default value by using `cheats off` in the console.
 CV_CHEAT = 1 << 11
 
--- The variable cannot be set from Lua.
-CV_NOLUA = 1 << 12
+-- The variable can be run from Lua.
+CV_ALLOWLUA = 1 << 12
 
 
 --//
@@ -2244,7 +2244,7 @@ GS_CUTSCENE = 10
 GS_DEDICATEDSERVER = 11
 
 -- Waiting for players in multiplayer.
-GS_MULTIPLAYER = 12
+GS_WAITINGPLAYERS = 12
 
 
 --//
