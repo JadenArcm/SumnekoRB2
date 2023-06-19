@@ -617,8 +617,11 @@
 
 ---@class hudlib
 ---@class drawerlib
+---@class easelib
+---@class inputlib
 ---@class colormap
 
+---@class skincolornum_t
 ---@class spriteinfo_t
 ---@class playersprite_t
 

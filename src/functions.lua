@@ -600,6 +600,7 @@ function hud.disable(huditem) end
 -- Returns true if `huditem` is enabled, false if it was disabled by `hud.disable`.
 --
 ---@param huditem hudTypes
+---@return boolean
 function hud.enabled(huditem) end
 
 -- Adds a new HUD drawing function. `hookname` determines when the contents of the function are run.
@@ -2500,6 +2501,7 @@ function S_SetMusicPosition(position) end
 -- * **`NOTE:`** This iterator is extremely slow due to the massive amount of thinkers in a typical map, and should not be used repeatedly so as not to cause framerate drops.
 --
 ---@return mobj_t
+---@diagnostic disable-next-line
 function mobjs.iterate() end
 
 -- Iterates over all players currently playing in the map.

@@ -139,19 +139,19 @@ tutorialmap = nil
 tutorialmode = nil
 
 -- The skin color of the Red Team in Team Match and CTF.
----@type skincolor_t
+---@type skincolornum_t
 skincolor_redteam = nil
 
 -- The skin color of the Blue Team in Team Match and CTF.
----@type skincolor_t
+---@type skincolornum_t
 skincolor_blueteam = nil
 
 -- The skin color of the Red Team thrown ring in Team Match and CTF.
----@type skincolor_t
+---@type skincolornum_t
 skincolor_redring = nil
 
 -- The skin color of the Blue Team thrown ring in Team Match and CTF.
----@type skincolor_t
+---@type skincolornum_t
 skincolor_bluering = nil
 
 -- How long the Invincibility power-up lasts for.
@@ -425,12 +425,5 @@ CV_YesNo = {No = 0, Yes = 1}
 CV_Unsigned = {MIN = 0, MAX = 999999999}
 CV_Natural = {MIN = 1, MAX = 999999999}
 
-
---//
-
--- Inputting this on the game will throw an error and return `nil`.
--- * Created for the sole purpose of the `mobjs.iterate()` function.
----@type nil
-mobjs = {}
 
 --//
