@@ -479,6 +479,67 @@ MTF_AMBUSH = 1 << 3
 --//
 
 
+-- 10% Translucent (90% Opaque)
+tr_trans10 = 1
+
+-- 20% Translucent (80% Opaque)
+tr_trans20 = 2
+
+-- 30% Translucent (70% Opaque)
+tr_trans30 = 3
+
+-- 40% Translucent (60% Opaque)
+tr_trans40 = 4
+
+-- 50% Translucent (50% Opaque)
+tr_trans50 = 5
+
+-- 60% Translucent (40% Opaque)
+tr_trans60 = 6
+
+-- 70% Translucent (30% Opaque)
+tr_trans70 = 7
+
+-- 80% Translucent (20% Opaque)
+tr_trans80 = 8
+
+-- 90% Translucent (10% Opaque)
+tr_trans90 = 9
+
+-- `tr_trans10` for SOCs (`tr_trans10 << FF_TRANSSHIFT`)
+TR_TRANS10 = tr_trans10 << FF_TRANSSHIFT
+
+-- `tr_trans20` for SOCs (`tr_trans20 << FF_TRANSSHIFT`)
+TR_TRANS20 = tr_trans20 << FF_TRANSSHIFT
+
+-- `tr_trans30` for SOCs (`tr_trans30 << FF_TRANSSHIFT`)
+TR_TRANS30 = tr_trans30 << FF_TRANSSHIFT
+
+-- `tr_trans40` for SOCs (`tr_trans40 << FF_TRANSSHIFT`)
+TR_TRANS40 = tr_trans40 << FF_TRANSSHIFT
+
+-- `tr_trans50` for SOCs (`tr_trans50 << FF_TRANSSHIFT`)
+TR_TRANS50 = tr_trans50 << FF_TRANSSHIFT
+
+-- `tr_trans60` for SOCs (`tr_trans60 << FF_TRANSSHIFT`)
+TR_TRANS60 = tr_trans60 << FF_TRANSSHIFT
+
+-- `tr_trans70` for SOCs (`tr_trans70 << FF_TRANSSHIFT`)
+TR_TRANS70 = tr_trans70 << FF_TRANSSHIFT
+
+-- `tr_trans80` for SOCs (`tr_trans80 << FF_TRANSSHIFT`)
+TR_TRANS80 = tr_trans80 << FF_TRANSSHIFT
+
+-- `tr_trans90` for SOCs (`tr_trans90 << FF_TRANSSHIFT`)
+TR_TRANS90 = tr_trans90 << FF_TRANSSHIFT
+
+-- Number of translucency maps.
+NUMTRANSMAPS = 10
+
+
+--//
+
+
 -- Frame number mask.
 FF_FRAMEMASK = 0xFF
 
