@@ -1621,8 +1621,9 @@ function P_TryMove(mobj, x, y, allowdropoff) end
 ---@return boolean, mobj_t
 function P_Move(actor, speed) end
 
--- Sets `mobj`'s origin (*without* interpolation) straight to the `x`, `y`, and `z` coordinates supplied, but does not account for whether the Object will be stuck in this position, and will always return true.
--- * This function additionally returns the `tmthing` Object set during the run of the function, which in the majority of cases will be `mobj` itself.
+-- Teleports `mobj` to the x, y, and z coordinates supplied without any positional checks.
+-- * As all interpolation values of the Object are **reset**, this function should be used for instant movement.
+-- * It will always return *`true`*, plus the `tmthing` Object set during the run of the function, which in the majority of cases will be `mobj` itself.
 --
 ---@param mobj mobj_t
 ---@param x fixed_t
@@ -1631,7 +1632,8 @@ function P_Move(actor, speed) end
 ---@return boolean, mobj_t
 function P_SetOrigin(mobj, x, y, z) end
 
--- Moves `mobj`'s origin (*with* interpolation) to the `x`, `y`, and `z` coordinates supplied, but does not account for whether the Object will be stuck in this position, and will always return true.
+-- Teleports `mobj` to the x, y, and z coordinates supplied without any positional checks.
+-- * As all interpolation values of the Object are **kept**, this function should be used for continuous movement.
 -- * This function additionally returns the `tmthing` Object set during the run of the function, which in the majority of cases will be `mobj` itself.
 --
 ---@param mobj mobj_t
@@ -1641,7 +1643,7 @@ function P_SetOrigin(mobj, x, y, z) end
 ---@return boolean, mobj_t
 function P_MoveOrigin(mobj, x, y, z) end
 
--- Since 2.2.11, interpolation was added to the game. Please use `P_SetOrigin` or `P_MoveOrigin` functions instead.
+-- **`NOTE:`** This function has been deprecated since the introduction of 2.2.11, and we recommend you to use `P_SetOrigin` or `P_MoveOrigin` instead.
 --
 ---@param mobj mobj_t
 ---@param x fixed_t
@@ -1887,7 +1889,7 @@ function P_GetPlayerSpinHeight(player) end
 function P_GetPlayerControlDirection(player) end
 
 -- Adds amount to player's score.
--- * This also ensures that the score does not exceed `MAXSCORE` (`999999990`), and awards lives for every `50000` points (if not losing points).
+-- * This also ensures that the score does not exceed `MAXSCORE` (`99999990`), and awards lives for every `50000` points (if not losing points).
 -- * This is also handled somewhat differently for NiGHTS stages (both normal and Special Stages), modifying `<player_t>.marescore` instead of `<player_t>.score`.
 --
 ---@param player player_t
@@ -2560,6 +2562,9 @@ function polyobjects.iterate() end
 -- * For instance, to load the file `Lua/script.lua`, use `dofile("script.lua")`.
 -- * It is highly recommended this only be used in `init.lua` as the add-on is loading, though it can technically be used at any time.
 -- * For addons that are developed on folders, this is highly recommended for file loading.
+--
+---@param file string
+---@return any ...
 function dofile(file) end
 
 
