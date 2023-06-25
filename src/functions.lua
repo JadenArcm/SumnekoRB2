@@ -225,7 +225,7 @@ function reserveLuaBanks() end
 function registerMetatable(metatable) end
 
 -- Takes a string as only argument and returns the metatable associated to the userdata type this string refers to.
--- * Returns nil if the string does not refer to a valid userdata type.
+-- * Returns *`nil`* if the string does not refer to a valid userdata type.
 --
 ---@param userdataname string
 ---@return table | nil
@@ -430,7 +430,7 @@ function FixedRound(a) end
 ---@return integer
 function GetSecSpecial(special, section) end
 
--- Returns true if `flags` contains all the emerald flags from `EMERALD1` to `EMERALD7`.
+-- Returns *`true`* if `flags` contains all the emerald flags from `EMERALD1` to `EMERALD7`.
 -- * Intended to be used for checking either the Single Player/Co-op emeralds collected by all players (`emeralds`), or the multiplayer emeralds collected by a particular player (`<player_t>.powers[pw_emeralds]`).
 --
 ---@param flags integer
@@ -597,7 +597,7 @@ function hud.enable(huditem) end
 ---@param huditem hudTypes
 function hud.disable(huditem) end
 
--- Returns true if `huditem` is enabled, false if it was disabled by `hud.disable`.
+-- Returns *true`* if `huditem` is enabled, *`false`* if it was disabled by `hud.disable`.
 --
 ---@param huditem hudTypes
 ---@return boolean
@@ -613,13 +613,13 @@ function hud.add(callback, layer) end
 --//
 
 
--- Returns true if a graphic lump `name` exists in any WAD file loaded, returns false if not.
+-- Returns *`true`* if a graphic lump `name` exists in any WAD file loaded, returns *`false`* if not.
 --
 ---@param name string
 ---@return boolean
 function v.patchExists(name) end
 
--- Caches a new patch using a graphic with `name` as the name. Returns nil if the graphic does not exist.
+-- Caches a new patch using a graphic with `name` as the name. Returns *`nil`* if the graphic does not exist.
 --
 ---@param name string
 ---@return patch_t
@@ -924,8 +924,8 @@ function v.RandomRange(a, b) end
 ---@return integer
 function v.SignedRandom() end
 
--- Returns true `p`% of the time, where `p` is a fixed-point number between 0 and `FRACUNIT`.
--- * For example, `v.RandomChance(FRACUNIT/2)` returns true 50% of the time.
+-- Returns *`true`* `p`% of the time, where `p` is a fixed-point number between 0 and `FRACUNIT`.
+-- * For example, `v.RandomChance(FRACUNIT/2)` returns *`true`* 50% of the time.
 --
 ---@param p fixed_t
 ---@return boolean
@@ -1042,8 +1042,8 @@ function chatprintf(player, output, sound) end
 --//
 
 
--- Returns true if the player has been given administrative privileges by the server via the `promote` command, or has logged as an admin via a preset password. Returns false otherwise.
--- * Note that the host themselves will not necessarily return true to this function, since their administrative powers are there by default.
+-- Returns *`true`* if the player has been given administrative privileges by the server via the `promote` command, or has logged as an admin via a preset password. Returns *`false`* otherwise.
+-- * Note that the host themselves will not necessarily return *`true`* to this function, since their administrative powers are there by default.
 --
 ---@param player player_t
 ---@return boolean
@@ -1053,18 +1053,18 @@ function IsPlayerAdmin(player) end
 --//
 
 
--- Does a search through a specified area of the blockmap. This can be used to find Objects or linedefs in the area and run a function for each them. This function returns true if the search was not interrupted at any point, and false if it was.
+-- Does a search through a specified area of the blockmap. This can be used to find Objects or linedefs in the area and run a function for each them. This function returns *`true`* if the search was not interrupted at any point, and *`false`* if it was.
 -- * `searchtype` can determine either `"objects"` (which returns `mobj_t`) or `"lines"` (which returns `line_t`) that can be searched.
 -- * `fn`'s format depends on `searchtype`. These are the arguments:
--- > * `"objects"` search – `function(refmobj: mobj_t, foundmobj: mobj_t)`
--- > * `"lines"` search – `function(refmobj: mobj_t, foundline: line_t)`
+-- > * `"objects"` search – *`function(refmobj: mobj_t, foundmobj: mobj_t)`*
+-- > * `"lines"` search – *`function(refmobj: mobj_t, foundline: line_t)`*
 --
 -- * The return values of `fn` affects how searching works:
--- > * `return nil` - Continue searching as normal. (just like `continue` in loops)
--- > * `return false` - Stop searching in the current block and move on to the next block.
--- > * `return true` - End the search entirely.
+-- > * *`return nil`* - Continue searching as normal. (just like `continue` in loops)
+-- > * *`return false`* - Stop searching in the current block and move on to the next block.
+-- > * *`return true`* - End the search entirely.
 --
--- * If `fn` returns true or false at any point, `searchBlockmap` will return false.
+-- * If `fn` returns *`true`* or *`false`* at any point, `searchBlockmap` will return *`false`*.
 --
 -- * `refmobj` is a reference Object of your choice used within searching. If you do not supply `X`/`Y` ranges to search in, it defaults to checking within the Object's radius in both axes.
 -- * If `refmobj` was removed mid-search, the search stops and searchBlockmap will return false. However, `refmobj` is not an optional argument. (a dummy Object can be used if necessary)
@@ -1217,7 +1217,7 @@ function G_SetCustomExitVars(nextmap, skipstats) end
 -- * If `G_SetCustomExitVars` was called beforehand, the level will exit using the custom settings set.
 function G_ExitLevel() end
 
--- Returns true if the map with the given map number is a Special Stage, returns false otherwise.
+-- Returns *`true`* if the map with the given map number is a Special Stage, returns *`false`* otherwise.
 -- * If no map number is given, the current map's number will be used.
 --
 ---@param map? integer
@@ -1229,43 +1229,43 @@ function G_IsSpecialStage(map) end
 ---@param t table
 function G_AddGametype(t) end
 
--- Returns true if the current gametype uses lives (Single Player, Co-op or Competition), returns false otherwise.
+-- Returns *`true`* if the current gametype uses lives (Single Player, Co-op or Competition), returns *`false`* otherwise.
 -- * If in Record Attack or a NiGHTS level, this returns false regardless of gametype.
 --
 ---@return boolean
 function G_GametypeUsesLives() end
 
--- Returns true if the current gametype uses the `cooplives` console variable, otherwise it returns false.
+-- Returns *`true`* if the current gametype uses the `cooplives` console variable, otherwise it returns *`false`*.
 --
 ---@return boolean
 function G_GametypeUsesCoopLives() end
 
--- Returns true if the current gametype uses the `coopstarposts` console variable, otherwise it returns false.
+-- Returns *`true`* if the current gametype uses the `coopstarposts` console variable, otherwise it returns false.
 --
 ---@return boolean
 function G_GametypeUsesCoopStarposts() end
 
--- Returns true if the current gametype has teams (Team Match or CTF); returns false otherwise.
+-- Returns *`true`* if the current gametype has teams (Team Match or CTF); returns false otherwise.
 --
 ---@return boolean
 function G_GametypeHasTeams() end
 
--- Returns true if the current gametype supports spectators (Match, CTF or Tag); returns false otherwise.
+-- Returns *`true`* if the current gametype supports spectators (Match, CTF or Tag); returns false otherwise.
 --
 ---@return boolean
 function G_GametypeHasSpectators() end
 
--- Returns true if the current gametype supports firing rings (Match, CTF or Tag), or if `ringslinger` is enabled; returns false otherwise.
+-- Returns *`true`* if the current gametype supports firing rings (Match, CTF or Tag), or if `ringslinger` is enabled; returns false otherwise.
 --
 ---@return boolean
 function G_RingSlingerGametype() end
 
--- Returns true if the current gametype is a "platformer" gametype (Single Player, Co-op, Race or Competition); returns false otherwise.
+-- Returns *`true`* if the current gametype is a "platformer" gametype (Single Player, Co-op, Race or Competition); returns false otherwise.
 --
 ---@return boolean
 function G_PlatformGametype() end
 
--- Returns true if the current gametype is Tag or Hide and Seek; returns false otherwise.
+-- Returns *`true`* if the current gametype is Tag or Hide and Seek; returns false otherwise.
 --
 ---@return boolean
 function G_TagGametype() end
@@ -1361,8 +1361,8 @@ function P_RandomRange(a, b) end
 ---@return integer
 function P_SignedRandom() end
 
--- Returns true `p`% of the time, where `p` is a fixed-point number between 0 and `FRACUNIT`.
--- * For example, `P_RandomChance(FRACUNIT/2)` returns true 50% of the time.
+-- Returns *`true`* `p`% of the time, where `p` is a fixed-point number between 0 and `FRACUNIT`.
+-- * For example, `P_RandomChance(FRACUNIT/2)` returns *`true`* 50% of the time.
 --
 ---@param p fixed_t
 ---@return boolean
@@ -1382,7 +1382,7 @@ function M_MapNumber(name) end
 --//
 
 
--- Returns true if `actor`'s target is within the actor's melee range, false if not.
+-- Returns *`true`* if `actor`'s target is within the actor's melee range, *`false`* if not.
 --
 ---@param actor mobj_t
 ---@return boolean
@@ -1406,8 +1406,8 @@ function P_FaceStabCheckMeleeRange(actor) end
 ---@return boolean
 function P_SkimCheckMeleeRange(actor) end
 
--- Returns true if `actor` is able to shoot its target at the moment.
--- * Returns false if `actor.reactiontime` has not reached 0 or actor cannot see the target. Otherwise, the result is randomly decided based on the distance between them.
+-- Returns *`true`* if `actor` is able to shoot its target at the moment.
+-- * Returns *`false`* if `actor.reactiontime` has not reached 0 or actor cannot see the target. Otherwise, the result is randomly decided based on the distance between them.
 --
 ---@param actor mobj_t
 ---@return boolean
@@ -1419,7 +1419,7 @@ function P_CheckMissileRange(actor) end
 ---@param actor mobj_t
 function P_NewChaseDir(actor) end
 
--- Can `actor` find a player with the conditions provided? If yes, this returns true and the `actor`'s target is set to the first player found. Otherwise this returns false and the `actor`'s target is unchanged.
+-- Can `actor` find a player with the conditions provided? If yes, this returns *`true`* and the `actor`'s target is set to the first player found. Otherwise this returns *`false`* and the `actor`'s target is unchanged.
 -- * `dist` determines the distance limit for the `actor` to check for players in. If dist is set to 0, the distance limit will be infinite.
 -- * `allaround` determines whether the `actor` will look all around itself for players or just within 90° of the direction it is currently facing.
 -- * `tracer` determines whether to use `actor.tracer` instead of `actor.target`. This is useful for homing missiles such as the Deton, since missiles set their target to the Object who shot them and thus cannot harm it.
@@ -1443,19 +1443,19 @@ function P_LookForPlayers(actor, dist, allaround, tracer) end
 function P_RemoveShield(player) end
 
 -- Inflicts `damage` on the target Object, causing it to lose a certain amount of health and use the state determined by `target.info.painstate`. However, if target has lost all health as a result of this function, `P_KillMobj` is called by this function instead.
--- * The return value of this function depends on whether target was damaged or not – if it was, this returns true; otherwise, this returns false.
+-- * The return value of this function depends on whether target was damaged or not – if it was, this returns *`true`*; otherwise, this returns *`false`*.
 --
 -- `inflictor` and `source` determine where the damage came from: `inflictor` is the Object that dealt the damage, `source` is the source of the damage (or where inflictor came from).
 -- * For instance, when a projectile fired by a player or enemy damages target, `inflictor` should be set the projectile itself, and `source` to the Object that fired the projectile.
 -- * However, in situations where a player or enemy directly damages `target`, `inflictor` and `source` are usually both set to the same Object.
--- * If the damage comes from a level hazard such as damaging sector specials or crushers (or otherwise from nowhere at all), it is best to set both these arguments to `nil`.
+-- * If the damage comes from a level hazard such as damaging sector specials or crushers (or otherwise from nowhere at all), it is best to set both these arguments to *`nil`*.
 --
 -- `damage` determines the amount of damage to deal to target, or the number of health points removed from it.
 --
 -- `damagetype` determines the damage type that will be dealt.
 -- * If the damage type has `DMG_INSTAKILL` set, the target will be killed.
 --
--- **`NOTE:`** If not given, `inflictor` and `source` both default to `nil`, `damage` defaults to 1 and `damagetype` to 0.
+-- **`NOTE:`** If not given, `inflictor` and `source` both default to *`nil`*, `damage` defaults to 1 and `damagetype` to 0.
 -- * The hooks `ShouldDamage` and `MobjDamage` can be used modify or replace some of the effects of this function.
 --
 ---@param target mobj_t
@@ -1466,12 +1466,12 @@ function P_RemoveShield(player) end
 ---@return boolean
 function P_DamageMobj(target, inflictor, source, damage, damagetype) end
 
--- Kills the `target` Object, making it become intangible as well as using the state determined by `target.info.deathstate` (if set to `nil`, the Object will be removed from existence).
+-- Kills the `target` Object, making it become intangible as well as using the state determined by `target.info.deathstate` (if set to *`nil`*, the Object will be removed from existence).
 -- * If `target` is an enemy or boss, and the Object that killed it was a player or one of their projectiles, points may be awarded to this player.
 -- * Flickies (and/or other items) will also be spawned by enemies killed by this function.
 -- * `damagetype` determines the damage type that was dealt.
 --
--- `inflictor` and `source` follow the same meanings as in `P_DamageMobj`, and both default to `nil` if not given.
+-- `inflictor` and `source` follow the same meanings as in `P_DamageMobj`, and both default to *`nil`* if not given.
 -- * The hook `MobjDeath` can be used to modify or replace some of the effects of this function.
 --
 ---@param target mobj_t
@@ -1555,7 +1555,7 @@ function P_PlayVictorySound(source, player) end
 ---@param player player_t
 function P_PlayLivesJingle(player) end
 
--- Returns true if `player` can pick up the item, returns false if player is a bot or is flashing after being hurt.
+-- Returns *`true`* if `player` can pick up the item, returns *`false`* if player is a bot or is flashing after being hurt.
 --
 ---@param player player_t
 ---@param weapon? boolean
@@ -1580,9 +1580,9 @@ function P_DoMatchSuper(player) end
 -- Checks if the position `(x, y)` is valid for the Object `mobj`.
 -- * **`NOTE:`** This does not actually teleport the Object to the given coordinates; it only tests what would happen if it was at that position.
 --
--- This function returns false if:
+-- This function returns *`false`* if:
 -- > * The Object has been blocked by a wall or another Object.
--- > * The Object has been removed from the map during checking; otherwise it will return true to signal the position is not blocked.
+-- > * The Object has been removed from the map during checking; otherwise it will return *`true*` to signal the position is not blocked.
 --
 -- This function additionally returns the `tmthing` Object set during the run of the function, which in the majority of cases will be `mobj` itself.
 --
@@ -1596,11 +1596,11 @@ function P_DoMatchSuper(player) end
 function P_CheckPosition(mobj, x, y) end
 
 -- Tries to move the Object mobj to the `x`/`y` coordinates supplied (all done in the same tic), checking each position to make sure the Object is not blocked on the way there.
--- * If it is blocked by a wall or another Object, or the height of the sector is too small to fit in, this will return false and leave the Object where it was to begin with (i.e., the move failed); otherwise this will return true with the Object at the coordinates supplied.
+-- * If it is blocked by a wall or another Object, or the height of the sector is too small to fit in, this will return *`false`* and leave the Object where it was to begin with (i.e., the move failed); otherwise this will return *`true`* with the Object at the coordinates supplied.
 -- * This function additionally returns the `tmthing` Object set during the run of the function, which in the majority of cases will be `mobj` itself.
 --
 -- `allowdropoff` determines whether to stop the Object from falling off a platform too low to step-down when moving, or let it continue regardless of this.
--- * If `allowdropoff` is false and the Object would be falling off a platform if it continued, this will return false.
+-- * If `allowdropoff` is false and the Object would be falling off a platform if it continued, this will return *`false`*.
 --
 -- **`NOTE:`** Pushable Objects will also move along anything on top with them when they are moved.
 -- * Objects with `MF_NOCLIP` will be able to move straight to the specified position without being blocked by anything, and `allowdropoff` will not affect them.
@@ -1613,7 +1613,7 @@ function P_CheckPosition(mobj, x, y) end
 function P_TryMove(mobj, x, y, allowdropoff) end
 
 -- Moves the actor Object in its current direction (using `actor.movedir` rather than the angle), moving forward a distance of `speed*FRACUNIT`.
--- * This returns true when the actor has moved; returns false if the actor cannot move, does not have a direction to move in or is dead.
+-- * This returns *`true`* when the actor has moved; returns *`false`* if the actor cannot move, does not have a direction to move in or is dead.
 -- * This function additionally returns the `tmthing` Object set during the run of the function, which in the majority of cases will be `actor` itself.
 --
 ---@param actor mobj_t
@@ -1665,7 +1665,7 @@ function P_SlideMove(mo) end
 function P_BounceMove(mo) end
 
 -- Checks if `target` is visible from `source`'s position.
--- * If it is, this returns true; otherwise it returns false.
+-- * If it is, this returns *`true`*; otherwise it returns *`false`*.
 -- * This function is also able to check if FOFs are blocking the line of sight.
 -- * **`NOTE:`** The angles the Objects are facing are not taken into consideration, only their map coordinates and heights.
 --
@@ -1732,7 +1732,7 @@ function P_CeilingzAtPos(x, y, z, height) end
 function P_DoSpring(spring, object) end
 
 -- Tries to move `camera` to the `x`/`y` coordinates supplied (all done in the same tic), checking each position to make sure `camera` is not blocked on the way there.
--- * If it is blocked by a wall, or the height of the sector is too small to fit in, this will return false and leave `camera` where it was to begin with; otherwise this will return true with `camera` at the coordinates supplied.
+-- * If it is blocked by a wall, or the height of the sector is too small to fit in, this will return *`false`* and leave `camera` where it was to begin with; otherwise this will return *`true`* with `camera` at the coordinates supplied.
 --
 ---@param camera camera_t
 ---@param x fixed_t
@@ -1816,7 +1816,7 @@ function P_SpawnMobjFromMobj(origin, x, y, z, type) end
 ---@param mobj mobj_t
 function P_RemoveMobj(mobj) end
 
--- Returns true if `mobj` can properly display `sprite2`, and false otherwise.
+-- Returns *`true`* if `mobj` can properly display `sprite2`, and *`false`* otherwise.
 -- * This is specific to objects that have a skin, such as players or live monitors.
 --
 ---@param mobj mobj_t
@@ -1908,7 +1908,7 @@ function P_StealPlayerScore(player, amount) end
 ---@return integer
 function P_GetJumpFlags(player) end
 
--- Returns true if `player` is in its pain state with `pw_flashing` set (and not sliding), false otherwise.
+-- Returns *`true`* if `player` is in its pain state with `pw_flashing` set (and not sliding), *`false`* otherwise.
 --
 ---@param player player_t
 ---@return boolean
@@ -1929,39 +1929,39 @@ function P_DoPlayerPain(player, source, inflictor) end
 ---@param player player_t
 function P_ResetPlayer(player) end
 
--- Checks if `player` is capable of damaging `mobj` in their current state and returns true if so.
+-- Checks if `player` is capable of damaging `mobj` in their current state and returns *`true`* if so.
 --
 ---@param player player_t
 ---@param mobj mobj_t
 ---@return boolean
 function P_PlayerCanDamage(player, mobj) end
 
--- Is `mobj` inside goop? Returns true if yes, false if no.
--- * If the Object has `MF_NOGRAVITY` or is a spectator player, this will always return false.
+-- Is `mobj` inside goop? Returns *`true`* if yes, *`false`* if no.
+-- * If the Object has `MF_NOGRAVITY` or is a spectator player, this will always return *`false`*.
 --
 ---@param mobj mobj_t
 ---@return boolean
 function P_IsObjectInGoop(mobj) end
 
--- Is mobj on the ground? Returns true if yes, false otherwise.
+-- Is mobj on the ground? Returns *`true`* if yes, *`false`* otherwise.
 -- * The "ground" can be the Object's `floorz` or `ceilingz` depending on whether the Object is in reverse gravity or not.
--- * If the Object is currently within goop water, this will always return false.
+-- * If the Object is currently within goop water, this will always return *`false`*.
 --
 ---@param mobj mobj_t
 ---@return boolean
 function P_IsObjectOnGround(mobj) end
 
--- Is `mobj` in a Space Countdown sector/FOF? Returns true if yes, false otherwise.
+-- Is `mobj` in a Space Countdown sector/FOF? Returns *`true`* if yes, *`false`* otherwise.
 --
 ---@param mobj mobj_t
 ---@return boolean
 function P_InSpaceSector(mobj) end
 
--- Is `mobj` in a quicksand FOF? Returns true if yes, false otherwise.
+-- Is `mobj` in a quicksand FOF? Returns *`true`* if yes, *`false`* otherwise.
 function P_InQuicksand(mobj) end
 
 -- Sets `mobj`'s `momz` to the value given.
--- * If `relative` is true, this will be added to the Object's previous momz, otherwise it will replace it.
+-- * If `relative` is *`true`*, this will be added to the Object's previous momz, otherwise it will replace it.
 -- * **`NOTE:`** This also corrects for scaling and reverse gravity.
 --
 ---@param mobj mobj_t
@@ -2103,14 +2103,14 @@ function P_NukeEnemies(inflictor, source, radius) end
 
 -- The `source` Object faces the target Object and moves towards it; needs to be repeatedly used to work properly.
 -- * `source`'s movement speed depends on what source is; players will move at 2/3 of their `actionspd` value, the Deton will move at 17/20 of the enemy `<player_t>.normalspeed` value, otherwise all other Objects will use their Object type's `speed` value.
--- * Returns true if the homing attack was successful, returns false if not.
+-- * Returns *`true`* if the homing attack was successful, returns *`false`* if not.
 --
 ---@param source mobj_t
 ---@param target mobj_t
 ---@return boolean
 function P_HomingAttack(source, target) end
 
--- Returns true if the conditions are right for `player` to turn Super, false if not.
+-- Returns *`true`* if the conditions are right for `player` to turn Super, *`false`* if not.
 --
 ---@param player player_t
 ---@return boolean
@@ -2287,14 +2287,14 @@ function R_PointToDist(x, y) end
 ---@return fixed_t
 function R_PointToDist2(x, y, dest_x, dest_y) end
 
--- Returns the subsector that the given point is located in. Never returns nil, even if outside of the map.
+-- Returns the subsector that the given point is located in. Never returns *`nil`*, even if outside of the map.
 --
 ---@param x fixed_t
 ---@param y fixed_t
 ---@return subsector_t
 function R_PointInSubsector(x, y) end
 
--- Same as `R_PointInSubsector`, but returns nil if point is not in subsector.
+-- Same as `R_PointInSubsector`, but returns *`nil`* if point is not in subsector.
 --
 ---@param x fixed_t
 ---@param y fixed_t
@@ -2327,7 +2327,7 @@ function R_Frame2Char(frame) end
 ---@param skin integer | string
 function R_SetPlayerSkin(player, skin) end
 
--- Checks if `skin` is legal to switch to and returns true if so.
+-- Checks if `skin` is legal to switch to and returns *`true`* if so.
 -- * Accounts for factors such as the map `forcecharacter` parameter, and the multiplayer `forceskin` console variable.
 --
 ---@param player player_t
@@ -2339,23 +2339,23 @@ function R_SkinUsable(player, skin) end
 --//
 
 
--- Starts the given sound effect from `origin`, or plays the sound globally if `origin` is nil.
+-- Starts the given sound effect from `origin`, or plays the sound globally if `origin` is *`nil`*.
 --
 -- * If `origin` exists and has a skin applied, certain sounds may be replaced with custom sounds set for the skin.
 -- * If in a Mario mode or Christmas NiGHTS level, certain sounds will automatically be swapped with different sounds for the given level type (these take priority over custom skin sounds).
 -- * If the third argument is set, the sound will only be played for that player. Otherwise, it will be heard by all players.
 --
----@param origin mobj_t
+---@param origin mobj_t | nil
 ---@param soundnum integer
 ---@param player? player_t
 function S_StartSound(origin, soundnum, player) end
 
--- Starts the given sound effect at a specific volume from `origin`, or plays the sound globally if `origin` is nil.
+-- Starts the given sound effect at a specific volume from `origin`, or plays the sound globally if `origin` is *`nil`*.
 -- * If `origin` exists and has a skin applied, certain sounds may be replaced with custom sounds set for the skin.
 -- * Unlike `S_StartSound`, Mario mode and Christmas NiGHTS have no effect on the sound used.
 -- * Volume ranges from 0 to 255, inclusive.
 --
----@param origin mobj_t
+---@param origin mobj_t | nil
 ---@param soundnum integer
 ---@param volume UINT8
 ---@param player? player_t
@@ -2412,7 +2412,7 @@ function S_SpeedMusic(musicspeed, player) end
 function S_StopMusic(player) end
 
 -- Immediately sets the internal volume of the current music track, as a percentage of the user's configured game volume, where 0 is silent and 100 is full volume.
--- * Returns true if the volume change was done for all players or the user's local player, returns false if not.
+-- * Returns *`true`* if the volume change was done for all players or the user's local player, returns *`false`* if not.
 --
 ---@param volume integer
 ---@param player? player_t
@@ -2420,7 +2420,7 @@ function S_StopMusic(player) end
 function S_SetInternalMusicVolume(volume, player) end
 
 -- Stops any current fade from running. The music will remain playing at the current internal volume.
--- * Returns true if the fade was done for all players or the user's local player, returns false if not.
+-- * Returns *`true`* if the fade was done for all players or the user's local player, returns *`false`* if not.
 --
 ---@param player? player_t
 ---@return boolean
@@ -2428,9 +2428,9 @@ function S_StopFadingMusic(player) end
 
 -- Fades the current music track from source volume to target volume, 0-100%.
 -- * If `source_volume` is not specified, the source volume is the current internal volume. `ms` is the length of the fade, measured in milliseconds. To set a time in seconds, multiply the time in seconds by the constant `MUSICRATE`; e.g.: `2*MUSICRATE` for 2 seconds.
--- * Returns true if the fade was done for all players or the user's local player, returns false if not.
+-- * Returns *`true`* if the fade was done for all players or the user's local player, returns *`false`* if not.
 --
----@overload fun(target_volume: integer, ms: integer, source_volume?: integer, player?: player_t)
+---@overload fun(target_volume: integer, ms: integer, source_volume?: integer, player?: player_t): boolean
 ---@param target_volume integer
 ---@param ms integer
 ---@param player? player_t
@@ -2438,28 +2438,28 @@ function S_StopFadingMusic(player) end
 function S_FadeMusic(target_volume, ms, player) end
 
 -- Fades the current music track from current internal volume to 0%, then stop the music. `ms` is the length of the fade, measured in milliseconds. To set a time in seconds, multiply the time in seconds by the constant `MUSICRATE`; e.g.: `2*MUSICRATE` for 2 seconds.
--- * Returns true if the fade was done for all players or the user's local player, returns false if not.
+-- * Returns *`true`* if the fade was done for all players or the user's local player, returns *`false`* if not.
 --
 ---@param ms integer
 ---@param player? player_t
 ---@return boolean
 function S_FadeOutStopMusic(ms, player) end
 
--- Returns true if a sound effect with `mobj` as the origin is being played, false if not.
+-- Returns *`true`* if a sound effect with `mobj` as the origin is being played, *`false`* if not.
 -- * **`NOTE:`** This function only checks sounds being played for the local client, and thus isn't network safe. Use at your own risk.
 --
 ---@param origin mobj_t
 ---@return boolean
 function S_OriginPlaying(origin) end
 
--- Returns true if a sound effect with the given ID is being played, false if not.
+-- Returns *`true`* if a sound effect with the given ID is being played, *`false`* if not.
 -- * **`NOTE:`** This function only checks sounds being played for the local client, and thus isn't network safe. Use at your own risk.
 --
 ---@param soundnum integer
 ---@return boolean
 function S_IdPlaying(soundnum) end
 
--- Returns true if a sound effect with the given ID and `mobj` as the origin is being played, false if not.
+-- Returns *`true`* if a sound effect with the given ID and `mobj` as the origin is being played, *`false`* if not.
 -- * **`NOTE:`** This function only checks sounds being played for the local client, and thus isn't network safe. Use at your own risk.
 --
 ---@param origin mobj_t
@@ -2487,8 +2487,8 @@ function S_GetMusicLength() end
 ---@return integer
 function S_GetMusicPosition() end
 
--- Sets the position of the currently playing music, in milliseconds. Returns false if no music is playing or a MIDI is currently playing (and therefore the position could not be set), and returns true otherwise.
--- * **`NOTE:`** This may still return true in some instances where the position could not be set.
+-- Sets the position of the currently playing music, in milliseconds. Returns *`false`* if no music is playing or a MIDI is currently playing (and therefore the position could not be set), and returns *`true`* otherwise.
+-- * **`NOTE:`** This may still return *`true`* in some instances where the position could not be set.
 --
 ---@param position integer
 ---@return boolean
@@ -2507,7 +2507,7 @@ function S_SetMusicPosition(position) end
 function mobjs.iterate() end
 
 -- Iterates over all players currently playing in the map.
--- * **`NOTE:`** `<player_t>.mo` will return nil for spectating players.
+-- * **`NOTE:`** `<player_t>.mo` will return *`nil`* for spectating players.
 --
 ---@return player_t
 function players.iterate() end
@@ -2572,7 +2572,7 @@ function dofile(file) end
 
 
 -- This function opens a file, in the mode specified in the string mode.
--- * It returns a new file handle, or, in case of errors, `nil` plus an error message.
+-- * It returns a new file handle, or, in case of errors, *`nil`* plus an error message.
 --
 -- The `mode` string can also have a `"b"` at the end, which is needed to open the file in binary (non-text) mode.
 -- * **`NOTE:`** This function is run locally, and thus isn't network safe.
