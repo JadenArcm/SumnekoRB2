@@ -16,43 +16,43 @@ maptol = nil
 ---@type number
 gamestate = nil
 
--- Returns true if playing in Ultimate mode, false if not.
+-- Returns *`true`* if playing in Ultimate mode, *`false`* if not.
 ---@type boolean
 ultimatemode = nil
 
--- Returns true if the map is in Mario mode, false if not.
+-- Returns *`true`* if the map is in Mario mode, *`false`* if not.
 ---@type boolean
 mariomode = nil
 
--- Returns true if the map is in 2D mode, false if not.
+-- Returns *`true`* if the map is in 2D mode, *`false`* if not.
 ---@type boolean
 twodlevel = nil
 
--- Returns true if the map is a Circuit map, false if not.
+-- Returns *`true`* if the map is a Circuit map, *`false`* if not.
 ---@type boolean
 circuitmap = nil
 
--- Returns true if the timer was stopped, false if not.
+-- Returns *`true`* if the timer was stopped, *`false`* if not.
 ---@type boolean
 stoppedclock = nil
 
--- Returns true if currently in a netgame, false if not.
+-- Returns *`true`* if currently in a netgame, *`false`* if not.
 ---@type boolean
 netgame = nil
 
--- Returns true if currently playing a multiplayer game, false if not.
+-- Returns *`true`* if currently playing a multiplayer game, *`false`* if not.
 ---@type boolean
 multiplayer = nil
 
--- Returns true if playing in Record Attack or NiGHTS Mode, false if not.
+-- Returns *`true`* if playing in Record Attack or NiGHTS Mode, *`false`* if not.
 ---@type boolean
 modeattacking = nil
 
--- Returns true if playing in two-player mode, false if not.
+-- Returns *`true`* if playing in two-player mode, *`false`* if not.
 ---@type boolean
 splitscreen = nil
 
--- Returns true if the game has been completed in the current savefile, false if not.
+-- Returns *`true`* if the game has been completed in the current savefile, *`false`* if not.
 ---@type boolean
 gamecomplete = nil
 
@@ -60,19 +60,19 @@ gamecomplete = nil
 ---@type integer
 marathonmode = nil
 
--- Returns true if the game is being run with the command line parameter `-debug`, false if not.
+-- Returns *`true`* if the game is being run with the command line parameter `-debug`, *`false`* if not.
 ---@type boolean
 devparm = nil
 
--- Returns true if the game has been modified and the modification does not have a custom gamedata file, false if not.
+-- Returns *`true`* if the game has been modified and the modification does not have a custom gamedata file, *`false`* if not.
 ---@type boolean
 modifiedgame = nil
 
--- Returns true if a menu is currently active, false if not.
+-- Returns *`true`* if a menu is currently active, *`false`* if not.
 ---@type boolean
 menuactive = nil
 
--- Returns true if the game is currently paused, false if not.
+-- Returns *`true`* if the game is currently paused, *`false`* if not.
 ---@type boolean
 paused = nil
 
@@ -122,7 +122,7 @@ smpstage_end = nil
 ---@type number
 titlemap = nil
 
--- Returns true if a titlemap is currently active, false if not.
+-- Returns *`true`* if a titlemap is currently active, *`false`* if not.
 ---@type boolean
 titlemapinaction = nil
 
@@ -134,7 +134,7 @@ bootmap = nil
 ---@type number
 tutorialmap = nil
 
--- Returns true if playing in tutorial mode, false if not.
+-- Returns *`true`* if playing in tutorial mode, *`false`* if not.
 ---@type boolean
 tutorialmode = nil
 
@@ -226,11 +226,11 @@ globallevelskynum = nil
 ---@type player_t
 server = nil
 
--- Returns true if the game is hosting a server, false if not.
+-- Returns *`true`* if the game is hosting a server, *`false`* if not.
 ---@type boolean
 isserver = nil
 
--- Returns true if the game is a dedicated server, false if not.
+-- Returns *`true`* if the game is a dedicated server, *`false`* if not.
 ---@type boolean
 isdedicatedserver = nil
 
