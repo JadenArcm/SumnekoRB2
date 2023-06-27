@@ -440,7 +440,7 @@ function All7Emeralds(flags) end
 -- Returns both the opposite skincolor for `color`, and the associated sprite frame number for the opposite color.
 -- * Example: `ColorOpposite(SKINCOLOR_WHITE)` will return the values `SKINCOLOR_BLACK` and 10.
 --
----@param color skincolor_t
+---@param color skincolornum_t
 ---@return skincolor_t, integer
 function ColorOpposite(color) end
 
@@ -823,7 +823,7 @@ function v.levelTitleHeight(text) end
 -- * Certain skin values have special effects on the colormap returned for a patch to use.
 --
 ---@param skin? string | integer
----@param color? skincolor_t
+---@param color? skincolornum_t
 ---@return colormap
 function v.getColormap(skin, color) end
 
@@ -1279,7 +1279,7 @@ function G_CompetitionGametype() end
 -- * **`NOTE:`** Console commands can't be executed on a bot at the moment.
 --
 ---@param skin string
----@param color skincolor_t
+---@param color skincolornum_t
 ---@param name string
 ---@param bottype integer
 ---@return player_t
@@ -2245,7 +2245,7 @@ function R_GetSuperColorByName(name) end
 -- Returns the name of the input color.
 -- * The function will raise an error if an out of bounds number is entered.
 ---
----@param color skincolor_t
+---@param color skincolornum_t
 ---@return string
 function R_GetNameByColor(color) end
 

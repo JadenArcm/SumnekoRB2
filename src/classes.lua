@@ -59,7 +59,7 @@
 ---@field flags2 UINT32
 ---@field eflags UINT32
 ---@field skin string
----@field color number
+---@field color skincolornum_t
 ---@field colorized boolean
 ---@field bnext mobj_t
 ---@field hprev mobj_t
@@ -126,7 +126,7 @@
 ---@field flashcount UINT16
 ---@field flashpal UINT16
 ---@field skin string|INT32
----@field skincolor number
+---@field skincolor skincolornum_t
 ---@field availabilities UINT32
 ---@field score UINT32
 ---@field dashmode tic_t
