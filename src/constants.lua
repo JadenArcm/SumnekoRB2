@@ -90,8 +90,8 @@ PUSHACCEL = 2 * FRACUNIT
 MODID = 18
 
 -- The executable's Mod Version.
--- * In SRB2 v2.2.10, `51` is the default value for this constant.
-MODVERSION = 51
+-- * In SRB2 v2.2.11, `52` is the default value for this constant.
+MODVERSION = 52
 
 -- The SRB2 version number the executable is based on.
 -- * In SRB2 v2.2, `220` is the default value for this constant.
@@ -101,10 +101,10 @@ CODEBASE = 220
 VERSION = 202
 
 -- The game's version, as a string.
-VERSIONSTRING = "v2.2.10"
+VERSIONSTRING = "v2.2.11"
 
 -- The game's sub-version number.
-SUBVERSION = 10
+SUBVERSION = 11
 
 -- Vertical movement speed for Objects with `MF_FLOAT`.
 FLOATSPEED = 4 * FRACUNIT
