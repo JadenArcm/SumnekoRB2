@@ -309,9 +309,9 @@
 ---@field extrainfo UINT8
 ---@field mobj mobj_t
 ---@field tag INT16
----@field taglist any
----@field args any
----@field stringargs any
+---@field taglist INT16[]
+---@field args integer[]
+---@field stringargs string[]
 
 
 --//
