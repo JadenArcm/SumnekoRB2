@@ -174,6 +174,9 @@
 ---@class drawerlib
 local v = {}
 
+---@class polyobj_t
+local polyobj = {}
+
 
 --//
 
@@ -2553,6 +2556,55 @@ function vertexes.iterate() end
 ---@return polyobj_t
 ---@diagnostic disable-next-line
 function polyobjects.iterate() end
+
+
+--//
+
+
+-- Special function to check if a `X`/`Y` position is inside the bounds of the PolyObject.
+--
+---@param x fixed_t
+---@param y fixed_t
+---@return boolean
+function polyobj:pointInside(x, y) end
+
+-- Special function to check if a mobj's `X`/`Y` position intersects with the lines of the PolyObject.
+--
+---@param mobj mobj_t
+---@return boolean
+function polyobj:mobjTouching(mobj) end
+
+-- Special function to check if a mobj's `X`/`Y` position is inside the bounds of the PolyObject.
+--
+---@param mobj mobj_t
+---@return boolean
+function polyobj:mobjInside(mobj) end
+
+-- Special function that moves a PolyObject horizontally.
+-- * `x` is the X distance to move, `y` is the Y distance to move, `checkmobjs` is a boolean to enable/disable physics with mobjs (enabled by default).
+-- * **`TODO:`** From wiki: `Explain return value.`
+--
+---@param x fixed_t
+---@param y fixed_t
+---@param checkmobjs? boolean
+---@return boolean
+function polyobj:moveXY(x, y, checkmobjs) end
+
+-- Special function that rotates a PolyObject.
+-- * `delta` is the angle to rotate, `turnthings` is an integer to determine if and which mobjs should be rotated with it, `checkmobjs` is a boolean to enable/disable physics with mobjs (enabled by default).
+--
+-- * `turnthings` possible values:
+-- > * `0` = Nothing
+-- > * `1` = Turn only non-players
+-- > * `2` = Turn everything
+--
+-- * **`TODO:`** From wiki: `Explain return value.`
+--
+---@param delta angle_t
+---@param turnthings? integer
+---@param checkmobjs? boolean
+---@return boolean
+function polyobj:rotate(delta, turnthings, checkmobjs) end
 
 
 --//
