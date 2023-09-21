@@ -5,86 +5,86 @@
 
 
 ---@alias hookTypes
----| "HUD"					  # function(v: drawerlib, ...)
----| "IntermissionThinker"	  # function()
----| "KeyDown"				  # function(keyevent: keyevent_t)
----| "KeyUp"				  # function(keyevent: keyevent_t)
----| "LinedefExecute"		  # function(line: line_t, mobj: mobj_t, sector: sector)
----| "MapChange"			  # function(mapnum: integer)
----| "MapLoad"				  # function(mapnum: integer)
----| "ThinkFrame"			  # function()
----| "PreThinkFrame"		  # function()
----| "PostThinkFrame"		  # function()
----| "GameQuit"				  # function()
----| "BotAI"				  # function(player: mobj_t, bot: mobj_t)
----| "BotTiccmd"			  # function(bot: player_t, cmd: ticcmd_t)
----| "BotRespawn"			  # function(player: mobj_t, bot: mobj_t)
----| "HurtMsg"			 	  # function(player: player_t, inflictor: mobj_t, source: mobj_t)
----| "NetVars"				  # function(network: fun(var))
----| "TeamSwitch"			  # function(player: player_t, team: integer, fromspectators: boolean, autobalance: boolean, scramble: boolean)
----| "ViewpointSwitch"		  # function(player: player_t, nextviewedplayer: player_t, forced: boolean)
----| "AbilitySpecial"		  # function(player: player_t)
----| "JumpSpecial"			  # function(player: player_t)
----| "JumpSpinSpecial"		  # function(player: player_t)
----| "SpinSpecial"			  # function(player: player_t)
----| "BossDeath"			  # function(mobj: mobj_t)
----| "BossThinker"			  # function(mobj: mobj_t)
----| "FollowMobj" 			  # function(player: player_t, mobj: mobj_t)
----| "MapThingSpawn"		  # function(mobj: mobj_t, mapthing: mapthing_t)
----| "MobjCollide"			  # function(thing: mobj_t, tmthing: mobj_t)
----| "MobjLineCollide"		  # function(mobj: mobj_t, line: line_t)
----| "MobjDamage"			  # function(target: mobj_t, inflictor: mobj_t, source: mobj_t, damage: integer, damagetype: integer)
----| "MobjDeath"			  # function(target: mobj_t, inflictor: mobj_t, source: mobj_t, damagetype: integer)
----| "MobjFuse"				  # function(mobj: mobj_t)
----| "MobjMoveBlocked"		  # function(mobj: mobj_t, thing: mobj_t, line: line_t)
----| "MobjRemoved"			  # function(mobj: mobj_t)
----| "MobjSpawn"			  # function(mobj: mobj_t)
----| "MobjThinker"			  # function(mobj: mobj_t)
----| "SeenPlayer"			  # function(player: player_t, seenplayer: player_t)
----| "PlayerJoin"			  # function(playernum: integer)
----| "PlayerMsg"			  # function(source: player_t, type: integer, target: player_t, msg: string)
----| "PlayerQuit"			  # function(player: player_t, reason: integer)
----| "PlayerThink"			  # function(player: player_t)
----| "PlayerCanDamage"		  # function(player: player_t, mobj: mobj_t)
----| "PlayerSpawn"			  # function(player: player_t)
----| "PlayerCmd"			  # function(player: player_t, cmd: ticcmd_t)
----| "PlayerHeight"			  # function(player: player_t)
+---| "HUD"                    # function(v: drawerlib, ...)
+---| "IntermissionThinker"    # function()
+---| "KeyDown"                # function(keyevent: keyevent_t)
+---| "KeyUp"                  # function(keyevent: keyevent_t)
+---| "LinedefExecute"         # function(line: line_t, mobj: mobj_t, sector: sector)
+---| "MapChange"              # function(mapnum: integer)
+---| "MapLoad"                # function(mapnum: integer)
+---| "ThinkFrame"             # function()
+---| "PreThinkFrame"          # function()
+---| "PostThinkFrame"         # function()
+---| "GameQuit"               # function()
+---| "BotAI"                  # function(player: mobj_t, bot: mobj_t)
+---| "BotTiccmd"              # function(bot: player_t, cmd: ticcmd_t)
+---| "BotRespawn"             # function(player: mobj_t, bot: mobj_t)
+---| "HurtMsg"                # function(player: player_t, inflictor: mobj_t, source: mobj_t)
+---| "NetVars"                # function(network: fun(var))
+---| "TeamSwitch"             # function(player: player_t, team: integer, fromspectators: boolean, autobalance: boolean, scramble: boolean)
+---| "ViewpointSwitch"        # function(player: player_t, nextviewedplayer: player_t, forced: boolean)
+---| "AbilitySpecial"         # function(player: player_t)
+---| "JumpSpecial"            # function(player: player_t)
+---| "JumpSpinSpecial"        # function(player: player_t)
+---| "SpinSpecial"            # function(player: player_t)
+---| "BossDeath"              # function(mobj: mobj_t)
+---| "BossThinker"            # function(mobj: mobj_t)
+---| "FollowMobj"             # function(player: player_t, mobj: mobj_t)
+---| "MapThingSpawn"          # function(mobj: mobj_t, mapthing: mapthing_t)
+---| "MobjCollide"            # function(thing: mobj_t, tmthing: mobj_t)
+---| "MobjLineCollide"        # function(mobj: mobj_t, line: line_t)
+---| "MobjDamage"             # function(target: mobj_t, inflictor: mobj_t, source: mobj_t, damage: integer, damagetype: integer)
+---| "MobjDeath"              # function(target: mobj_t, inflictor: mobj_t, source: mobj_t, damagetype: integer)
+---| "MobjFuse"               # function(mobj: mobj_t)
+---| "MobjMoveBlocked"        # function(mobj: mobj_t, thing: mobj_t, line: line_t)
+---| "MobjRemoved"            # function(mobj: mobj_t)
+---| "MobjSpawn"              # function(mobj: mobj_t)
+---| "MobjThinker"            # function(mobj: mobj_t)
+---| "SeenPlayer"             # function(player: player_t, seenplayer: player_t)
+---| "PlayerJoin"             # function(playernum: integer)
+---| "PlayerMsg"              # function(source: player_t, type: integer, target: player_t, msg: string)
+---| "PlayerQuit"             # function(player: player_t, reason: integer)
+---| "PlayerThink"            # function(player: player_t)
+---| "PlayerCanDamage"        # function(player: player_t, mobj: mobj_t)
+---| "PlayerSpawn"            # function(player: player_t)
+---| "PlayerCmd"              # function(player: player_t, cmd: ticcmd_t)
+---| "PlayerHeight"	          # function(player: player_t)
 ---| "PlayerCanEnterSpinGaps" # function(player: player_t)
----| "ShouldDamage"			  # function(target: mobj_t, inflictor: mobj_t, source: mobj_t, damage: integer, damagetype: integer)
----| "ShieldSpawn"			  # function(player: player_t)
----| "ShieldSpecial"		  # function(player: player_t)
----| "TouchSpecial"			  # function(special: mobj_t, toucher: mobj_t)
----| "MusicChange"			  # function(oldname: string, newname: string, mflags: integer, looping: boolean, position: integer, prefadems: integer, fadeinms: integer)
+---| "ShouldDamage"           # function(target: mobj_t, inflictor: mobj_t, source: mobj_t, damage: integer, damagetype: integer)
+---| "ShieldSpawn"            # function(player: player_t)
+---| "ShieldSpecial"          # function(player: player_t)
+---| "TouchSpecial"           # function(special: mobj_t, toucher: mobj_t)
+---| "MusicChange"            # function(oldname: string, newname: string, mflags: integer, looping: boolean, position: integer, prefadems: integer, fadeinms: integer)
 ---| "ShouldJingleContinue"   # function(player: player_t, musname: string)
 
 ---@alias hudTypes
----| "stagetitle" 			# Stage title card. (Greenflower Zone Act 1, ...)
----| "textspectator" 		# Information text as a spectator.
----| "score" 				# Score text and counter.
----| "time" 				# Time text and counter.
----| "rings" 				# Rings text and counter.
----| "lives" 				# Lives text and counter.
----| "teamscores" 			# Red and Blue team scores, (Team Match, CTF)
----| "weaponrings" 			# Weapon Ring icons. (Match, CTF)
----| "powerstones"			# Chaos Emerald power icons. (Match, CTF)
----| "nightslink" 			# NiGHTS link counter.
----| "nightsdrill"			# NiGHTS drill bar.
----| "nightsrings"			# NiGHTS ring counter.
----| "nightsscore"			# NiGHTS score counter.
----| "nightstime"			# NiGHTS time counter.
----| "nightsrecords"		# NiGHTS screen text. (Bonus Time Start, Ending Bonuses, ...)
----| "rankings"				# Multiplayer rankings.
----| "coopemeralds" 		# Chaos Emeralds on Multiplayer and/or Sinple-Player's rankings.
----| "tokens" 				# Special Stage tokens on Multiplayer and/or Sinple-Player's rankings.
----| "tabemblems" 			# Emblems on Single-Player's rankings.
----| "intermissiontally" 	# Score information on intermissions.
+---| "stagetitle"           # Stage title card. (Greenflower Zone Act 1, ...)
+---| "textspectator"        # Information text as a spectator.
+---| "score"                # Score text and counter.
+---| "time"                 # Time text and counter.
+---| "rings"                # Rings text and counter.
+---| "lives"                # Lives text and counter.
+---| "teamscores"           # Red and Blue team scores. (Team Match, CTF)
+---| "weaponrings"          # Weapon Ring icons. (Match, CTF)
+---| "powerstones"          # Chaos Emerald power icons. (Match, CTF)
+---| "nightslink"           # NiGHTS link counter.
+---| "nightsdrill"          # NiGHTS drill bar.
+---| "nightsrings"          # NiGHTS ring counter.
+---| "nightsscore"          # NiGHTS score counter.
+---| "nightstime"           # NiGHTS time counter.
+---| "nightsrecords"        # NiGHTS screen text. (Bonus Time Start, Ending Bonuses, ...)
+---| "rankings"             # Multiplayer rankings.
+---| "coopemeralds"         # Chaos Emeralds on Multiplayer and/or Sinple-Player's rankings.
+---| "tokens"               # Special Stage tokens on Multiplayer and/or Sinple-Player's rankings.
+---| "tabemblems"           # Emblems on Single-Player's rankings.
+---| "intermissiontally"    # Score information on intermissions.
 ---| "intermissionmessages" # Information text on intermissions. (Countdown for next stage, ...)
 
 ---@alias hudLayers
----| "game" 		# function(v: drawerlib, stplyr?: player_t, cam?: camera_t)
----| "scores" 		# function(v: drawerlib)
----| "title" 		# function(v: drawerlib)
----| "titlecard"	# function(v: drawerlib, stplyr?: player_t, ticker?: integer, endtime?: integer)
+---| "game"         # function(v: drawerlib, stplyr?: player_t, cam?: camera_t)
+---| "scores"       # function(v: drawerlib)
+---| "title"        # function(v: drawerlib)
+---| "titlecard"    # function(v: drawerlib, stplyr?: player_t, ticker?: integer, endtime?: integer)
 ---| "intermission" # function(v: drawerlib, stagefailed?: boolean)
 
 ---@alias genericAlignments
