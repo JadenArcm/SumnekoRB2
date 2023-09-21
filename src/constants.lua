@@ -560,7 +560,7 @@ FF_BLENDSHIFT = 0x0C
 FF_TRANSSHIFT = 0x10
 
 
--- Super form... (*um i dont know*)
+-- Force super form sprites instead of the usual ones.
 FF_SPR2SUPER = 0x80
 
 -- State changes at the end of a sprite2 animation.
@@ -1628,7 +1628,7 @@ BT_CUSTOM3 = 1 << 15
 -- Automatic Ring.
 WEP_AUTO = 1
 
--- Bounce Ring.hud.
+-- Bounce Ring.
 WEP_BOUNCE = 2
 
 -- Scatter Ring.

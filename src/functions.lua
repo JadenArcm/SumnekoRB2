@@ -1528,6 +1528,9 @@ function P_PlayerEmeraldBurst(player, toss) end
 -- Spills any CTF flags that player is carrying, but does not throw back player.
 -- * If `toss` is true, the flag is thrown in the player's forward direction and a toss delay of 2 seconds is set (for players tossing a flag).
 -- * Otherwise, the direction is random (for players dropping a flag after being hurt).
+--
+---@param player player_t
+---@param toss boolean
 function P_PlayerFlagBurst(player, toss) end
 
 -- Plays one of the 4 player ring spill sounds randomly, which can vary depending on the skin, or plays the Mario ring loss sound if in Mario mode.
