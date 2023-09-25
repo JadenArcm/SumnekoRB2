@@ -2619,7 +2619,7 @@ function polyobj:rotate(delta, turnthings, checkmobjs) end
 -- * For addons that are developed on folders, this is highly recommended for file loading.
 --
 ---@param file string
----@return any ...
+---@return ... any
 function dofile(file) end
 
 
