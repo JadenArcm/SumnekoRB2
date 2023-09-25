@@ -193,7 +193,7 @@ function addHook(hookname, callback, extra) end
 --
 ---@param resource string
 ---@param ... string
----@return integer ...
+---@return ... integer
 function freeslot(resource, ...) end
 
 -- This calls the original version of the current action.
