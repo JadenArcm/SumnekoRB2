@@ -372,6 +372,7 @@
 ---@field num INT32
 ---
 --- Whether this event is a continuation of a previously triggered event.
+---
 --- * For the `KeyDown` hook, this is true when the key is being held; for the `KeyUp` hook, this is always false.
 ---@field repeated boolean
 
@@ -463,23 +464,28 @@
 ---@field frame UINT32
 ---
 --- Duration of the state, in tics.
+---
 --- * `-1` is infinite, `0` is instantaneous.
 ---@field tics INT32
 ---
 --- The action used by the state, run when an Object switches to the state.
+---
 --- * Can be set to a pre-existing action, or a custom one created using Lua, or be just `nil` if none is set.
 --- * The return value is the function that the action calls.
 ---@field action fun(actor: mobj_t, var1?: INT32, var2?: INT32)
 ---
 --- The `Var1` value built-in to be used by `state.action`, when an Object first switches to the state.
+---
 --- * This has multiple actions, such as `FF_ANIMATE` on `state.frame`.
 ---@field var1 INT32
 ---
 --- The `Var2` value built-in to be used by state.action, when an Object first switches to the state.
+---
 --- * This has multiple actions, such as `FF_ANIMATE` on `state.frame`.
 ---@field var2 INT32
 ---
 --- The next state number to go to after the state has finished being used.
+---
 --- * A `state.nextstate` of `S_NULL` will make the Object using the current state be removed from the map when about to switch to the new state.
 ---@field nextstate number
 
@@ -490,6 +496,7 @@
 ---@class sfxinfo_t
 ---
 --- The name of the sound following the `sfx_*` prefix.
+---
 --- * For example, `sfxinfo[sfx_thok].name` would return `"thok"`.
 ---@field name string
 ---
@@ -497,6 +504,7 @@
 ---@field singular boolean
 ---
 --- The priority of the sound.
+---
 --- * For example, this determines how important it is to play this sound; if a sound with a higher priority is playing this sound will be drowned out, otherwise if vice versa this sound will drown out the other instead.
 --- * Usually a value between 0 and 255.
 ---@field priority INT32
@@ -505,6 +513,7 @@
 ---@field flags INT32
 ---
 --- Skinsound ID number.
+---
 --- * For sounds that are not changeable by the skin, this will be -1. (`SKS*`)
 ---@field skinsound INT32
 ---
@@ -518,25 +527,30 @@
 ---@class skincolor_t
 ---
 --- The name of the skincolor.
+---
 --- * Used in the console and Player Setup menu. Names containing spaces must be put in quotes in the console.
 ---@field name string
 ---
---- An array of 16 palette indices, which in whole represent the skincolor's color ramp.
+--- An array of 16 palette indexes, which in whole represent the skincolor's color ramp.
 ---@field ramp UINT8[]
 ---
 --- The opposite skincolor.
+---
 --- * Used on the Goal Sign.
 ---@field invcolor UINT8
 ---
 --- The shade of the opposite skincolor, from 0 (lightest) to 15 (darkest).
+---
 --- * Used on the Goal Sign.
 ---@field invshade UINT8
 ---
 --- Color to use when coloring a player name in the chat.
+---
 --- * This accepts `V_*MAP` constants.
 ---@field chatcolor UINT16
 ---
 --- Skincolor accessibility.
+---
 --- * Determines whether the color can be accessed from the Player Setup menu or from the console.
 --- * **`NOTE:`** This attribute is read-only for default skincolors.
 ---@field accessible boolean
@@ -548,14 +562,17 @@
 ---@class hudinfo_t
 ---
 --- X coordinate of the HUD item (from the left of the screen).
+---
 --- * This should be a value between 0 and 320.
 ---@field x INT32
 ---
 --- Y coordinate of the HUD item (from the top of the screen).
+---
 --- * This should be a value between 0 and 320.
 ---@field y INT32
 ---
 --- Video flags of the HUD item (`V_*`).
+---
 --- * **`NOTE:`** Some flags are always applied for certain HUD items in addition to those that you set here. (such as `V_HUDTRANS`, `V_PERPLAYER`, and a few more.)
 ---@field f INT32
 
