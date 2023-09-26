@@ -247,14 +247,15 @@ function userdataMetatable(userdataname) end
 --
 -- * **`NOTE:`** OpenGL and HUD hooks measuring Lua API calls that contain can give unreliable/confusing results because of the asynchronous nature of OpenGL. This applies to measuring HUD drawing functions in OpenGL mode.
 --
--- Here's a example:
--- ```
--- --Get the time before the code to be profiled
+-- Here's an example:
+--
+-- ```lua
+-- -- Get the time before the code to be profiled
 -- local first = getTimeMicros()
 --
 -- -- Run a slow function/block, like:
 -- local nums = {}
--- for i = 1,10000 do
+-- for i = 1, 10000 do
 --     nums[i] = 0
 --
 --     for j = 1, i do
