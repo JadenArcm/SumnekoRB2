@@ -1683,6 +1683,9 @@ pw_justlaunched = 27
 -- * This does not prevent new attachments due to `A_MixUp` teleportation.
 pw_ignorelatch = 28
 
+-- Series of `STR_` flags that control how a player should interact when attacking, or destroying FOFs.
+pw_strong = 29
+
 
 --//
 
@@ -1707,6 +1710,77 @@ EMERALD6 = 1 << 5
 
 -- Gray/Silver Emerald.
 EMERALD7 = 1 << 6
+
+
+--//
+
+
+-- Nothing. All strong powers can stack into each other.
+STR_NONE = 0
+
+-- Remove all strength powers when leaving the current animation.
+STR_ANIM = 1 << 0
+
+-- Frontal attack (Knuckles Glide).
+STR_PUNCH = 1 << 1
+
+-- Rear attack.
+STR_TAIL = 1 << 2
+
+-- Falling onto object (Fang Bounce).
+STR_STOMP = 1 << 3
+
+-- Moving upwards into an object (Tails Fly).
+STR_UPPER = 1 << 4
+
+-- Protect against damage.
+STR_GUARD = 1 << 5
+
+-- Prevent vertical rebound when landing on enemies.
+STR_HEAVY = 1 << 6
+
+-- Special type for dashmode if the skin has `SF_MACHINE`, which is removed automatically when leaving dashmode.
+STR_DASH = 1 << 7
+
+-- Breaks any wall.
+STR_WALL = 1 << 8
+
+-- Breaks any floor.
+STR_FLOOR = 1 << 9
+
+-- Breaks any ceiling.
+STR_CEILING = 1 << 10
+
+-- Powers up spring objects.
+STR_SPRING = 1 << 11
+
+-- Break spikes.
+STR_SPIKE = 1 << 12
+
+
+-- Generic attack.
+STR_ATTACK = (STR_PUNCH | STR_TAIL | STR_STOMP | STR_UPPER)
+
+-- Environment attack.
+STR_BUST = (STR_WALL | STR_FLOOR | STR_CEILING)
+
+-- Used by `CA_FLY`.
+STR_FLY = (STR_ANIM | STR_UPPER)
+
+-- Used by `CA_GLIDEANDCLIMB`.
+STR_GLIDE = (STR_ANIM | STR_PUNCH)
+
+-- Used by `CA_TWINSPIN`.
+STR_TWINSPIN = (STR_ANIM | STR_ATTACK | STR_BUST | STR_SPRING | STR_SPIKE)
+
+-- Used by `CA2_MELEE`.
+STR_MELEE = (STR_ANIM | STR_PUNCH | STR_HEAVY | STR_WALL | STR_FLOOR | STR_SPRING | STR_SPIKE)
+
+-- Used by `CA2_BOUNCE`.
+STR_BOUNCE = (STR_ANIM | STR_STOMP | STR_FLOOR)
+
+-- Used by `SF_MACHINE` when on dashmode.
+STR_METAL = (STR_DASH | STR_SPIKE)
 
 
 --//
