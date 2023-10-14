@@ -2173,6 +2173,9 @@ V_CHARCOLORMASK = 0x0000F000
 -- These bits determine the alpha or translucency of text and patches.
 V_ALPHAMASK = 0x000F0000
 
+-- These bits determine the blending mode of text and patches.
+V_BLENDMASK = 0x00700000
+
 
 -- Text or patches are not scaled.
 --

@@ -1952,7 +1952,7 @@ function P_IsValidSprite2(mobj, sprite2) end
 --
 ---@param player player_t
 ---@param target mobj_t
----@param state state_t
+---@param state statenum_t
 function P_SpawnLockOn(player, target, state) end
 
 
@@ -2521,7 +2521,7 @@ function R_SkinUsable(player, skin) end
 -- * If the third argument is set, the sound will only be played for that player. Otherwise, it will be heard by all players.
 --
 ---@param origin? mobj_t
----@param soundnum integer
+---@param soundnum soundnum_t
 ---@param player? player_t
 function S_StartSound(origin, soundnum, player) end
 
@@ -2532,7 +2532,7 @@ function S_StartSound(origin, soundnum, player) end
 -- * Volume ranges from 0 to 255, inclusive.
 --
 ---@param origin? mobj_t
----@param soundnum integer
+---@param soundnum soundnum_t
 ---@param volume UINT8
 ---@param player? player_t
 function S_StartSoundAtVolume(origin, soundnum, volume, player) end
@@ -2545,7 +2545,7 @@ function S_StopSound(mobj) end
 -- Stops the sound `soundnum` that `mobj` may be playing.
 --
 ---@param mobj mobj_t
----@param soundnum integer
+---@param soundnum soundnum_t
 function S_StopSoundByID(mobj, soundnum) end
 
 -- Changes the music to the specified music name or slot number. The music will loop unless `looping` is specified and is false.
@@ -2638,7 +2638,7 @@ function S_OriginPlaying(origin) end
 --
 -- * **`NOTE:`** This function only checks sounds being played for the local client, and thus isn't network safe. Use at your own risk.
 --
----@param soundnum integer
+---@param soundnum soundnum_t
 ---@return boolean
 function S_IdPlaying(soundnum) end
 
@@ -2647,7 +2647,7 @@ function S_IdPlaying(soundnum) end
 -- * **`NOTE:`** This function only checks sounds being played for the local client, and thus isn't network safe. Use at your own risk.
 --
 ---@param origin mobj_t
----@param soundnum integer
+---@param soundnum soundnum_t
 ---@return boolean
 function S_SoundPlaying(origin, soundnum) end
 

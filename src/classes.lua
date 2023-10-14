@@ -636,11 +636,13 @@
 ---@class drawerlib
 ---@class easelib
 ---@class inputlib
----@class colormap
 
----@class skincolornum_t
+---@class soundnum_t     : integer
+---@class statenum_t     : integer
+---@class skincolornum_t : integer
+---@class playersprite_t : integer
+
 ---@class spriteinfo_t
----@class playersprite_t
-
+---@class colormap
 
 --//
