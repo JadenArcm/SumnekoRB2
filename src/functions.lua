@@ -464,7 +464,7 @@ function All7Emeralds(flags) end
 -- * Example: `ColorOpposite(SKINCOLOR_WHITE)` will return the values `SKINCOLOR_BLACK` and 10.
 --
 ---@param color skincolornum_t
----@return skincolor_t, integer
+---@return skincolornum_t, integer
 function ColorOpposite(color) end
 
 
@@ -980,7 +980,7 @@ function v.RandomChance(p) end
 --//
 
 
--- * `callback` format: `function(player: player_t, [arg: string, ...])`
+-- * `callback` format: `function(player: player_t, arg?: string, ...)`
 --
 -- Registers a console command with the name `name` that executes the specified function when called.
 --
@@ -1011,6 +1011,37 @@ function COM_BufInsertText(player, text) end
 -- * `defaultvalue` is the default value for the console variable in string form.
 -- * `PossibleValue` is a list or range of possible values that are allowed for the variable.
 -- * `flags` is an integer storing the flags to be given to the console variable. (`CV_*`)
+-- > * If the `CV_CALL` flag is set, the function `func` is executed when the variable is changed: the sole argument passed to such function is the console variable itself.
+--
+-- Custom `PossibleValue` tables need to be formatted as such:
+--
+-- ```lua
+--    {string1 = value, string2 = value, ...}
+-- ```
+--
+-- This gives each possible value listed in the table a string name of its own, which can be used in the console itself when the variable is in use.
+--
+-- * If `MIN` and `MAX` are used as string names for possible value entries, these will act as the minimum and maximum of a bounded range of possible values, allowing any value in-between the two to be picked as well. Otherwise, the selectable values for the console variable are limited explicitly only to the possible value entries listed in the table.
+--
+-- The contents of CV_RegisterVar can alternatively be laid out as such:
+--
+-- ```lua
+-- CV_RegisterVar({name = , defaultvalue = , flags = , PossibleValue = , func = })
+-- ```
+--
+-- Or:
+--
+-- ```lua
+-- CV_RegisterVar({
+--    name = ,
+--    defaultvalue = ,
+--    flags = ,
+--    PossibleValue = ,
+--    func =
+-- })
+-- ```
+--
+-- In the above two layouts, the names of the variables of the table are written out, and so do not need to be placed in any particular order unlike as in the above.
 --
 ---@param t table
 ---@return consvar_t
