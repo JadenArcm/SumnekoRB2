@@ -332,19 +332,64 @@
 
 
 ---@class camera_t
+---
+--- Returns true if the third-person camera is enabled, false if not.
 ---@field chase boolean
+---
+--- The vertical viewing angle of the camera.
 ---@field aiming angle_t
+---
+--- The camera's absolute X position in the map.
 ---@field x fixed_t
+---
+--- The camera's absolute Y position in the map.
 ---@field y fixed_t
+---
+--- The camera's absolute Z position in the map.
 ---@field z fixed_t
+---
+--- The absolute angle the camera is facing.
+---
+--- * `0` is East, `ANGLE_90` is North, `ANGLE_180` is West, and `ANGLE_270` is South.
 ---@field angle angle_t
+---
+--- The subsector the camera is currently in.
+---
+--- * To obtain the sector the camera is in, use `camera.subsector.sector`.
 ---@field subsector subsector_t
+---
+--- The absolute "floor" position for the camera (i.e. the height that it considers to be the floor).
+---
+--- * This can be different from the floor height of the sector the camera is in, for example if it is above a solid FOF.
 ---@field floorz fixed_t
+--- The absolute "ceiling" position for the camera (i.e. the ceiling that it considers to be the ceiling).
+---
+--- * This can be different from the ceiling height of the sector the camera is in, for example if it is below a solid FOF.
 ---@field ceilingz fixed_t
+---
+--- The current radius of the camera.
+---
+--- * By default this is `20*FRACUNIT`, but it will automatically scale along with the corresponding player's scale.
 ---@field radius fixed_t
+---
+--- The current height of the camera.
+---
+--- * By default this is `16*FRACUNIT`, but it will automatically scale along with the corresponding player's scale.
 ---@field height fixed_t
+---
+--- The camera's current X-Axis momentum.
+---
+--- * Positive values shift the camera to the East, negative values to the West.
 ---@field momx fixed_t
+---
+--- The camera's current Y-Axis momentum.
+---
+--- * Positive values shift the camera to the North, negative values to the South.
 ---@field momy fixed_t
+---
+--- The camera's current Z-Axis momentum.
+---
+--- * Positive values shift the camera upwards, negative values downwards.
 ---@field momz fixed_t
 
 
@@ -352,11 +397,23 @@
 
 
 ---@class mouse_t
+---
+--- The change in position along the x-axis.
 ---@field dx INT32
+---
+--- The change in position along the y-axis.
 ---@field dy INT32
+---
+--- The change in position along the y-axis for use in mouse-looking.
 ---@field mlookdy INT32
+---
+--- The real change in position along the x-axis unadjusted for sensitivity settings.
 ---@field rdx INT32
+---
+--- The real change in position along the y-axis unadjusted for sensitivity settings.
 ---@field rdy INT32
+---
+--- Contains flags representing mouse buttons currently pressed. (See `MB_*` constants).
 ---@field buttons UINT16
 
 
