@@ -601,7 +601,7 @@
 ---@class state_t
 ---
 --- Sprite prefix number used for the state.
----@field sprite number
+---@field sprite spritenum_t
 ---
 --- Frame number of the sprite used for the state; it also contains full brightness/translucency information. (`tr_*`, `FF_*`)
 ---@field frame UINT32
@@ -630,7 +630,7 @@
 --- The next state number to go to after the state has finished being used.
 ---
 --- * A `state.nextstate` of `S_NULL` will make the Object using the current state be removed from the map when about to switch to the new state.
----@field nextstate number
+---@field nextstate statenum_t
 
 
 --//
