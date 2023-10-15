@@ -483,30 +483,116 @@
 
 
 ---@class mobjinfo_t
+---
+--- The Thing type number, should be a number between 1 and 4095.
+---
+--- * If set to -1, the Object type cannot be placed through Things on the map.
 ---@field doomednum INT32
----@field spawnstate state_t
+---
+--- The state that this type of Object calls when it is spawned.
+---
+--- * Its duration may not be 0.
+--- * If the `SpawnState` has an action, it will not be performed when the Object is first spawned unless the `MF_RUNSPAWNFUNC` flag is set on the Object.
+--- * If the `SpawnState` is called again after that, however, the action will be performed even without the flag.
+---@field spawnstate statenum_t
+---
+--- The initial value for the health variable for `mobj_t`.
 ---@field spawnhealth INT32
----@field seestate number
----@field seesound number
+---
+--- Called once an Object spots a player, which can be done with the action `A_Look` and certain actions that are made specifically for some of SRB2's specific enemies.
+---@field seestate statenum_t
+---
+--- Usually played when the `SeeState` is executed.
+---
+--- * `A_PlaySeeSound` is made specifically to call this sound.
+---@field seesound soundnum_t
+---
+--- The initial value for the `reactiontime` variable for `mobj_t`.
 ---@field reactiontime INT32
----@field attacksound number
----@field painstate number
+---
+--- Usually played by certain attack actions for enemies.
+---
+--- * The action `A_PlayAttackSound` is made specifically to call this sound.
+---@field attacksound soundnum_t
+---
+--- The state that Objects with the flag `MF_SHOOTABLE` go to when they are damaged but not yet dead.
+---@field painstate statenum_t
+---
+--- Used for miscellaneous purposes and will be unused for most Objects.
 ---@field painchance INT32
----@field painsound number
----@field meleestate number
----@field missilestate number
----@field deathstate number
----@field xdeathstate number
----@field deathsound number
+---
+--- Usually played when the `PainState` is executed.
+---
+--- * The action `A_Pain` is made specifically to call this sound.
+---@field painsound soundnum_t
+---
+--- The first of two attack states.
+---
+--- * Actions call this or `MissileState` when the Object should attack.
+---@field meleestate statenum_t
+---
+--- The second of two attack states.
+---
+--- * Actions call this or `MeleeState` when the Object should attack.
+---@field missilestate statenum_t
+---
+--- The state that Objects go to when they are destroyed (i.e., have no health points left).
+---
+--- * For regular enemies, this sequence of states should eventually point to `S_NULL`, which is used for Objects that have disappeared.
+---@field deathstate statenum_t
+---
+--- Usually used as the fleeing state for bosses.
+---
+--- * It is called by the action `A_BossDeath`.
+---@field xdeathstate statenum_t
+---
+--- Usually played when the `DeathState` is executed.
+---
+--- * The action `A_Scream` is made specifically to call this sound.
+---@field deathsound soundnum_t
+---
+--- Usage depends on situation; can be just a regular number in some cases, other cases this needs to be a multiple of `FRACUNIT`.
 ---@field speed fixed_t
+---
+--- The initial value for the `radius` variable for `mobj_t`.
+---
+--- * This may also be referenced when an Object's scale is modified.
 ---@field radius fixed_t
+---
+--- The initial value for the `height` variable for `mobj_t`.
+---
+--- * This may also be referenced when an Object's scale is modified.
 ---@field height fixed_t
+---
+--- Used to resolve ordering conflicts when drawing sprites that are in the same position in Software rendering.
+---
+--- * Sprites with a higher display offset are always drawn in front of sprites with a lower display offset.
+--- * For instance, the shield orbs all have this set to 1, which means they are always displayed in front of the player when both are in the exact same position.
+--- * Any integer value can be used here, including negative values; SRB2's Objects only use values up to 2, so anything above that will make the Object take precedence over all of SRB2's default Objects.
+--- * For most Objects, this can be set to 0.
 ---@field dispoffset INT32
+---
+--- Used to determine the damage type of Objects with the primary flags `MF_PAIN` or `MF_MISSILE`.
+---
+--- * Otherwise, it's used for miscellaneous purposes and will be unused for most Objects.
+--- * It has no relation to the heaviness of an Object.
 ---@field mass INT32
+---
+--- Used for miscellaneous purposes and will be unused for most Objects.
 ---@field damage INT32
----@field activesound number
+---
+--- Used for miscellaneous sounds that are part of an Object's animation.
+---
+--- * `A_PlayActiveSound` is made specifically to call this sound.
+---@field activesound soundnum_t
+---
+--- The initial value given to the `flags` variable for `mobj_t` (See `MF_*` constants).
 ---@field flags INT32
----@field raisestate number
+---
+--- Used for miscellaneous purposes.
+---
+--- * For example, `A_ShootBullet`, `A_DropMine` and `A_JetgShoot` all spawn Objects with this state.
+---@field raisestate statenum_t
 
 
 --//
@@ -696,6 +782,7 @@
 
 ---@class soundnum_t     : integer
 ---@class statenum_t     : integer
+---@class spritenum_t    : UINT32
 ---@class skincolornum_t : integer
 ---@class playersprite_t : integer
 
