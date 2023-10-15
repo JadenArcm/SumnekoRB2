@@ -1831,7 +1831,35 @@ BT_CUSTOM3 = 1 << 15
 --//
 
 
--- TODO: mouse button flags
+-- Mouse Button 1 (Left Click).
+MB_BUTTON1 = 1 << 0
+
+-- Mouse Button 2 (Right Click).
+MB_BUTTON2 = 1 << 1
+
+-- Mouse Button 3 (Center Click).
+MB_BUTTON3 = 1 << 2
+
+-- Mouse Button 4.
+MB_BUTTON4 = 1 << 3
+
+-- Mouse Button 5.
+MB_BUTTON5 = 1 << 4
+
+-- Mouse Button 6.
+MB_BUTTON6 = 1 << 5
+
+-- Mouse Button 7.
+MB_BUTTON7 = 1 << 6
+
+-- Mouse Button 8.
+MB_BUTTON8 = 1 << 7
+
+-- Mouse wheel, when scrolling up.
+MB_SCROLLUP = 1 << 8
+
+-- Mouse wheel, when scrolling down.
+MB_SCROLLDOWN = 1 << 9
 
 
 --//
