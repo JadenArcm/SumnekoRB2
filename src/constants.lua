@@ -1952,7 +1952,102 @@ GF_BLUEFLAG = 1 << 1
 --//
 
 
--- TODO: more and more...
+-- This flag means that the map has available access to [Single-Player](https://wiki.srb2.org/wiki/Single_Player) mode.
+TOL_SP = 1 << 0
+
+-- This flag means that the map has available access to [Co-op](https://wiki.srb2.org/wiki/Co-op).
+TOL_COOP = 1 << 1
+
+-- This flag means that the map has available access to [Competition](https://wiki.srb2.org/wiki/Competition) mode.
+TOL_COMPETITION = 1 << 2
+
+-- This flag means that the map has access to [Race](https://wiki.srb2.org/wiki/Race) mode.
+TOL_RACE = 1 << 3
+
+-- This flag means that the map has access to [Match](https://wiki.srb2.org/wiki/Match) mode.
+TOL_MATCH = 1 << 4
+
+-- This flag means that the map has access to [Tag](https://wiki.srb2.org/wiki/Tag) mode.
+TOL_TAG = 1 << 5
+
+-- This flag means that the map has access to [Capture the Flag](https://wiki.srb2.org/wiki/Capture_the_Flag).
+TOL_CTF = 1 << 6
+
+-- This flag means that the map has access to a custom made Lua gametype.
+TOL_CUSTOM = 1 << 7
+
+-- This flag means that the map has access to a level that scrolls in [2 Dimensions](https://wiki.srb2.org/wiki/2D).
+TOL_2D = 1 << 8
+
+-- This flag means that the map has access to "[Mario](https://wiki.srb2.org/wiki/Mario)" mode, which changes the rings for coins, and many more.
+TOL_MARIO = 1 << 9
+
+-- This flag means that the map has access to a [NiGHTS](https://wiki.srb2.org/wiki/NiGHTS) interface and gameplay.
+TOL_NIGHTS = 1 << 10
+
+-- **`TODO:`** Complete the definition of whatever this is.
+TOL_ERZ3 = 1 << 11
+
+-- **`TODO:`** Complete the definition of whatever this is.
+--
+-- * [*Link to the gametype page...*](https://wiki.srb2.org/wiki/Christmas_NiGHTS)
+TOL_XMAS = 1 << 12
+
+
+--//
+
+
+-- Represents the [Single-Player](https://wiki.srb2.org/wiki/Single_Player) and [Co-op](https://wiki.srb2.org/wiki/Co-op) gametypes.
+GT_COOP = 0
+
+-- Represents the [Competition](https://wiki.srb2.org/wiki/Competition) gametype.
+GT_COMPETITION = 1
+
+-- Represents the [Race](https://wiki.srb2.org/wiki/Race) gametype.
+GT_RACE = 2
+
+-- Represents the [Match](https://wiki.srb2.org/wiki/Match) gametype.
+GT_MATCH = 3
+
+-- Represents the [Team Match](https://wiki.srb2.org/wiki/Team_Match) gametype.
+GT_TEAMMATCH = 4
+
+-- Represents the [Tag](https://wiki.srb2.org/wiki/Tag) gametype.
+GT_TAG = 5
+
+-- Represents the [Hide n' Seek](https://wiki.srb2.org/wiki/Hide_&_Seek) gametype.
+GT_HIDEANDSEEK = 6
+
+-- Represents the [Capture the Flag](https://wiki.srb2.org/wiki/Capture_the_Flag) gametype.
+GT_CTF = 7
+
+
+--//
+
+
+-- No intermission, skips straight to the next level.
+int_none = 0
+
+-- Single Player and Co-op "Sonic got through the act" style intermission.
+int_coop = 1
+
+-- Match, Tag and Hide & Seek score tally.
+int_match = 2
+
+-- Team Match score tally.
+int_teammatch = 3
+
+-- Capture the Flag score tally.
+int_ctf = 4
+
+-- Race score tally.
+int_race = 5
+
+-- Competition score tally.
+int_competition = 6
+
+-- Special Stage intermission, displays the amount of emeralds the player has.
+int_spec = 7
 
 
 --//
