@@ -31,12 +31,12 @@
 ---@field snext mobj_t
 ---@field angle angle_t
 ---@field rollangle angle_t
----@field sprite number
+---@field sprite spritenum_t
 ---@field frame UINT32
 ---@field sprite2 UINT32
 ---@field anim_duration UINT16
 ---@field renderflags UINT32
----@field blendmode number
+---@field blendmode blendmode_t
 ---@field spritexscale fixed_t
 ---@field spriteyscale fixed_t
 ---@field spritexoffset fixed_t
@@ -54,7 +54,7 @@
 ---@field momz fixed_t
 ---@field pmomz fixed_t
 ---@field tics INT32
----@field state number
+---@field state statenum_t
 ---@field flags UINT32
 ---@field flags2 UINT32
 ---@field eflags UINT32
@@ -64,7 +64,7 @@
 ---@field bnext mobj_t
 ---@field hprev mobj_t
 ---@field hnext mobj_t
----@field type number
+---@field type mobjtype_t
 ---@field info mobjinfo_t
 ---@field health INT32
 ---@field movedir angle_t
@@ -102,7 +102,7 @@
 ---@field mo mobj_t
 ---@field realmo mobj_t
 ---@field cmd ticcmd_t
----@field playerstate number
+---@field playerstate playerstate_t
 ---@field camerascale fixed_t
 ---@field shieldscale fixed_t
 ---@field viewz fixed_t
@@ -121,8 +121,8 @@
 ---@field ammoremovaltimer tic_t
 ---@field ammoremovalweapon INT32
 ---@field powers UINT16[]
----@field pflags number
----@field panim number
+---@field pflags playerflags_t
+---@field panim playeranim_t
 ---@field flashcount UINT16
 ---@field flashpal UINT16
 ---@field skin string|INT32
@@ -139,10 +139,10 @@
 ---@field charability UINT8
 ---@field charability2 UINT8
 ---@field charflags UINT32
----@field thokitem number
----@field spinitem number
----@field revitem number
----@field followitem number
+---@field thokitem mobjtype_t
+---@field spinitem mobjtype_t
+---@field revitem mobjtype_t
+---@field followitem mobjtype_t
 ---@field followmobj mobj_t
 ---@field actionspd fixed_t
 ---@field mindash fixed_t
@@ -237,6 +237,7 @@
 ---@field jointime tic_t
 ---@field quittime tic_t
 ---@field fovadd fixed_t
+---@field ping UINT32
 
 
 --//
@@ -245,7 +246,7 @@
 ---@class skin_t
 ---@field valid boolean
 ---@field name string
----@field flags number
+---@field flags skinflags_t
 ---@field realname string
 ---@field hudname string
 ---@field ability UINT8
@@ -269,15 +270,16 @@
 ---@field shieldscale fixed_t
 ---@field camerascale fixed_t
 ---@field starttranscolor UINT8
----@field prefcolor number
----@field prefoppositecolor number
----@field supercolor number
+---@field prefcolor skincolornum_t
+---@field prefoppositecolor skincolornum_t
+---@field supercolor skincolornum_t
 ---@field highresscale fixed_t
 ---@field contspeed UINT8
 ---@field contangle UINT8
 ---@field availability UINT8
----@field soundsid number[]
+---@field soundsid soundnum_t[]
 ---@field sprites any
+---@field supername string
 
 
 --//
@@ -798,10 +800,16 @@
 ---@class easelib
 ---@class inputlib
 
----@class soundnum_t     : integer
+---@class mobjtype_t     : integer
 ---@class statenum_t     : integer
----@class spritenum_t    : UINT32
+---@class spritenum_t    : integer
+---@class soundnum_t     : integer
 ---@class skincolornum_t : integer
+---@class skinflags_t    : integer
+---@class blendmode_t    : integer
+---@class playerstate_t  : integer
+---@class playeranim_t   : integer
+---@class playerflags_t  : integer
 ---@class playersprite_t : integer
 
 ---@class spriteinfo_t
