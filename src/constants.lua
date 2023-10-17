@@ -2053,6 +2053,12 @@ int_spec = 7
 --//
 
 
+-- TODO: Even MORE stuff...
+
+
+--//
+
+
 -- This gametype ensures linear progression through levels, not allowing random picks.
 --
 -- * Only used by Co-op.
@@ -2211,7 +2217,41 @@ GTR_CUTSCENES = 1 << 31
 --//
 
 
--- TODO: Jingle types.
+-- Null state.
+JT_NONE = 0
+
+-- Other state.
+JT_OTHER = 1
+
+-- Main level music.
+JT_MASTER = 2
+
+-- Got an extra life.
+JT_1UP = 3
+
+-- Got speed shoes.
+JT_SHOES = 4
+
+-- Got invencibility.
+JT_INV = 5
+
+-- Got a super star!
+JT_MINV = 6
+
+-- Drowning.
+JT_DROWN = 7
+
+-- Super form state.
+JT_SUPER = 8
+
+-- Game over.
+JT_GOVER = 9
+
+-- NiGHTS time out (10 seconds).
+JT_NIGHTSTIMEOUT = 10
+
+-- NiGHTS Special Stage time out (10 seconds).
+JT_SSTIMEOUT = 11
 
 
 --//
