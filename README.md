@@ -1,3 +1,5 @@
+* Archived since this was kind of a pain to make (and update) and pretty much no one (expect me) used it
+
 <h1 align="center"> Sumneko Robo Blast 2</h1>
 
 This is a friendly repositiory that focus on giving some kind of support for SRB2 via [Sumneko](https://github.com/sumneko/)'s [Lua-Language-Server](https://github.com/sumneko/lua-language-server/) extension.
